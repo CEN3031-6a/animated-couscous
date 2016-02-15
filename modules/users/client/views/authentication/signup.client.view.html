@@ -4,32 +4,11 @@
     <form name="userForm" ng-submit="signup(userForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
         <div class="form-group" show-errors>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="credentials.firstName" placeholder="First Name" required>
-          <div ng-messages="userForm.firstName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">First name is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="credentials.lastName" placeholder="Last Name" required>
-          <div ng-messages="userForm.lastName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Last name is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
           <label for="email">Email</label>
           <input type="email" id="email" name="email" class="form-control" ng-model="credentials.email" placeholder="Email" lowercase required>
           <div ng-messages="userForm.email.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Email address is required.</p>
             <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="credentials.username" placeholder="Username" lowercase required>
-          <div ng-messages="userForm.username.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Username is required.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
@@ -40,6 +19,27 @@
             <div ng-repeat="passwordError in passwordErrors">
               <p class="help-block error-text" ng-show="userForm.password.$error.requirements">{{passwordError}}</p>
             </div>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">Xbox Live</label>
+          <input type="text" id="xboxlive" name="xboxlive" class="form-control" ng-model="credentials.xboxlive" placeholder="Xbox live gamertag">
+          <div ng-messages="userForm.xboxlive.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">Username is required.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">PlayStation Network</label>
+          <input type="text" id="psn" name="psn" class="form-control" ng-model="credentials.psn" placeholder="PSN username">
+          <div ng-messages="userForm.psn.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">Username is required.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">Steam</label>
+          <input type="text" id="steam" name="steam" class="form-control" ng-model="credentials.steam" placeholder="Steam username">
+          <div ng-messages="userForm.steam.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">Username is required.</p> -->
           </div>
         </div>
         <div class="form-group" ng-show="!userForm.password.$error.required">
