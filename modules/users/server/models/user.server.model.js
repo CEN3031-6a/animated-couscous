@@ -52,26 +52,22 @@ var UserSchema = new Schema({
     default: '',
     validate: [validateLocalStrategyProperty, 'Please fill in your date of birth']
   },
-  age: {
-    type: Number,
-    required: 'Please fill in an age'
-  },
   xboxlive: {
     type: String,
     //unique: 'Username already exists',
-    required: 'Please fill in a username',
+    //required: 'Please fill in a username',
     trim: true
   },
   psn: {
     type: String,
     //unique: 'Username already exists',
-    required: 'Please fill in a username',
+    //required: 'Please fill in a username',
     trim: true
   },
   steam: {
     type: String,
     //unique: 'Username already exists',
-    required: 'Please fill in a username',
+    //required: 'Please fill in a username',
     trim: true
   },
   salt: {
