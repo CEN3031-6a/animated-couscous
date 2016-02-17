@@ -42,14 +42,13 @@ var GamesSchema = new Schema({
 
 
 GamesSchema.pre('save', function (next) {
-
-var currentDate = new Date();
-this.updated = currentDate;
-if (!this.created)
-	this.created = currentDate;
+  var currentDate = new Date();
+  this.updated = currentDate;
+  if (!this.created)
+    this.created = currentDate;
 
   next();
 });
 
 
-mongoose.model('Games', GamesSchema);
+mongoose.model('Game', GamesSchema);

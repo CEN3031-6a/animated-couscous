@@ -6,8 +6,22 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
+  Game = mongoose.model('Game'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+  
+exports.listGames = function (req, res){
+  Game.find({}, function(err, games) {
+   if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(games);
+  });
+
+};
 /**
  * Show the current user
  */
