@@ -7,8 +7,8 @@
       <span class="icon-bar"></span>
     </button>
     <a ui-sref="home" class="navbar-brand">
-      <span><img width="27px" height="27px" src="modules/core/client/img/brand/partyUpLogo.jpg"></span>
-      PartyUp</a>
+      <span><img  height="27px" src="modules/core/client/img/brand/partyUpHeader.png"></span>
+    </a>
   </div>
   <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
@@ -24,11 +24,15 @@
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
       <li ui-sref-active="active">
-        <a ui-sref="authentication.signup">Sign Up</a>
+        <a ui-sref="authentication.signup">
+          <button class="btn PUButton">Sign Up</button>
+        </a>
       </li>
       <li class="divider-vertical"></li>
       <li ui-sref-active="active">
-        <a ui-sref="authentication.signin">Sign In</a>
+        <a ui-sref="authentication.signin">
+          <button class="btn PUButton">Sign In</button>
+        </a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-show="authentication.user">

@@ -27,7 +27,7 @@ module.exports = {
   // for obsecurity reasons
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
-  logo: 'modules/core/client/img/brand/logo.png',
+  logo: 'modules/core/client/img/brand/partyUpHeader.png',
   favicon: 'modules/core/client/img/brand/partyUpLogo.jpg',
   uploads: {
     profileUpload: {
