@@ -9,6 +9,16 @@
     <a ui-sref="home" class="navbar-brand">
       <span><img  height="27px" src="modules/core/client/img/brand/partyUpHeader.png"></span>
     </a>
+    <div class="btn-group">
+      <button type="button" class="btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Console
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Xbox</a>
+        <a class="dropdown-item" href="#">PlayStation</a>
+        <a class="dropdown-item" href="#">PC</a>
+      </div>
+    </div>
   </div>
   <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
