@@ -10,17 +10,28 @@
       <span><img height="40px" src="modules/core/client/img/brand/partyUpHeader.png"></span>
     </a>
 
-    <!-- Can change a hrefs to a sref for ui-views -->
+    <!-- Can change <a hrefs> to a sref for ui-views -->
     <ul class="nav navbar-nav">
       <li class="dropdown" dropdown>
         <a class="dropdown-toggle header-dropdown-toggle" dropdown-toggle role="button" href="#">
-        Console <b class="caret" style="color: #8DC63F;"></b></a>
+        <button class="btn PUButton">Console</button> <b class="caret" style="color: #8DC63F;"></b></a>
         <ul class="dropdown-menu" role="menu">
           <li><a ui-sref="#"><img class="console-logo" ng-src="modules/core/client/img/brand/xbox-logo.png" alt="Xbox" /></a></li>
           <li><a ui-sref="#"><img class="console-logo" ng-src="modules/core/client/img/brand/playstation-logo.png" alt="PlayStation" /></a></li>
           <li><a ui-sref="#"><img class="console-logo" ng-src="modules/core/client/img/brand/steam-logo.png" alt="Steam" /></a></li>
         </ul>
       </li>
+    </ul>
+
+    <ul class="navbar-form navbar-right" role="search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search">
+        <span class="input-group-btn">
+          <button type="submit" class="btn PUButton" id="srch-btn">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+        </span>
+      </div>
     </ul>
 
   </div>

@@ -14,7 +14,6 @@ body {
     background-color: #A2D062;
 }
 
-
 /* Dropdown Menu Styling */
 .dropdown-menu {
 	background-color: #2B2B2B;
@@ -28,3 +27,29 @@ body {
 	width: 40px;
 	height: 40px;
 }
+
+
+/* Header Search Bar */
+/*
+.search input {
+	width: 0px;
+	margin-left: 210px;
+	padding: 0 2px 0 2px;
+	-webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+.search:hover input, .search input:focus {
+	width: 200px;
+	margin-left: 0px;
+}
+.btn {
+}
+*/
+
+
+/* Search glyphicon sizing */
+/*span.glyphicon-search {
+	font-size: 1.2em;
+}*/
