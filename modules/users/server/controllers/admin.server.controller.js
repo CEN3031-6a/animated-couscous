@@ -21,6 +21,18 @@ exports.listGames = function (req, res){
   });
 
 };
+
+exports.addGame = function (req, res){
+  var game = new Game(req.body);
+  game.save(function(err){
+    if(err){
+      res.status(400).send(err);
+    }
+    else {
+      res.json(game);
+    }	
+  });
+};
 /**
  * Show the current user
  */
