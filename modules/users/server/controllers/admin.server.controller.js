@@ -11,7 +11,7 @@ var path = require('path'),
 
   
 exports.listGames = function (req, res){
-  Game.find({}, function(err, games) {
+  Game.find().sort('-created').exec(function (err, games) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

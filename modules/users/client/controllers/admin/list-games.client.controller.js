@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('games.admin').controller('GamesListController', ['$scope', '$filter', 'Admin',
-  function ($scope, $filter, Admin) {
-    Admin.query(function (data) {
+angular.module('users.admin').controller('GamesListController', ['$scope', '$filter', 'Admin', 'Game',
+  function ($scope, $filter, Admin, Game) {
+    Game.query(function (data) {
       $scope.games = data;
+	  //$scope.games = Game.find();
       $scope.buildPager();
     });
 
