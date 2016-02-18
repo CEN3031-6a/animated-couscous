@@ -7,18 +7,22 @@
       <span class="icon-bar"></span>
     </button>
     <a ui-sref="home" class="navbar-brand">
-      <span><img  height="27px" src="modules/core/client/img/brand/partyUpHeader.png"></span>
+      <span><img height="40px" src="modules/core/client/img/brand/partyUpHeader.png"></span>
     </a>
-    <div class="btn-group">
-      <button type="button" class="btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Console
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Xbox</a>
-        <a class="dropdown-item" href="#">PlayStation</a>
-        <a class="dropdown-item" href="#">PC</a>
-      </div>
-    </div>
+
+    <!-- Can change a hrefs to a sref for ui-views -->
+    <ul class="nav navbar-nav">
+      <li class="dropdown" dropdown>
+        <a class="dropdown-toggle header-dropdown-toggle" dropdown-toggle role="button" href="#">
+        Console <b class="caret" style="color: #8DC63F;"></b></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a ui-sref="#"><img class="console-logo" ng-src="modules/core/client/img/brand/xbox-logo.png" alt="Xbox" /></a></li>
+          <li><a ui-sref="#"><img class="console-logo" ng-src="modules/core/client/img/brand/playstation-logo.png" alt="PlayStation" /></a></li>
+          <li><a ui-sref="#"><img class="console-logo" ng-src="modules/core/client/img/brand/steam-logo.png" alt="Steam" /></a></li>
+        </ul>
+      </li>
+    </ul>
+
   </div>
   <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
@@ -35,13 +39,13 @@
     <ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
       <li ui-sref-active="active">
         <a ui-sref="authentication.signup">
-          <button class="btn PUButton">Sign Up</button>
+          <button class="btn PUButton">SIGN UP</button>
         </a>
       </li>
       <li class="divider-vertical"></li>
       <li ui-sref-active="active">
         <a ui-sref="authentication.signin">
-          <button class="btn PUButton">Sign In</button>
+          <button class="btn PUButton">SIGN IN</button>
         </a>
       </li>
     </ul>
