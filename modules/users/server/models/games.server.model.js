@@ -14,12 +14,12 @@ var mongoose = require('mongoose'),
  * Games Schema
  */
 var GamesSchema = new Schema({
-  Title: {
+  title: {
     type: String,
     trim: true,
     default: '',
   },
-  Platform: {
+  platform: {
     type: String,
     default: ''
   },

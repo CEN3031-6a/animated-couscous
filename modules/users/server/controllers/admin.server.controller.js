@@ -12,12 +12,11 @@ var path = require('path'),
   
 exports.listGames = function (req, res){
   Game.find({}, function(err, games) {
-   if (err) {
+    if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(games);
   });
 

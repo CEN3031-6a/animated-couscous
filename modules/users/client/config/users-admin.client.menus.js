@@ -9,7 +9,7 @@ angular.module('users.admin').run(['Menus',
     });
     Menus.addSubMenuItem('topbar', 'admin', {
       title: 'Manage Games',
-      state: 'admin.users'
+      state: 'admin.games'
     });
   }
 ]);
