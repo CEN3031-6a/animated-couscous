@@ -10,3 +10,4 @@ angular.module('users.admin').factory('Game', ['$resource',
     });
   }
 ]);
+

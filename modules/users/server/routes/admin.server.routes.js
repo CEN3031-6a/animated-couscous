@@ -16,6 +16,9 @@ module.exports = function (app) {
 	
   app.route('/api/games')
     .get(adminPolicy.isAllowed, admin.listGames);
+	
+  app.route('/api/games/add')
+    .post(adminPolicy.isAllowed, admin.addGame);
 
   // Single user routes
   app.route('/api/users/:userId')
