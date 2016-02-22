@@ -28,6 +28,12 @@ body {
 	height: 40px;
 }
 
+/* Search bar styling */
+.srch {
+	margin-top: 14px;
+	
+}
+
 /* Scrollbar styling for webkit broswers */
 ::-webkit-scrollbar {
     width: 5px;
