@@ -3,6 +3,11 @@ body {
 	color: #FFFEFF;
 }
 
+/* Navbar styling */
+.navbar-nav .open .dropdown-menu > li > a, .navbar .nav .open .dropdown-menu {
+	color: #FFFEFF;
+}
+
 /* Party Up Buttons */
 .btn.PUButton {
 	color: white;
@@ -17,6 +22,7 @@ body {
 /* Dropdown Menu Styling */
 .dropdown-menu {
 	background-color: #2B2B2B;
+	color: #FFFEFF;
 	min-width: 0 !important;
 }
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
@@ -31,7 +37,6 @@ body {
 /* Search bar styling */
 .srch {
 	margin-top: 14px;
-	
 }
 
 /* Scrollbar styling for webkit broswers */
