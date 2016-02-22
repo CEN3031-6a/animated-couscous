@@ -28,22 +28,6 @@ var validateLocalStrategyEmail = function (email) {
  * User Schema
  */
 var UserSchema = new Schema({
-  firstName: {
-    type: String,
-    trim: true,
-    default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your first name']
-  },
-  lastName: {
-    type: String,
-    trim: true,
-    default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your last name']
-  },
-  displayName: {
-    type: String,
-    trim: true
-  },
   email: {
     type: String,
     unique: true,
@@ -52,16 +36,39 @@ var UserSchema = new Schema({
     default: '',
     validate: [validateLocalStrategyEmail, 'Please fill a valid email address']
   },
-  username: {
-    type: String,
-    unique: 'Username already exists',
-    required: 'Please fill in a username',
-    lowercase: true,
-    trim: true
-  },
   password: {
     type: String,
     default: ''
+  },
+  location: {
+    type: String,
+    trim: true,
+    default: '',
+    validate: [validateLocalStrategyProperty, 'Please fill in your location']
+  },
+  birthday: {
+    type: String,
+    trim: true,
+    default: '',
+    validate: [validateLocalStrategyProperty, 'Please fill in your date of birth']
+  },
+  xboxlive: {
+    type: String,
+    //unique: 'Username already exists',
+    //required: 'Please fill in a username',
+    trim: true
+  },
+  psn: {
+    type: String,
+    //unique: 'Username already exists',
+    //required: 'Please fill in a username',
+    trim: true
+  },
+  steam: {
+    type: String,
+    //unique: 'Username already exists',
+    //required: 'Please fill in a username',
+    trim: true
   },
   salt: {
     type: String
@@ -177,7 +184,7 @@ UserSchema.statics.generateRandomPassphrase = function () {
     var password = '';
     var repeatingCharacters = new RegExp('(.)\\1{2,}', 'g');
 
-    // iterate until the we have a valid passphrase. 
+    // iterate until the we have a valid passphrase.
     // NOTE: Should rarely iterate more than once, but we need this to ensure no repeating characters are present.
     while (password.length < 20 || repeatingCharacters.test(password)) {
       // build the random password

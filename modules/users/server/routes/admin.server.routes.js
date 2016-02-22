@@ -13,6 +13,11 @@ module.exports = function (app) {
   // Users collection routes
   app.route('/api/users')
     .get(adminPolicy.isAllowed, admin.list);
+	
+  app.route('/api/games')
+    .get(adminPolicy.isAllowed, admin.listGames)
+    .post(adminPolicy.isAllowed, admin.addGame);
+	
 
   // Single user routes
   app.route('/api/users/:userId')
