@@ -7,8 +7,33 @@
       <span class="icon-bar"></span>
     </button>
     <a ui-sref="home" class="navbar-brand">
-      <span><img width="27px" height="27px" src="modules/core/client/img/brand/partyUpLogo.jpg"></span>
-      PartyUp</a>
+      <span><img height="40px" src="modules/core/client/img/brand/partyUpHeader.png"></span>
+    </a>
+
+    <!-- Can change <a hrefs> to a sref for ui-views -->
+    <ul class="nav navbar-nav">
+      <li class="dropdown" dropdown>
+        <a class="dropdown-toggle header-dropdown-toggle" dropdown-toggle role="button" href="#">
+        <button class="btn PUButton">Console</button> <b class="caret" style="color: #8DC63F;"></b></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a ui-sref="#"><img class="console-logo" ng-src="modules/core/client/img/brand/xbox-logo.png" alt="Xbox" /></a></li>
+          <li><a ui-sref="#"><img class="console-logo" ng-src="modules/core/client/img/brand/playstation-logo.png" alt="PlayStation" /></a></li>
+          <li><a ui-sref="#"><img class="console-logo" ng-src="modules/core/client/img/brand/steam-logo.png" alt="Steam" /></a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="navbar-right navbar-form srch" role="search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search">
+        <span class="input-group-btn">
+          <button type="submit" class="btn PUButton" id="srch-btn">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+        </span>
+      </div>
+    </ul>
+
   </div>
   <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
@@ -24,11 +49,15 @@
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
       <li ui-sref-active="active">
-        <a ui-sref="authentication.signup">Sign Up</a>
+        <a ui-sref="authentication.signup">
+          <button class="btn PUButton">SIGN UP</button>
+        </a>
       </li>
       <li class="divider-vertical"></li>
       <li ui-sref-active="active">
-        <a ui-sref="authentication.signin">Sign In</a>
+        <a ui-sref="authentication.signin">
+          <button class="btn PUButton">SIGN IN</button>
+        </a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-show="authentication.user">
