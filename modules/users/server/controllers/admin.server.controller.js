@@ -21,6 +21,19 @@ exports.listGames = function (req, res){
   });
 
 };
+exports.deleteGame = function (req, res) {
+  var games = req.model;
+
+  games.remove(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(games);
+  });
+};
 /**
  * Show the current user
  */
