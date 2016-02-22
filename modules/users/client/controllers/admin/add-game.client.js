@@ -19,16 +19,12 @@ angular.module('users').controller('AddGameController', ['$scope', '$state', '$h
         $scope.platform = '';
         $scope.gameurl = '';
       }, function(errorResponse) {
-        $location.path('/admin/games/add' +errorResponse.data);
-		  // $scope.title = '';
-		  // $scope.platform = '';
-		  // $scope.gameurl = '';
-		  // $scope.error = errorResponse.data;
+        $scope.title = '';
+        $scope.platform = '';
+        $scope.gameurl = '';
+        $scope.error = errorResponse.data;
       });
 	  
-      // Game.addGame(newGame).then(function(response){$state.go('admin.games');
-      // }, function(error){$scope.error = 'Unable to save game!\n' + error;
-      // });
 		
     };
   }
