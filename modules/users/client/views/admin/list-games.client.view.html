@@ -28,6 +28,7 @@
   </div>
   <div class="list-group">
     <a ng-repeat="game in pagedItems" class="list-group-item">
+      <button ng-click="deleteGame">Delete</button>
       <h4 class="list-group-item-heading" ng-bind="game.titlee"></h4>
       <p class="list-group-item-text pull-right small" ng-bind="game.platform"></p>
       <b><p class="list-group-item-text" ng-bind="game.title"></p></b>
