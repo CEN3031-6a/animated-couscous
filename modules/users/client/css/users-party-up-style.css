@@ -3,10 +3,6 @@ body {
 	color: #FFFEFF;
 }
 
-a.ng-binding {
-	background: #161616;
-}
-
 /* List Group styling */
 .list-group-item.ng-scope {
 	background: #161616;
@@ -52,7 +48,7 @@ a.ng-binding {
 	width: 40px;
 	height: 40px;
 }
-.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active     >     a:focus {
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
     background: #6F9D2F;
 }
 
