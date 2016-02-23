@@ -3,6 +3,25 @@ body {
 	color: #FFFEFF;
 }
 
+a.ng-binding {
+	background: #161616;
+}
+
+/* List Group styling */
+.list-group-item.ng-scope {
+	background: #161616;
+	padding: 2;
+}
+.list-group-item.ng-scope:hover {
+	background: #8DC63F;
+}
+.list-group-item-text, .list-group-item-heading {
+	background: none;
+	color: #FFFEFF;	
+	padding: 0;
+	margin: 0;
+}
+
 /* Navbar styling */
 .navbar-nav .open .dropdown-menu > li > a, .navbar .nav .open .dropdown-menu {
 	color: #FFFEFF;
