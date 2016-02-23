@@ -49,13 +49,13 @@
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
       <li ui-sref-active="active">
-        <a ui-sref="authentication.signup">
+        <a ng-controller="AuthenticationController" ng-click="openSignup()" ui-sref="authentication.signup">
           <button class="btn PUButton">SIGN UP</button>
         </a>
       </li>
       <li class="divider-vertical"></li>
       <li ui-sref-active="active">
-        <a ui-sref="authentication.signin">
+        <a ng-controller="AuthenticationController" ng-click="openSignin()" ui-sref="authentication.signin">
           <button class="btn PUButton">SIGN IN</button>
         </a>
       </li>
