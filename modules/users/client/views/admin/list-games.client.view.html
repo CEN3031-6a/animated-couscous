@@ -2,33 +2,15 @@
   <div class="page-header">
     <div class="row">
       <div class="col-md-4">
-        <h1>Games <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addGame">Add Game</button></h1>
-      <div id="addGame" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Modal Header</h4>
-		</div>
-		<div class="modal-body">
-			<p>Some text in the modal.</p>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		</div>
-		</div>
-
-		</div>
-	</div>
-	  </div>
+        <h1>Games <button type="button" ui-sref="admin.games-add" class="btn btn-primary">Add Game</button></h1>
+    </div>
       <div class="col-md-4" style="margin-top: 2em">
         <input class="form-control col-md-4" type="text" ng-model="search" placeholder="Search" ng-change="figureOutItemsToDisplay()" />
       </div>
     </div>
   </div>
   <div class="list-group">
-    <a ng-repeat="game in pagedItems" class="list-group-item">
-      <button ng-click="deleteGame">Delete</button>
+    <a ng-repeat="game in pagedItems" ui-sref="admin.game({gameId: game._id})" class="list-group-item">
       <h4 class="list-group-item-heading" ng-bind="game.titlee"></h4>
       <p class="list-group-item-text pull-right small" ng-bind="game.platform"></p>
       <b><p class="list-group-item-text" ng-bind="game.title"></p></b>

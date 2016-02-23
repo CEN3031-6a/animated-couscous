@@ -5,10 +5,10 @@
         <h1 ng-bind="user.username"></h1>
       </div>
       <div class="col-md-4">
-        <a class="btn btn-primary" ui-sref="admin.user-edit({userId: user._id})">
+        <a class="btn btn-primary" ui-sref="admin.game-edit({gameID: game._id})">
           <i class="glyphicon glyphicon-edit"></i>
         </a>
-        <a class="btn btn-primary" ng-click="remove();" ng-if="user._id !== authentication.user._id">
+        <a class="btn btn-primary" ng-click="remove();">
           <i class="glyphicon glyphicon-trash"></i>
         </a>
       </div>
@@ -18,33 +18,28 @@
   <div class="row">
     <div class="col-md-8">
       <div class="row">
-        <div class="col-md-3"><strong>First Name</strong></div>
-        <div class="col-md-6" ng-bind="user.firstName"></div>
+        <div class="col-md-3"><strong>Game Name</strong></div>
+        <div class="col-md-6" ng-bind="game.title"></div>
       </div>
       <hr/>
       <div class="row">
-        <div class="col-md-3"><strong>Last Name</strong></div>
-        <div class="col-md-6" ng-bind="user.lastName"></div>
+        <div class="col-md-3"><strong>Platform</strong></div>
+        <div class="col-md-6" ng-bind="game.platform"></div>
       </div>
       <hr/>
       <div class="row">
-        <div class="col-md-3"><strong>Email</strong></div>
-        <div class="col-md-6" ng-bind="user.email"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Provider</strong></div>
-        <div class="col-md-6" ng-bind="user.provider"></div>
+        <div class="col-md-3"><strong>Img URL</strong></div>
+        <div class="col-md-6" ng-bind="game.gameImageURL"></div>
       </div>
       <hr/>
       <div class="row">
         <div class="col-md-3"><strong>Created</strong></div>
-        <div class="col-md-6" ng-bind="user.created"></div>
+        <div class="col-md-6" ng-bind="game.created"></div>
       </div>
       <hr/>
       <div class="row">
-        <div class="col-md-3"><strong>Roles</strong></div>
-        <div class="col-md-6" ng-bind="user.roles"></div>
+        <div class="col-md-3"><strong>Discussions</strong></div>
+        <div class="col-md-6" ng-bind="game.discussions"></div>
       </div>
     </div>
   </div>

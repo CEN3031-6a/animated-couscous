@@ -25,4 +25,10 @@ module.exports = function (app) {
 
   // Finish by binding the user middleware
   app.param('userId', admin.userByID);
+
+  app.route('/api/games/:gameID')
+    .put(adminPolicy.isAllowed, admin.update)
+    .delete(adminPolicy.isAllowed, admin.delete);
+
+  app.param('gameID', admin.gameByID);
 };

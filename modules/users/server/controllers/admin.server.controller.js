@@ -117,3 +117,22 @@ exports.userByID = function (req, res, next, id) {
     next();
   });
 };
+
+exports.gameByID = function (req, res, next, id) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Game is invalid'
+    });
+  }
+
+  Game.findById(id, '-salt -password').exec(function (err, game) {
+    if (err) {
+      return next(err);
+    } else if (!game) {
+      return next(new Error('Failed to load game ' + id));
+    }
+
+    req.model = game;
+    next();
+  });
+};
