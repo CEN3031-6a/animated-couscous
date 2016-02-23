@@ -3,20 +3,6 @@
     <form name="userForm" ng-submit="updateUserProfile(userForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
         <div class="form-group" show-errors>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="user.firstName" placeholder="First Name" required>
-          <div ng-messages="userForm.firstName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">First name is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="user.lastName" placeholder="Last Name" required>
-          <div ng-messages="userForm.lastName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Last name is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
           <label for="email">Email</label>
           <input type="email" id="email" name="email" class="form-control" ng-model="user.email" placeholder="Email" lowercase required>
           <div ng-messages="userForm.email.$error" role="alert">
@@ -25,14 +11,28 @@
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="user.username" placeholder="Username" lowercase required>
-          <div ng-messages="userForm.username.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Username is required.</p>
+          <label for="username">Xbox Live</label>
+          <input type="text" id="xboxlive" name="xboxlive" class="form-control" ng-model="user.xboxlive" placeholder="Xbox live gamertag">
+          <div ng-messages="userForm.xboxlive.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">Username is required.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">PlayStation Network</label>
+          <input type="text" id="psn" name="psn" class="form-control" ng-model="user.psn" placeholder="PSN username">
+          <div ng-messages="userForm.psn.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">Username is required.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">Steam</label>
+          <input type="text" id="steam" name="steam" class="form-control" ng-model="user.steam" placeholder="Steam username">
+          <div ng-messages="userForm.steam.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">Username is required.</p> -->
           </div>
         </div>
         <div class="text-center form-group">
-          <button type="submit" class="btn btn-primary">Save Profile</button>
+          <button type="submit" class="btn PUButton">Save Profile</button>
         </div>
         <div ng-show="success" class="text-center text-success">
           <strong>Profile Saved Successfully</strong>
