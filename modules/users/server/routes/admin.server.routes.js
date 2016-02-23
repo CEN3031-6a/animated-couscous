@@ -27,6 +27,7 @@ module.exports = function (app) {
   app.param('userId', admin.userByID);
 
   app.route('/api/games/:gameID')
+    .get(adminPolicy.isAllowed, admin.read)
     .put(adminPolicy.isAllowed, admin.update)
     .delete(adminPolicy.isAllowed, admin.delete);
 

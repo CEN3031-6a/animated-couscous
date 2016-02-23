@@ -21,10 +21,29 @@ exports.listGames = function (req, res){
   });
 
 };
-exports.deleteGame = function (req, res) {
+exports.delete = function (req, res) {
   var games = req.model;
 
   games.remove(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(games);
+  });
+};
+
+exports.update = function (req, res) {
+  var games = req.model;
+
+  //For security purposes only merge these parameters
+  games.title = req.body.title;
+  games.platform = req.body.platform;
+  games.discussions = req.body.discussions;
+
+  games.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -125,7 +144,7 @@ exports.gameByID = function (req, res, next, id) {
     });
   }
 
-  Game.findById(id, '-salt -password').exec(function (err, game) {
+  Game.findById(id).exec(function (err, game) {
     if (err) {
       return next(err);
     } else if (!game) {
