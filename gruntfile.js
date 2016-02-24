@@ -53,7 +53,7 @@ module.exports = function (grunt) {
         }
       },
       clientCSS: {
-        files: [defaultAssets.client.css, 'modules/core/client/css/*.css'],
+        files: [defaultAssets.client.css, 'modules/core/client/css/*.css', 'modules/users/css/*.css'],
         tasks: ['csslint'],
         options: {
           livereload: true

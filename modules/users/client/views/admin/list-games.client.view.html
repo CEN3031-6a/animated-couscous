@@ -11,12 +11,11 @@
   </div>
   <div class="list-group">
     <a ng-repeat="game in pagedItems" class="list-group-item">
-      <h4 class="list-group-item-heading" ng-bind="game.titlee"></h4>
       <p class="list-group-item-text pull-right small" ng-bind="game.platform"></p>
       <b><p class="list-group-item-text" ng-bind="game.title"></p></b>
     </a>
   </div>
   <script src="/users/client/controllers/admin/list-games.client.controller.js"></script>
 
-  <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+  <pagination class="pages" boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></pagination>
 </section>
