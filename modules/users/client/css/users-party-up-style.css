@@ -3,10 +3,6 @@ body {
 	color: #FFFEFF;
 }
 
-a.ng-binding {
-	background: #161616;
-}
-
 /* List Group styling */
 .list-group-item.ng-scope {
 	background: #161616;
