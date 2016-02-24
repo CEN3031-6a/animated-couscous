@@ -21,7 +21,7 @@ exports.listGames = function (req, res){
   });
 
 };
-exports.delete = function (req, res) {
+exports.deleteGame = function (req, res) {
   var games = req.model;
 
   games.remove(function (err) {
@@ -35,7 +35,7 @@ exports.delete = function (req, res) {
   });
 };
 
-exports.update = function (req, res) {
+exports.updateGame = function (req, res) {
   var games = req.model;
 
   //For security purposes only merge these parameters
@@ -57,6 +57,10 @@ exports.update = function (req, res) {
  * Show the current user
  */
 exports.read = function (req, res) {
+  res.json(req.model);
+};
+
+exports.readGame = function (req, res) {
   res.json(req.model);
 };
 
