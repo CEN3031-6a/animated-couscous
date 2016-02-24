@@ -48,11 +48,11 @@ body {
     height: 8px;
 }
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(43,43,43,0.3); 
+    -webkit-box-shadow: inset 0 0 6px rgba(43,43,43,0.3);
     -webkit-border-radius: 5px;
-    -moz-box-shadow: inset 0 0 6px rgba(43,43,43,0.3); 
+    -moz-box-shadow: inset 0 0 6px rgba(43,43,43,0.3);
     -moz-border-radius: 5px;
-    box-shadow: inset 0 0 6px rgba(43,43,43,0.3); 
+    box-shadow: inset 0 0 6px rgba(43,43,43,0.3);
     border-radius: 5px;
     background: #2B2B2B;
     margin: 10px;
@@ -64,8 +64,10 @@ body {
 	background: #FFFEFF;
     background: rgba(255,254,255,0.8);
     -webkit-box-shadow: inset 0 0 6px rgba(43,43,43,0.5);
+<<<<<<< HEAD
 	-moz-box-shadow: inset 0 0 6px rgba(43,43,43,0.5);
 	box-shadow: inset 0 0 6px rgba(43,43,43,0.5);
+>>>>>>> modal-signin-es
 }
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: #FFFEFF;
