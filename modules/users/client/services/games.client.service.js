@@ -10,3 +10,16 @@ angular.module('users.admin').factory('Game', ['$resource',
     });
   }
 ]);
+
+
+angular.module('users.admin').factory('Admin', ['$resource',
+  function ($resource) {
+    return $resource('api/games/:gameID', {
+      gameID: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);

@@ -5,7 +5,7 @@ angular.module('users.admin').controller('GameController', ['$scope', '$state', 
     $scope.authentication = Authentication;
     $scope.game = gameResolve;
 
-    $scope.remove = function (game) {
+    $scope.removeGame = function (game) {
       if (confirm('Are you sure you want to delete this game?')) {
         if (game) {
           game.$remove();
@@ -19,7 +19,7 @@ angular.module('users.admin').controller('GameController', ['$scope', '$state', 
       }
     };
 
-    $scope.update = function (isValid) {
+    $scope.updateGame = function (isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'gameForm');
 
