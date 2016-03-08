@@ -155,18 +155,18 @@ body {
 	margin-top: 10px;
 }
 
-.modal-header {
+.modal-headerPU {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
   background-color: #88C641;
 }
 
-.modal-body {
+.modal-bodyPU {
   position: relative;
   padding: 15px;
   background-color: black;
 }
-.modal-footer {
+.modal-footerPU {
   padding: 15px;
   text-align: right;
   border-top: 1px solid #e5e5e5;
