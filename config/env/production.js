@@ -100,5 +100,5 @@ module.exports = {
       }
     }
   },
-  sessionSecret: process.env.SESSION_SECRET || 'super amazing secret'
+  // sessionSecret: process.env.SESSION_SECRET || 'super amazing secret'
 };
