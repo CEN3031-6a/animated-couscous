@@ -1,9 +1,9 @@
 <div ng-controller="AuthenticationController">
-  <div class="modal-header" background-color='#88C641'>
+  <div class="modal-header modal-headerPU">
     <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
     <h4 class="modal-title">Sign Up</h4>
   </div>
-  <div class="modal-body modal-partyup">
+  <div class="modal-body modal-bodyPU">
     <form name="userForm" ng-submit="signup(userForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
         <div class="form-group" show-errors>
@@ -69,7 +69,7 @@
           <button type="submit" class="btn PUButton">Sign up</button>
         </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footerPU">
     <div class="text-center form-group">
       <a ui-sref="authentication.signin" class="show-signup">Sign in</a>
     </div>
