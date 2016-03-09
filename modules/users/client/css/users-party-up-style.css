@@ -173,6 +173,10 @@ body {
   background-color: black;
 }
 
+div .modal-header {
+	background-color: #8DC63F;
+}
+
 /* Header Search Bar */
 /*
 .search input {
