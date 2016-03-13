@@ -29,12 +29,16 @@ body {
 	background-image: none!important;
 	background-color: #8DC63F;
 }
-.console-logo {
-	width: 40px;
-	height: 40px;
+.console-logo-size {
+	width: 35px;
+	height: 35px;
 }
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active     >     a:focus {
     background: #6F9D2F;
+}
+li .dropdown {
+	width: 35px;
+	height: 35px;
 }
 
 /* Search bar styling */
