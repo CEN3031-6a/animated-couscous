@@ -7,6 +7,12 @@ body {
 .navbar-nav .open .dropdown-menu > li > a, .navbar .nav .open .dropdown-menu {
 	color: #FFFEFF;
 }
+.navbar-brand {
+	height: 100%;
+}
+.navbar-toggle {
+	margin-top: 18px;
+}
 
 /* Party Up Buttons */
 .btn.PUButton {
@@ -19,6 +25,11 @@ body {
     background-color: #A2D062;
 }
 
+/* Party Up Header */
+.party-up-header {
+	height: 40px;
+}
+
 /* Dropdown Menu Styling */
 .dropdown-menu {
 	background-color: #2B2B2B;
@@ -29,9 +40,9 @@ body {
 	background-image: none!important;
 	background-color: #8DC63F;
 }
-.console-logo {
-	width: 40px;
-	height: 40px;
+.console-logo-size {
+	width: 35px;
+	height: 35px;
 }
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active     >     a:focus {
     background: #6F9D2F;
