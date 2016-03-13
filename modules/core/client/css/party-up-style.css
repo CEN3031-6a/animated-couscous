@@ -10,6 +10,9 @@ body {
 .navbar-brand {
 	height: 100%;
 }
+.navbar-toggle {
+	margin-top: 18px;
+}
 
 /* Party Up Buttons */
 .btn.PUButton {
