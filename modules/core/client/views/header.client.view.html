@@ -7,13 +7,13 @@
       <span class="icon-bar"></span>
     </button>
     <a ui-sref="home" class="navbar-brand">
-      <span><img height="40px" src="modules/core/client/img/brand/partyUpHeader.png"></span>
+      <img class="party-up-header" src="modules/core/client/img/brand/partyUpHeader.png">
     </a>
   </div>
 
   <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);">
-      
+
       <li class="dropdown" dropdown>
         <a class="dropdown-toggle header-dropdown-toggle" dropdown-toggle role="button" href="#">
           <img class="console-logo-size" ng-src="modules/core/client/img/brand/xbox-logo.png" alt="Console"/><b class="caret" style="color: #FFFEFF;"></b></a>
@@ -24,7 +24,7 @@
           <li><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/steam-logo.png" alt="Steam" /></a></li>
         </ul>
       </li>
-
+<!-- Out of commission until we know where to put it
       <li class="navbar-right navbar-form srch" role="search">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search">
@@ -35,7 +35,7 @@
         </span>
       </div>
     </li>
-
+-->
       <li ng-repeat="item in menu.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}}" dropdown="item.type === 'dropdown'">
         <a ng-switch-when="dropdown" class="dropdown-toggle" dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
         <ul ng-switch-when="dropdown" class="dropdown-menu">

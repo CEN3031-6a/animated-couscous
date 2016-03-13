@@ -7,6 +7,9 @@ body {
 .navbar-nav .open .dropdown-menu > li > a, .navbar .nav .open .dropdown-menu {
 	color: #FFFEFF;
 }
+.navbar-brand {
+	height: 100%;
+}
 
 /* Party Up Buttons */
 .btn.PUButton {
@@ -17,6 +20,11 @@ body {
 }
 .btn.PUButton:hover {
     background-color: #A2D062;
+}
+
+/* Party Up Header */
+.party-up-header {
+	height: 40px;
 }
 
 /* Dropdown Menu Styling */
@@ -35,10 +43,6 @@ body {
 }
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active     >     a:focus {
     background: #6F9D2F;
-}
-li .dropdown {
-	width: 35px;
-	height: 35px;
 }
 
 /* Search bar styling */
