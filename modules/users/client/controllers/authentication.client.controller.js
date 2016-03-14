@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator', '$modal', '$log',
-  function($scope, $state, $http, $location, $window, Authentication, PasswordValidator, $modal, $log) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator', '$modal', '$modalStack', '$log',
+  function($scope, $state, $http, $location, $window, Authentication, PasswordValidator, $modal, $modalStack, $log) {
     $scope.authentication = Authentication;
     $scope.popoverMsg = PasswordValidator.getPopoverMsg();
 
@@ -28,6 +28,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
+        $modalStack.dismissAll(); // dismiss modal after signup
       }).error(function(response) {
         $scope.error = response.message;
       });
@@ -48,6 +49,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
+        $modalStack.dismissAll(); // dismiss modal after signin
       }).error(function(response) {
         $scope.error = response.message;
       });
@@ -103,6 +105,28 @@ angular.module('users').controller('ModalInstanceCtrl', function($scope, $modalI
   $scope.authentication = Authentication;
   $scope.popoverMsg = PasswordValidator.getPopoverMsg();
 
+  $scope.signin = function(isValid) {
+    $scope.error = null;
+
+    if (!isValid) {
+      $scope.$broadcast('show-errors-check-validity', 'userForm');
+
+      return false;
+    }
+
+    $http.post('/api/auth/signin', $scope.credentials).success(function(response) {
+      // If successful we assign the response to the global user model
+      $scope.authentication.user = response;
+
+      // And redirect to the previous or home page
+      $state.go($state.previous.state.name || 'home', $state.previous.params);
+      $modalInstance.close();
+      console.log("modal inst");
+    }).error(function(response) {
+      $scope.error = response.message;
+    });
+  };
+
   $scope.signup = function(isValid) {
     $scope.error = null;
 
@@ -118,9 +142,14 @@ angular.module('users').controller('ModalInstanceCtrl', function($scope, $modalI
 
       // And redirect to the previous or home page
       $state.go($state.previous.state.name || 'home', $state.previous.params);
+      $modalInstance.close();
     }).error(function(response) {
       $scope.error = response.message;
     });
+  };
+
+  $scope.ok = function () {
+    $uibModalInstance.close($scope.selected.item);
   };
 
   $scope.cancel = function() {
