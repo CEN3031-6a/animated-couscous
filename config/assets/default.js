@@ -21,7 +21,9 @@ module.exports = {
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
     css: [
-      'modules/*/client/css/*.css'
+      'modules/*/client/css/*.css', 
+      'modules/core/client/css/*.css', 
+      'modules/users/css/*.css'
     ],
     less: [
       'modules/*/client/less/*.less'
