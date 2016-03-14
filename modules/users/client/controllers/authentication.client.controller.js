@@ -148,9 +148,9 @@ angular.module('users').controller('ModalInstanceCtrl', function($scope, $modalI
     });
   };
 
-  $scope.ok = function () {
-    $uibModalInstance.close($scope.selected.item);
-  };
+  // $scope.ok = function () {
+  //   $modalInstance.close($scope.selected.item);
+  // };
 
   $scope.cancel = function() {
     $modalInstance.dismiss('cancel');
