@@ -22,8 +22,8 @@ module.exports = {
     },
     css: [
       'modules/*/client/css/*.css', 
-      'modules/core/client/css/*.css', 
-      'modules/users/css/*.css'
+      'modules/core/client/css/*.css' 
+      //'modules/users/css/*.css'
     ],
     less: [
       'modules/*/client/less/*.less'

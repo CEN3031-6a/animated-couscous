@@ -151,6 +151,20 @@ body {
 	margin-top: 10px;
 }
 
+
+.modal-headerPU {
+  	border-bottom: 1px solid #e5e5e5;
+  	background-color: #88C641;
+}
+
+.modal-bodyPU {
+  	background-color: black;
+}
+.modal-footerPU {
+  	border-top: 1px solid #e5e5e5;
+  	background-color: black;
+}
+
 /* Header Search Bar */
 /*
 .search input {
