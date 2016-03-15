@@ -6,6 +6,26 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
+//Sub document for Discussions
+
+var DiscussionSchema = new Schema({
+  title: {
+    type: String,
+    trim: true,
+    default: '',
+  },
+  description: {
+    type: String,
+    default: ''
+  },
+  OP: {
+    type: String
+  },
+  updated: {
+    type: Date
+  },
+}); 
+  
 /**
  * Games Schema
  */
@@ -33,9 +53,8 @@ var GamesSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  discussions: [{ type: Schema.ObjectId, ref: 'Discussion' }],
+  discussions: [DiscussionSchema],
 });
-
 
 GamesSchema.pre('save', function (next) {
   var currentDate = new Date();
@@ -48,3 +67,4 @@ GamesSchema.pre('save', function (next) {
 
 
 mongoose.model('Game', GamesSchema);
+mongoose.model('Discussion', DiscussionSchema);
