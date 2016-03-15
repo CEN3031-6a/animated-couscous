@@ -10,6 +10,43 @@ var path = require('path'),
   Discussion = mongoose.model('Discussion'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+exports.addGameToUserList = function (req, res) {
+  var game = req.model;
+  User.findone({ username: req.username }).games.push(game);
+  User.findone({ username: req.username }).save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });
+  User.findone({ username: req.username }).populate('games').exec(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });	
+};  
+
+exports.deleteGameFromUserList = function (req, res) {
+  User.findone({ username: req.username }).games.remove(req.id);
+  User.findone({ username: req.username }).save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });
+  User.findone({ username: req.username }).populate('games').exec(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });	
+}; 
+
 exports.addDiscussion = function (req, res) {
   var game = req.model;
   var currentDate = new Date();
@@ -35,7 +72,7 @@ exports.addDiscussion = function (req, res) {
  */
 exports.deleteDiscussion = function (req, res) {
   var game = req.model;
-  var doc = game.discussions.id(req.id).remove();
+  game.discussions.id(req.id).remove();
   game.save(function (err) {
     if (err) {
       return res.status(400).send({
