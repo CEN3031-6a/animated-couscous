@@ -33,7 +33,7 @@ var GamesSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  discussions: { type : Array, default : [] }, //discussions have 4 strings, RoomID, Title, Description, OP,
+  discussions: [{ type: Schema.ObjectId, ref: 'Discussion' }],
 });
 
 
