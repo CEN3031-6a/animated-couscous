@@ -5,7 +5,7 @@ module.exports = function (app) {
   var games = require('../controllers/games.server.controller');
   
   app.route('/api/games/:gameId')
-    // .get(games.listDisccusion) currently not working
+    .get(games.listDiscussion)
     .put(games.addDiscussion)
     .delete(games.deleteDiscussion);
 
