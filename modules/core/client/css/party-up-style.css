@@ -3,6 +3,36 @@ body {
 	color: #FFFEFF;
 }
 
+/* Slick Additional Styling */
+slick {
+	width: 84%;
+	text-align: center;
+	margin: 0 auto;
+}
+slick div p {
+	background-color: #CCCCCC;
+	color: #2b2b2b;
+	margin: 0;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.dpad-icon {
+	overflow: auto;
+	margin: auto;
+	word-wrap: break-word;
+	white-space: normal;
+	background: #FFFEFF; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(black, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(black, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(black, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(black, white); /* Standard syntax */
+    height: 136px;
+}
+.dpad-icon-points {
+	-webkit-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-webkit-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+}
+
 /* Navbar styling */
 .navbar-nav .open .dropdown-menu > li > a, .navbar .nav .open .dropdown-menu {
 	color: #FFFEFF;
@@ -88,6 +118,7 @@ body {
 	border: 1px solid #161616;
 	border-radius: 5px;
 	background: repeating-linear-gradient(-45deg, #161616, #161616 1px, #2B2B2B 1px, #2B2B2B 2px);
+	margin: 0;
 	margin-bottom: 10px;
 	white-space: nowrap;
 	overflow: auto;
@@ -149,6 +180,20 @@ body {
 .buttons {
 	text-align: center;
 	margin-top: 10px;
+}
+
+
+.modal-headerPU {
+  	border-bottom: 1px solid #e5e5e5;
+  	background-color: #88C641;
+}
+
+.modal-bodyPU {
+  	background-color: black;
+}
+.modal-footerPU {
+  	border-top: 1px solid #e5e5e5;
+  	background-color: black;
 }
 
 /* Header Search Bar */
