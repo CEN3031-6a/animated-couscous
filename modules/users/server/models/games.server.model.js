@@ -21,6 +21,9 @@ var DiscussionSchema = new Schema({
   OP: {
     type: String
   },
+  gameID: {
+    type: Number
+  },
   updated: {
     type: Date
   },
@@ -67,4 +70,3 @@ GamesSchema.pre('save', function (next) {
 
 
 mongoose.model('Game', GamesSchema);
-mongoose.model('Discussion', DiscussionSchema);
