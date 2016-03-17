@@ -43,8 +43,8 @@ angular.module('users.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/admin/view-game.client.view.html',
         controller: 'GameController',
         resolve: {
-          gameResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
-            return Admin.get({
+          gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+            return Game.get({
               gameID: $stateParams.gameID
             });
           }]
@@ -55,8 +55,8 @@ angular.module('users.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/admin/edit-game.client.view.html',
         controller: 'GameController',
         resolve: {
-          gameResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
-            return Admin.get({
+          gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+            return Game.get({
               gameID: $stateParams.gameID
             });
           }]

@@ -3,7 +3,7 @@
     <h1>Game </h1>
   </div>
   <div class="col-md-12">
-    <form name="gameForm" ng-submit="update(gameForm.$valid)" novalidate>
+    <form name="gameForm" ng-submit="updateGame(gameForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
           <label for="title">Title</label>
@@ -17,15 +17,6 @@
           <input type="text" id="platorm" name="platform" class="form-control" ng-model="game.platform" placeholder="Platform" required />
           <div ng-messages="gameForm.platform.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Platform is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="discussions">Discussions</label>
-          <div class="controls">
-            <input class="form-control" type="text" name="discussions" ng-model="game.discussions" id="discussions" ng-list required />
-            <div ng-messages="gameForm.discussions.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">At least one role is required.</p>
-            </div>
           </div>
         </div>
         <div class="form-group">
