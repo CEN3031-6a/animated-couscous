@@ -11,6 +11,7 @@ var _ = require('lodash'),
   multer = require('multer'),
   config = require(path.resolve('./config/config')),
   User = mongoose.model('User');
+var Game = mongoose.model('Game');
 
 /**
  * Update user details
@@ -58,7 +59,7 @@ exports.changeProfilePicture = function (req, res) {
   var message = null;
   var upload = multer(config.uploads.profileUpload).single('newProfilePicture');
   var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
-  
+
   // Filtering to upload only images
   upload.fileFilter = profileUploadFileFilter;
 
@@ -93,6 +94,71 @@ exports.changeProfilePicture = function (req, res) {
       message: 'User is not signed in'
     });
   }
+};
+
+exports.listAllGames = function (req, res){
+  Game.find().sort('-created').exec(function (err, games) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(games);
+  });
+
+};
+
+exports.listUserGames = function (req, res) {
+  var user = req.user;
+  user.games.find({}).sort('-title').populate('title', 'platform').exec(function (err, games) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(games);
+  });
+
+};
+
+exports.addGameToUserList = function (req, res, gameId) {
+  var user = req.model;
+  var game = Game.findById(gameId);
+  user.games.push(game);
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });
+  user.populate('games').exec(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });
+};
+
+exports.deleteGameFromUserList = function (req, res, gameId) {
+  var user = req.model;
+  user.games.remove(gameId);
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });
+  user.populate('games').exec(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });
 };
 
 /**
