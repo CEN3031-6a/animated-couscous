@@ -21,7 +21,7 @@ exports.listGames = function (req, res){
   });
 
 };
-<<<<<<< HEAD
+
 exports.deleteGame = function (req, res) {
   var games = req.model;
 
