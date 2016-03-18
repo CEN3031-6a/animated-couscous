@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-4">
         <h1>Games <button type="button" ui-sref="admin.games-add" class="btn btn-primary">Add Game</button></h1>
-    </div>
+      </div>
       <div class="col-md-4" style="margin-top: 2em">
         <input class="form-control col-md-4" type="text" ng-model="search" placeholder="Search" ng-change="figureOutItemsToDisplay()" />
       </div>
@@ -17,6 +17,6 @@
     </a>
   </div>
   <script src="/users/client/controllers/admin/list-games.client.controller.js"></script>
-
+  
   <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></pagination>
 </section>

@@ -14,6 +14,11 @@ angular.module('users.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/admin/list-games.client.view.html',
         controller: 'GamesListController'
       })
+.state('admin.games-add', {
+  url: '/games/add',
+  templateUrl: 'modules/users/client/views/admin/add-game.client.view.html',
+  controller: 'AddGameController'
+})
       .state('admin.user', {
         url: '/users/:userId',
         templateUrl: 'modules/users/client/views/admin/view-user.client.view.html',

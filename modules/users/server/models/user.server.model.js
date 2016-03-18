@@ -70,6 +70,7 @@ var UserSchema = new Schema({
     //required: 'Please fill in a username',
     trim: true
   },
+  games: [{ type: Schema.ObjectId, ref: 'Game' }],
   salt: {
     type: String
   },

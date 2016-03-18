@@ -4,7 +4,6 @@ angular.module('users.admin').controller('GamesListController', ['$scope', '$fil
   function ($scope, $filter, Admin, Game) {
     Game.query(function (data) {
       $scope.games = data;
-	  //$scope.games = Game.find();
       $scope.buildPager();
     });
 

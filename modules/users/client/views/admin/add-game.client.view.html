@@ -1,0 +1,32 @@
+<div ng-controller="AddGameController">
+  <h3 class="col-md-12 text-center">Add Game</h3>
+  <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+    <form name="gameForm" ng-submit="addGame()" class="addGame">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="email">Title</label>
+          <input type="text" id="title" name="title" class="form-control" ng-model="title" placeholder="Title" required>
+        </div>
+        <div class="form-group" show-errors>
+		<label for="platform">Platform</label>
+		<br>
+          <select id="platform" ng-model="platform" name="Platform" required>
+			<option value="Xbox One">Xbox One</option>
+			<option value="PS4">PS4</option>
+			<option value="Steam">Steam</option>
+		</select>
+        </div>
+		<div class="form-group" show-errors>
+          <label for="email">Link to Cover Art</label>
+          <input type="text" id="url" name="url" class="form-control" ng-model="gameurl" placeholder="Cover URL" required>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Add Game</button>
+        </div>
+		<div ng-show="error" class="text-danger">
+            <strong ng-bind="error"></strong>
+          </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

@@ -9,7 +9,7 @@ var path = require('path'),
   Game = mongoose.model('Game'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-  
+
 exports.listGames = function (req, res){
   Game.find().sort('-created').exec(function (err, games) {
     if (err) {
@@ -21,6 +21,7 @@ exports.listGames = function (req, res){
   });
 
 };
+<<<<<<< HEAD
 exports.deleteGame = function (req, res) {
   var games = req.model;
 
@@ -51,8 +52,20 @@ exports.updateGame = function (req, res) {
     }
 
     res.json(games);
+  };
+
+exports.addGame = function (req, res){
+  var game = new Game(req.body);
+  game.save(function(err){
+    if(err){
+      res.status(400).send(err);
+    }
+    else {
+      res.json(game);
+    }
   });
 };
+
 /**
  * Show the current user
  */

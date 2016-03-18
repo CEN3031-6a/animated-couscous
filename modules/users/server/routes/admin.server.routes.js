@@ -15,7 +15,9 @@ module.exports = function (app) {
     .get(adminPolicy.isAllowed, admin.list);
 	
   app.route('/api/games')
-    .get(adminPolicy.isAllowed, admin.listGames);
+    .get(adminPolicy.isAllowed, admin.listGames)
+    .post(adminPolicy.isAllowed, admin.addGame);
+	
 
   app.route('/api/games/:gameID')
     .get(adminPolicy.isAllowed, admin.readGame)
