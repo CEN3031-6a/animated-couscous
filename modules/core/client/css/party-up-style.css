@@ -16,21 +16,50 @@ slick div p {
 	margin-left: 5px;
 	margin-right: 5px;
 }
-.dpad-icon {
-	overflow: auto;
+slick div img {
 	margin: auto;
-	word-wrap: break-word;
-	white-space: normal;
+	overflow: hidden;
+	max-height: 100%;
+	max-width: 100%;
+}
+slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-initialized {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+.dpad {
+	margin: auto;
 	background: #FFFEFF; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(black, white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(black, white); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(black, white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(black, white); /* Standard syntax */
+    /*
+    background: -webkit-linear-gradient(#CCCCCC, #FFFFFF);
+	background: -moz-linear-gradient(#CCCCCC, #FFFFFF);  
+    background: -ms-linear-gradient(#CCCCCC, #FFFFFF);
+    background: -o-linear-gradient(#CCCCCC, #FFFFFF);
+    background: linear-gradient(#CCCCCC, #FFFFFF);
+    */
     height: 136px;
 }
-.dpad-icon-points {
+.dpad-text {
+	margin: 0;
+	padding: 0;
+	height: auto;
+	width: auto;
+}
+.dpad-points {
 	-webkit-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-moz-shape-outside: polygon(8.67px 92.00px,31.33px 114.47px,94.67px 114.47px,117.33px 91.00px,117.00px 21.26px,112.67px 14.53px,104.33px 9.28px,22.00px 9.03px,13.33px 13.53px,9.00px 20.76px);
+	-ms-shape-outside: polygon(8.67px 92.00px,31.33px 114.47px,94.67px 114.47px,117.33px 91.00px,117.00px 21.26px,112.67px 14.53px,104.33px 9.28px,22.00px 9.03px,13.33px 13.53px,9.00px 20.76px);
+	-o-shape-outside: polygon(8.67px 92.00px,31.33px 114.47px,94.67px 114.47px,117.33px 91.00px,117.00px 21.26px,112.67px 14.53px,104.33px 9.28px,22.00px 9.03px,13.33px 13.53px,9.00px 20.76px);
+	shape-outside: polygon(8.67px 92.00px,31.33px 114.47px,94.67px 114.47px,117.33px 91.00px,117.00px 21.26px,112.67px 14.53px,104.33px 9.28px,22.00px 9.03px,13.33px 13.53px,9.00px 20.76px);
+
 	-webkit-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-moz-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-ms-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-o-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+}
+.dpad-inner-points {
+	-webkit-shape-outside: polygon(8.67px 92.00px,31.33px 114.47px,94.67px 114.47px,117.33px 91.00px,117.00px 21.26px,112.67px 14.53px,104.33px 9.28px,22.00px 9.03px,13.33px 13.53px,9.00px 20.76px);
+	-webkit-clip-path: polygon(8.67px 92.00px,31.33px 114.47px,94.67px 114.47px,117.33px 91.00px,117.00px 21.26px,112.67px 14.53px,104.33px 9.28px,22.00px 9.03px,13.33px 13.53px,9.00px 20.76px);
 }
 
 /* Navbar styling */
