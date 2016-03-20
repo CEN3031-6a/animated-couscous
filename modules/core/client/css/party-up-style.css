@@ -53,6 +53,10 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
 }
 */
+.dpad-text {
+	font-weight: bold;
+	font-size: 0.8em;
+}
 
 /* Navbar styling */
 .navbar-nav .open .dropdown-menu > li > a, .navbar .nav .open .dropdown-menu {
