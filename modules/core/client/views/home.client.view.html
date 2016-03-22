@@ -33,36 +33,52 @@
         <h5>Party Up Generic Title</h5>
         <slick class="slider multiple-items slick-slider draggable" infinite="true" slides-to-show="8" slides-to-scroll="8">
           <div>
-            <p class="dpad-icon dpad-icon-points">1</p>
+            <svg height="136" width="120" style="fill:white;">
+              <polygon points="5.6,93.0, 46.3,135.4 79.6,135.4 121.3,93.0 121.0,21.2 116.6,11.5 107.0,5.7 19.5,6.0 10.3,12.5 6.0,22.7" />
+              <svg height="136" width="120" style="fill:black;">
+                <defs>
+                  <clipPath id="clipPolygon">
+                    <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />  
+                  </clipPath>
+                </defs>
+                <defs>
+                  <pattern id="image" patternUnits="userSpaceOnUse" height="200" width="200">
+                    <image xlink:href="modules/core/client/img/black-ops.jpg" x="0" y="25" height="200" width="200" transform="translate(-35.5,-31)" />
+                  </pattern>
+                </defs>
+                <g>
+                  <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon)" fill="url(#image)"/>
+                  <text class="dpad-text"x="62" y="130" text-anchor="middle">50,000</text>
+                </g>
+              </svg>
+            </svg>
+          </div>
+          <div class="dpad dpad-points">
+            <p class="dpad dpad-points">2</p>
           </div>
           <div>
-            <p class="dpad-icon dpad-icon-points">2</p>
-            <!--<img src="modules/core/client/img/black-ops.jpg"/>
-            -->
+            <p class="dpad dpad-points">3</p>
           </div>
           <div>
-            <p class="dpad-icon dpad-icon-points">3</p>
+            <p class="dpad dpad-points">4</p>
           </div>
           <div>
-            <p class="dpad-icon dpad-icon-points">4</p>
+            <p class="dpad dpad-points">5</p>
           </div>
           <div>
-            <p class="dpad-icon dpad-icon-points">5</p>
+            <p class="dpad dpad-points">6</p>
           </div>
           <div>
-            <p class="dpad-icon dpad-icon-points">6</p>
+            <p class="dpad dpad-points">7</p>
           </div>
           <div>
-            <p class="dpad-icon dpad-icon-points">7</p>
+            <p class="dpad dpad-points">8</p>
           </div>
           <div>
-            <p class="dpad-icon dpad-icon-points">8</p>
+            <p class="dpad dpad-points">9</p>
           </div>
           <div>
-            <p class="dpad-icon dpad-icon-points">9</p>
-          </div>
-          <div>
-            <p class="dpad-icon dpad-icon-points">10</p>
+            <p class="dpad dpad-points">10</p>
           </div>
         </slick>
       </div>
