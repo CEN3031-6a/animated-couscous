@@ -9,7 +9,7 @@ var path = require('path'),
   Game = mongoose.model('Game'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-  
+
 exports.listGames = function (req, res){
   Game.find().sort('-created').exec(function (err, games) {
     if (err) {
@@ -30,7 +30,7 @@ exports.addGame = function (req, res){
     }
     else {
       res.json(game);
-    }	
+    }
   });
 };
 /**
