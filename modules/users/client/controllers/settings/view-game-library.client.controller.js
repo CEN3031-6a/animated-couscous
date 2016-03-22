@@ -4,10 +4,15 @@ angular.module('users').controller('ViewGameLibraryController', ['$scope', '$htt
   function ($scope, $http, $filter, Game, Users, Authentication) {
     $scope.user = Authentication.user;
 
-    // User.games.query(function (data) {
-    //   $scope.user.games = data;
-    //   $scope.buildPager();
-    // });
+    Game.query(function (data) {
+        $scope.allGames = data;
+
+        for userGame in $scope.user.games {
+
+        }
+
+        $scope.buildPager();
+    }
 
     $scope.buildPager = function () {
       $scope.pagedItems = [];
@@ -17,7 +22,7 @@ angular.module('users').controller('ViewGameLibraryController', ['$scope', '$htt
     };
 
     $scope.figureOutItemsToDisplay = function () {
-      $scope.filteredItems = $filter('filter')($scope.user.games, {
+      $scope.filteredItems = $filter('filter')($scope.games, {
         $: $scope.search
       });
       $scope.filterLength = $scope.filteredItems.length;

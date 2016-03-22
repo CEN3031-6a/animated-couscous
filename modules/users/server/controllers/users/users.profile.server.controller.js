@@ -110,15 +110,20 @@ exports.listAllGames = function (req, res){
 
 exports.listUserGames = function (req, res) {
   var user = req.user;
-  user.games.find({}).sort('-title').populate('title', 'platform').exec(function (err, games) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    }
+  var games = [];
+  for userGame in user.games {
+    Game.find({"_id": ObjectId(userGame) }).exec(function (err, game) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
 
-    res.json(games);
-  });
+      games.push(game)
+    });
+  }
+
+  res.json(games);
 
 };
 
