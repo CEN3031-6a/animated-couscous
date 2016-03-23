@@ -29,5 +29,21 @@ angular.module('users').controller('EditGameLibraryController', ['$scope', '$htt
     $scope.pageChanged = function () {
       $scope.figureOutItemsToDisplay();
     };
+
+    $scope.addGameToLibrary = function (game) {
+      $scope.user.games.push(game);
+      console.log(game);
+
+      var user = new Users($scope.user);
+
+      user.$update(function (response) {
+        $scope.$broadcast('show-errors-reset', 'userForm');
+
+        $scope.success = true;
+        Authentication.user = response;
+      }, function (response) {
+        $scope.error = response.data.message;
+      });
+    };
   }
 ]);
