@@ -13,8 +13,8 @@ angular.module('users').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-      .state('settings.my-games', {
-        url: '/my-games',
+      .state('settings.games', {
+        url: '/games',
         templateUrl: 'modules/users/client/views/settings/my-games.client.view.html',
         controller: 'ViewGameLibraryController'
       })

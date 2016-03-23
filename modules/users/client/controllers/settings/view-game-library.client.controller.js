@@ -1,13 +1,16 @@
 'use strict';
 
-angular.module('users').controller('ViewGameLibraryController', ['$scope', '$http', '$filter', 'Game', 'Users', 'Authentication',
-  function ($scope, $http, $filter, Game, Users, Authentication) {
+angular.module('users').controller('ViewGameLibraryController', ['$scope', '$http', '$filter', 'UserGames', 'Users', 'Authentication',
+  function ($scope, $http, $filter, UserGames, Users, Authentication) {
     $scope.user = Authentication.user;
 
-    // User.games.query(function (data) {
-    //   $scope.user.games = data;
-    //   $scope.buildPager();
-    // });
+    UserGames.get(function (data) {
+      var currentUser = data;
+      console.log(data);
+      $scope.games = currentUser.games;
+      console.log($scope.games);
+      $scope.buildPager();
+    });
 
     $scope.buildPager = function () {
       $scope.pagedItems = [];
@@ -17,7 +20,7 @@ angular.module('users').controller('ViewGameLibraryController', ['$scope', '$htt
     };
 
     $scope.figureOutItemsToDisplay = function () {
-      $scope.filteredItems = $filter('filter')($scope.user.games, {
+      $scope.filteredItems = $filter('filter')($scope.games, {
         $: $scope.search
       });
       $scope.filterLength = $scope.filteredItems.length;
