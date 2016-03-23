@@ -113,7 +113,7 @@ exports.listUserGames = function (req, res) {
   var gameIds = [];
 
   for (var gameId in user.games) {
-    gameIds.push(new mongoose.Types.ObjectId(gameId))
+    gameIds.push(new mongoose.Types.ObjectId(gameId));
   }
 
   // Game.find({ '_id': { $in: gameIds } }).sort('-title').populate('title', 'platform').exec(function (err, games) {
