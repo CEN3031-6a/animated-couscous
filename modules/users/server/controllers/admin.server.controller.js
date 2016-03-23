@@ -52,7 +52,8 @@ exports.updateGame = function (req, res) {
     }
 
     res.json(games);
-  };
+  });
+};
 
 exports.addGame = function (req, res){
   var game = new Game(req.body);
