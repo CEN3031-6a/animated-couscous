@@ -110,32 +110,15 @@ exports.listAllGames = function (req, res){
 
 exports.listUserGames = function (req, res) {
   var user = req.user;
-  var gameIds = [];
 
-  for (var gameId in user.games) {
-    gameIds.push(new mongoose.Types.ObjectId(gameId));
-  }
-
-  // Game.find({ '_id': { $in: gameIds } }).sort('-title').populate('title', 'platform').exec(function (err, games) {
-  //   if (err) {
-  //     return res.status(400).send({
-  //       message: errorHandler.getErrorMessage(err)
-  //     });
-  //   }
-  //
-  //   res.json(games);
-  // });
-
-  // Game.find().sort('-created').exec(function (err, games) {
-  //   if (err) {
-  //     return res.status(400).send({
-  //       message: errorHandler.getErrorMessage(err)
-  //     });
-  //   }
-  //   res.json(games);
-  // });
-
-  //res.json(gameIds);
+  User.findOne({ _id: user._id }).populate('games').exec(function (err, user) {
+   if (err) {
+     return res.status(400).send({
+      message: errorHandler.getErrorMessage(err)
+     });
+   }
+   res.json(user);
+  });
 
 };
 
