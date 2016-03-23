@@ -161,6 +161,7 @@ exports.deleteGameFromUserList = function (req, res, gameId) {
   });
 };
 
+
 /**
  * Send User
  */
