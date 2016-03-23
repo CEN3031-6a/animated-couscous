@@ -121,7 +121,7 @@ angular.module('users').controller('ModalInstanceCtrl', function($scope, $modalI
       // And redirect to the previous or home page
       $state.go($state.previous.state.name || 'home', $state.previous.params);
       $modalInstance.close();
-      console.log("modal inst");
+      console.log('modal inst');
     }).error(function(response) {
       $scope.error = response.message;
     });

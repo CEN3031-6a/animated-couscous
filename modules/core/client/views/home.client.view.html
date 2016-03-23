@@ -15,6 +15,7 @@
         <p>- Create and reply to combinations</p>
         <p>- Receive notifications</p>
         <p>- and more!</p>
+        <!--
         <div class="buttons">
           <a ui-sref="authentication.signup">
             <button class="btn PUButton">SIGN UP</button>
@@ -23,30 +24,74 @@
             <button class="btn PUButton">SIGN IN</button>
           </a>
         </div>
-      </div>
-    </div>    
-
-    <div class="row">
-      <div class="box">
-        <table>
-          <thead>
-            <h5>Party Up Generic Title</h5>
-          </thead>
-          <tbody>
-            <tr>
-              <td>CONTENT, YEAH! -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------a----------------------------------------------a--------------------------------------------------a------------------------a</td>
-            </tr> 
-          </tbody>
-        </table>
+      -->
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-controller="GamesController" ng-init="find()">
       <div class="box">
         <h5>More Games!</h5>
-        <p>AND MORE CONTENT, YEAH!</p>
+        <slick class="slider multiple-items slick-slider draggable" infinite="true" slides-to-show="8" slides-to-scroll="8" init-onload="true" data="games" lazy-load="ondemand">
+          <div ng-repeat="game in games">
+            <svg height="136" width="120" fill="url(#grad)">
+              <polygon points="5.6,93.0, 46.3,135.4 79.6,135.4 121.3,93.0 121.0,21.2 116.6,11.5 107.0,5.7 19.5,6.0 10.3,12.5 6.0,22.7" />
+              <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:rgb(0,0,0); stop-opacity=1" />
+                  <stop offset="100%" style="stop-color:rgb(255,255,255); stop-opacity=1" />
+                </linearGradient>
+              </defs>
+              <svg height="136" width="120" style="fill:black;">
+                <defs>
+                  <clipPath id="clipPolygon">
+                    <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />  
+                  </clipPath>
+                </defs>
+                <defs>
+                  <pattern id="image" patternUnits="userSpaceOnUse" height="200" width="200">
+                    <image xlink:href="" ng-href="{{game.gameImageURL}}" x="0" y="25" height="200" width="200" transform="translate(-35.5,-31)" />
+                  </pattern>
+                </defs>
+                <g>
+                  <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon)" fill="url(#image)"/>
+                  <text class="dpad-text"x="62" y="130" text-anchor="middle" ng-bind="game.title">{{game.title}}</text>
+                </g>
+              </svg>
+            </svg>
+          </div>
+        </slick>
       </div>
     </div>
-
+  
+    <div class="row" ng-controller="GamesController" ng-init="find()">
+      <div class="box">
+        <h5>More More Games!</h5>
+        <svg height="136" width="120" fill="url(#grad)" ng-repeat="game in games">
+          <polygon points="5.6,93.0, 46.3,135.4 79.6,135.4 121.3,93.0 121.0,21.2 116.6,11.5 107.0,5.7 19.5,6.0 10.3,12.5 6.0,22.7" />
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:rgb(0,0,0); stop-opacity=1" />
+              <stop offset="100%" style="stop-color:rgb(255,255,255); stop-opacity=1" />
+            </linearGradient>
+          </defs>
+          <svg height="136" width="120" style="fill:black;">
+            <defs>
+              <clipPath id="clipPolygon">
+                <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />  
+              </clipPath>
+            </defs>
+            <defs>
+              <pattern id="image" patternUnits="userSpaceOnUse" height="200" width="200">
+                <image xlink:href="" ng-href="{{game.gameImageURL}}" x="0" y="25" height="200" width="200" transform="translate(-35.5,-31)" />
+              </pattern>
+            </defs>
+            <g>
+              <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon)" fill="url(#image)"/>
+              <text class="dpad-text"x="62" y="130" text-anchor="middle" ng-bind="game.title">{{game.title}}</text>
+            </g>
+          </svg>
+        </svg>
+      </div>
+    </div>
   </div>
 </section>

@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function () {
   // Init module configuration options
   var applicationModuleName = 'mean';
-  var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ngMessages', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload'];
+  var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ngMessages', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload', 'slick'];
 
   // Add a new vertical module
   var registerModule = function (moduleName, dependencies) {
@@ -216,7 +216,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
 
 'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication',
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', 'Game',
   function ($scope, Authentication) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
@@ -569,11 +569,11 @@ angular.module('users.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/admin/list-games.client.view.html',
         controller: 'GamesListController'
       })
-.state('admin.games-add', {
-  url: '/games/add',
-  templateUrl: 'modules/users/client/views/admin/add-game.client.view.html',
-  controller: 'AddGameController'
-})
+      .state('admin.games-add', {
+        url: '/games/add',
+        templateUrl: 'modules/users/client/views/admin/add-game.client.view.html',
+        controller: 'AddGameController'
+      })
       .state('admin.user', {
         url: '/users/:userId',
         templateUrl: 'modules/users/client/views/admin/view-user.client.view.html',
@@ -647,6 +647,16 @@ angular.module('users').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
+      .state('settings.my-games', {
+        url: '/my-games',
+        templateUrl: 'modules/users/client/views/settings/my-games.client.view.html',
+        controller: 'ViewGameLibraryController'
+      })
+      .state('settings.add-game', {
+        url: '/add-game',
+        templateUrl: 'modules/users/client/views/settings/add-game.client.view.html',
+        controller: 'EditGameLibraryController'
+      })
       .state('settings.profile', {
         url: '/profile',
         templateUrl: 'modules/users/client/views/settings/edit-profile.client.view.html'
@@ -666,7 +676,7 @@ angular.module('users').config(['$stateProvider',
       .state('authentication', {
         abstract: true,
         url: '/authentication',
-        templateUrl: 'modules/users/client/views/authentication/authentication.client.view.html'
+        //templateUrl: 'modules/users/client/views/authentication/authentication.client.view.html'
       })
       .state('authentication.signup', {
         url: '/signup',
@@ -844,8 +854,8 @@ angular.module('users.admin').controller('UserController', ['$scope', '$state', 
 
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator', '$modal', '$log',
-  function($scope, $state, $http, $location, $window, Authentication, PasswordValidator, $modal, $log) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator', '$modal', '$modalStack', '$log',
+  function($scope, $state, $http, $location, $window, Authentication, PasswordValidator, $modal, $modalStack, $log) {
     $scope.authentication = Authentication;
     $scope.popoverMsg = PasswordValidator.getPopoverMsg();
 
@@ -872,6 +882,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
+        $modalStack.dismissAll(); // dismiss modal after signup
       }).error(function(response) {
         $scope.error = response.message;
       });
@@ -892,6 +903,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
+        $modalStack.dismissAll(); // dismiss modal after signin
       }).error(function(response) {
         $scope.error = response.message;
       });
@@ -947,6 +959,28 @@ angular.module('users').controller('ModalInstanceCtrl', ["$scope", "$modalInstan
   $scope.authentication = Authentication;
   $scope.popoverMsg = PasswordValidator.getPopoverMsg();
 
+  $scope.signin = function(isValid) {
+    $scope.error = null;
+
+    if (!isValid) {
+      $scope.$broadcast('show-errors-check-validity', 'userForm');
+
+      return false;
+    }
+
+    $http.post('/api/auth/signin', $scope.credentials).success(function(response) {
+      // If successful we assign the response to the global user model
+      $scope.authentication.user = response;
+
+      // And redirect to the previous or home page
+      $state.go($state.previous.state.name || 'home', $state.previous.params);
+      $modalInstance.close();
+      console.log('modal inst');
+    }).error(function(response) {
+      $scope.error = response.message;
+    });
+  };
+
   $scope.signup = function(isValid) {
     $scope.error = null;
 
@@ -962,15 +996,76 @@ angular.module('users').controller('ModalInstanceCtrl', ["$scope", "$modalInstan
 
       // And redirect to the previous or home page
       $state.go($state.previous.state.name || 'home', $state.previous.params);
+      $modalInstance.close();
     }).error(function(response) {
       $scope.error = response.message;
     });
   };
 
+  // $scope.ok = function () {
+  //   $modalInstance.close($scope.selected.item);
+  // };
+
   $scope.cancel = function() {
     $modalInstance.dismiss('cancel');
   };
 }]);
+
+'use strict';
+
+angular.module('users').controller('GamesController', ['$scope', '$http', '$filter', 'Game', 'Users', 'Authentication',
+  function($scope, $http, $filter, Game, Users, Authentication) {
+    //$scope.games = [{"_id":"56ec2aab4cc86a81a2bcac89","updated":"2016-03-18T16:19:55.364Z","__v":0,"discussions":[],"created":"2016-03-18T16:19:55.363Z","gameImageURL":"https://upload.wikimedia.org/wikipedia/en/8/81/NHL_16_cover.jpg","platform":"Xbox One","title":"NHL 16"}];
+    Game.query(function(data) {
+      $scope.games = data;
+    });
+    /*
+    $scope.find = function() {
+      
+      $scope.loading = true;
+
+      Game.get().then(function(response) {
+        $scope.loading = false;
+        $scope.games = response.data;
+      }, function(error) {
+        $scope.loading = false;
+        $scope.error = 'Unable to retrieve games!\n' + error;
+      });
+    };
+    */
+
+
+    /*
+    $scope.user = Authentication.user;
+
+    Game.query(function (data) {
+      $scope.games = data;
+      $scope.buildPager();
+    });
+
+    $scope.buildPager = function () {
+      $scope.pagedItems = [];
+      $scope.itemsPerPage = 15;
+      $scope.currentPage = 1;
+      $scope.figureOutItemsToDisplay();
+    };
+
+    $scope.figureOutItemsToDisplay = function () {
+      $scope.filteredItems = $filter('filter')($scope.games, {
+        $: $scope.search
+      });
+      $scope.filterLength = $scope.filteredItems.length;
+      var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
+      var end = begin + $scope.itemsPerPage;
+      $scope.pagedItems = $scope.filteredItems.slice(begin, end);
+    };
+
+    $scope.pageChanged = function () {
+      $scope.figureOutItemsToDisplay();
+    };
+    */
+  }
+]);
 
 'use strict';
 
@@ -1137,6 +1232,40 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
 
 'use strict';
 
+angular.module('users').controller('EditGameLibraryController', ['$scope', '$http', '$filter', 'Game', 'Users', 'Authentication',
+  function($scope, $http, $filter, Game, Users, Authentication) {
+    $scope.user = Authentication.user;
+
+    Game.query(function(data) {
+      $scope.games = data;
+      $scope.buildPager();
+    });
+
+    $scope.buildPager = function () {
+      $scope.pagedItems = [];
+      $scope.itemsPerPage = 15;
+      $scope.currentPage = 1;
+      $scope.figureOutItemsToDisplay();
+    };
+
+    $scope.figureOutItemsToDisplay = function () {
+      $scope.filteredItems = $filter('filter')($scope.games, {
+        $: $scope.search
+      });
+      $scope.filterLength = $scope.filteredItems.length;
+      var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
+      var end = begin + $scope.itemsPerPage;
+      $scope.pagedItems = $scope.filteredItems.slice(begin, end);
+    };
+
+    $scope.pageChanged = function () {
+      $scope.figureOutItemsToDisplay();
+    };
+  }
+]);
+
+'use strict';
+
 angular.module('users').controller('EditProfileController', ['$scope', '$http', '$location', 'Users', 'Authentication',
   function ($scope, $http, $location, Users, Authentication) {
     $scope.user = Authentication.user;
@@ -1209,6 +1338,40 @@ angular.module('users').controller('SocialAccountsController', ['$scope', '$http
 angular.module('users').controller('SettingsController', ['$scope', 'Authentication',
   function ($scope, Authentication) {
     $scope.user = Authentication.user;
+  }
+]);
+
+'use strict';
+
+angular.module('users').controller('ViewGameLibraryController', ['$scope', '$http', '$filter', 'Game', 'Users', 'Authentication',
+  function ($scope, $http, $filter, Game, Users, Authentication) {
+    $scope.user = Authentication.user;
+
+    // User.games.query(function (data) {
+    //   $scope.user.games = data;
+    //   $scope.buildPager();
+    // });
+
+    $scope.buildPager = function () {
+      $scope.pagedItems = [];
+      $scope.itemsPerPage = 15;
+      $scope.currentPage = 1;
+      $scope.figureOutItemsToDisplay();
+    };
+
+    $scope.figureOutItemsToDisplay = function () {
+      $scope.filteredItems = $filter('filter')($scope.user.games, {
+        $: $scope.search
+      });
+      $scope.filterLength = $scope.filteredItems.length;
+      var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
+      var end = begin + $scope.itemsPerPage;
+      $scope.pagedItems = $scope.filteredItems.slice(begin, end);
+    };
+
+    $scope.pageChanged = function () {
+      $scope.figureOutItemsToDisplay();
+    };
   }
 ]);
 
@@ -1316,17 +1479,16 @@ angular.module('users').factory('Authentication', ['$window',
 
 'use strict';
 
-// Games service used for communicating with the users REST endpoint
-angular.module('users.admin').factory('Game', ['$resource',
-  function ($resource) {
-    return $resource('api/games', {}, {
+// Games service used for communicating with the games REST endpoint
+angular.module('users').factory('Game', ['$resource',
+  function($resource) {
+    return $resource('api/games', null, {
       update: {
         method: 'PUT'
       }
     });
   }
 ]);
-
 
 'use strict';
 
