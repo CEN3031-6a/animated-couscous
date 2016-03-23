@@ -112,12 +112,12 @@ exports.listUserGames = function (req, res) {
   var user = req.user;
 
   User.findOne({ _id: user._id }).populate('games').exec(function (err, user) {
-   if (err) {
-     return res.status(400).send({
-      message: errorHandler.getErrorMessage(err)
-     });
-   }
-   res.json(user);
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(user);
   });
 
 };

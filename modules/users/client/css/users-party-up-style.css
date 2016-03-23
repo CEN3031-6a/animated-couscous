@@ -26,6 +26,22 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
+
+/* List Group styling */
+.list-group-item.ng-scope {
+	background: #202020;
+	padding: 2;
+}
+.list-group-item.ng-scope:hover {
+	background: #8DC63F;
+}
+.list-group-item-text, .list-group-item-heading {
+	background: none;
+	color: #FFFEFF;
+	padding: 0;
+	margin: 0;
+}
+
 /*
 .dpad {
 	margin: auto;

@@ -5,8 +5,10 @@ angular.module('users').controller('ViewGameLibraryController', ['$scope', '$htt
     $scope.user = Authentication.user;
 
     UserGames.get(function (data) {
-      $scope.user = data;
+      var currentUser = data;
       console.log(data);
+      $scope.games = currentUser.games;
+      console.log($scope.games);
       $scope.buildPager();
     });
 
@@ -18,7 +20,7 @@ angular.module('users').controller('ViewGameLibraryController', ['$scope', '$htt
     };
 
     $scope.figureOutItemsToDisplay = function () {
-      $scope.filteredItems = $filter('filter')($scope.user.games, {
+      $scope.filteredItems = $filter('filter')($scope.games, {
         $: $scope.search
       });
       $scope.filterLength = $scope.filteredItems.length;
