@@ -24,7 +24,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/games',
       permissions: '*'
     }, {
-      resources: '/api/games/:gameId',
+      resources: '/api/games/:gameID',
       permissions: '*'
     }]
   }]);
