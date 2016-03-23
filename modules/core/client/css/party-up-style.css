@@ -3,6 +3,61 @@ body {
 	color: #FFFEFF;
 }
 
+/* Slick Additional Styling */
+slick {
+	width: 84%;
+	text-align: center;
+	margin: 0 auto;
+}
+slick div p {
+	background-color: #CCCCCC;
+	color: #2b2b2b;
+	margin: 0;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+slick div img {
+	margin: auto;
+	overflow: hidden;
+	max-height: 100%;
+	max-width: 100%;
+}
+slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-initialized {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+/*
+.dpad {
+	margin: auto;
+	background: #FFFEFF;
+    
+    background: -webkit-linear-gradient(#CCCCCC, #FFFFFF);
+	background: -moz-linear-gradient(#CCCCCC, #FFFFFF);  
+    background: -ms-linear-gradient(#CCCCCC, #FFFFFF);
+    background: -o-linear-gradient(#CCCCCC, #FFFFFF);
+    background: linear-gradient(#CCCCCC, #FFFFFF);
+    
+    height: 136px;
+}
+.dpad-points {
+	-webkit-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-moz-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-ms-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-o-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+
+	-webkit-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-moz-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-ms-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	-o-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+	clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
+}
+*/
+.dpad-text {
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
 /* Navbar styling */
 .navbar-nav .open .dropdown-menu > li > a, .navbar .nav .open .dropdown-menu {
 	color: #FFFEFF;
@@ -87,7 +142,8 @@ body {
 .box {
 	border: 1px solid #161616;
 	border-radius: 5px;
-	background: repeating-linear-gradient(-45deg, #161616, #161616 1px, #2B2B2B 1px, #2B2B2B 2px);
+	background: repeating-linear-gradient(-45deg, #161616, #161616 2px, #2B2B2B 2px, #2B2B2B 4px);
+	margin: 0;
 	margin-bottom: 10px;
 	white-space: nowrap;
 	overflow: auto;
@@ -149,6 +205,20 @@ body {
 .buttons {
 	text-align: center;
 	margin-top: 10px;
+}
+
+
+.modal-headerPU {
+  	border-bottom: 1px solid #e5e5e5;
+  	background-color: #88C641;
+}
+
+.modal-bodyPU {
+  	background-color: black;
+}
+.modal-footerPU {
+  	border-top: 1px solid #e5e5e5;
+  	background-color: black;
 }
 
 /* Header Search Bar */

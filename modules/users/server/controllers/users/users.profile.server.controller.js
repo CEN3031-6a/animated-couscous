@@ -59,7 +59,7 @@ exports.changeProfilePicture = function (req, res) {
   var message = null;
   var upload = multer(config.uploads.profileUpload).single('newProfilePicture');
   var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
-  
+
   // Filtering to upload only images
   upload.fileFilter = profileUploadFileFilter;
 
@@ -96,6 +96,18 @@ exports.changeProfilePicture = function (req, res) {
   }
 };
 
+exports.listAllGames = function (req, res){
+  Game.find().sort('-created').exec(function (err, games) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(games);
+  });
+
+};
+
 exports.listUserGames = function (req, res) {
   var user = req.user;
   user.games.find({}).sort('-title').populate('title', 'platform').exec(function (err, games) {
@@ -127,8 +139,8 @@ exports.addGameToUserList = function (req, res, gameId) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-  });	
-};  
+  });
+};
 
 exports.deleteGameFromUserList = function (req, res, gameId) {
   var user = req.model;
@@ -146,8 +158,9 @@ exports.deleteGameFromUserList = function (req, res, gameId) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-  });	
-}; 
+  });
+};
+
 
 /**
  * Send User

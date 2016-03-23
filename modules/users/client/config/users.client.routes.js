@@ -13,6 +13,16 @@ angular.module('users').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
+      .state('settings.my-games', {
+        url: '/my-games',
+        templateUrl: 'modules/users/client/views/settings/my-games.client.view.html',
+        controller: 'ViewGameLibraryController'
+      })
+      .state('settings.add-game', {
+        url: '/add-game',
+        templateUrl: 'modules/users/client/views/settings/add-game.client.view.html',
+        controller: 'EditGameLibraryController'
+      })
       .state('settings.profile', {
         url: '/profile',
         templateUrl: 'modules/users/client/views/settings/edit-profile.client.view.html'
@@ -32,7 +42,7 @@ angular.module('users').config(['$stateProvider',
       .state('authentication', {
         abstract: true,
         url: '/authentication',
-        templateUrl: 'modules/users/client/views/authentication/authentication.client.view.html'
+        //templateUrl: 'modules/users/client/views/authentication/authentication.client.view.html'
       })
       .state('authentication.signup', {
         url: '/signup',
