@@ -42,6 +42,30 @@ angular.module('users.admin.routes').config(['$stateProvider',
             });
           }]
         }
+      })
+      .state('admin.game', {
+        url: '/games/:gameID',
+        templateUrl: 'modules/users/client/views/admin/view-game.client.view.html',
+        controller: 'GameController',
+        resolve: {
+          gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+            return Game.get({
+              gameID: $stateParams.gameID
+            });
+          }]
+        }
+      })
+      .state('admin.game-edit', {
+        url: '/games/:gameID/edit',
+        templateUrl: 'modules/users/client/views/admin/edit-game.client.view.html',
+        controller: 'GameController',
+        resolve: {
+          gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+            return Game.get({
+              gameID: $stateParams.gameID
+            });
+          }]
+        }
       });
   }
 ]);

@@ -22,6 +22,38 @@ exports.listGames = function (req, res){
 
 };
 
+exports.deleteGame = function (req, res) {
+  var games = req.model;
+
+  games.remove(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(games);
+  });
+};
+
+exports.updateGame = function (req, res) {
+  var games = req.model;
+
+  //For security purposes only merge these parameters
+  games.title = req.body.title;
+  games.platform = req.body.platform;
+  games.discussions = req.body.discussions;
+
+  games.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(games);
+  };
+
 exports.addGame = function (req, res){
   var game = new Game(req.body);
   game.save(function(err){
@@ -33,10 +65,15 @@ exports.addGame = function (req, res){
     }
   });
 };
+
 /**
  * Show the current user
  */
 exports.read = function (req, res) {
+  res.json(req.model);
+};
+
+exports.readGame = function (req, res) {
   res.json(req.model);
 };
 
@@ -113,6 +150,25 @@ exports.userByID = function (req, res, next, id) {
     }
 
     req.model = user;
+    next();
+  });
+};
+
+exports.gameByID = function (req, res, next, id) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Game is invalid'
+    });
+  }
+
+  Game.findById(id).exec(function (err, game) {
+    if (err) {
+      return next(err);
+    } else if (!game) {
+      return next(new Error('Failed to load game ' + id));
+    }
+
+    req.model = game;
     next();
   });
 };

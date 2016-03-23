@@ -19,6 +19,13 @@ module.exports = function (app) {
     .post(adminPolicy.isAllowed, admin.addGame);
 	
 
+  app.route('/api/games/:gameID')
+    .get(adminPolicy.isAllowed, admin.readGame)
+    .put(adminPolicy.isAllowed, admin.updateGame)
+    .delete(adminPolicy.isAllowed, admin.deleteGame);
+
+  app.param('gameID', admin.gameByID);
+
   // Single user routes
   app.route('/api/users/:userId')
     .get(adminPolicy.isAllowed, admin.read)
@@ -27,4 +34,6 @@ module.exports = function (app) {
 
   // Finish by binding the user middleware
   app.param('userId', admin.userByID);
+
+  
 };

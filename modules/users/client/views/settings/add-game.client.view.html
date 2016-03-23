@@ -11,7 +11,7 @@
   </div>
   <div class="list-group">
     <a ng-repeat="game in pagedItems" class="list-group-item">
-      <p class="list-group-item-text pull-right">
+      <p class="list-group-item-text pull-right small">
         <button type="button" ng-click="addGameToLibrary(game)" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
       </p>
       <p class="list-group-item-text pull-right small" ng-bind="game.platform"></p>
