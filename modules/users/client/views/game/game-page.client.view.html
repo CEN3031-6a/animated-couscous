@@ -1,0 +1,26 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 ng-bind="game.title"></h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-header">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group text-center">
+          <img ng-src="{{game.gameImageURL}}" class="img-thumbnail game-cover-smaller">
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <h2>{{game.title}}</h2>
+        <h4>{{game.platform}}</h4>
+        <h4>{{game.genre}}</h4>
+        <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  50</h4>
+        <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  50</h4>
+      </div>
+    </div>
+  </div>
+</section>

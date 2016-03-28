@@ -37,6 +37,18 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       data: {
         ignoreState: true
       }
+    })
+    .state('game', {
+      url: '/games/:gameID',
+      templateUrl: 'modules/users/client/views/game/game-page.client.view.html',
+      controller: 'GameController',
+      resolve: {
+        gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+          return Game.get({
+            gameID: $stateParams.gameID
+          });
+        }]
+      }
     });
   }
 ]);

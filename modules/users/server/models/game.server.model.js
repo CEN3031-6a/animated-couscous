@@ -27,8 +27,8 @@ var DiscussionSchema = new Schema({
   updated: {
     type: Date
   },
-}); 
-  
+});
+
 /**
  * Games Schema
  */
@@ -39,6 +39,10 @@ var GamesSchema = new Schema({
     default: '',
   },
   platform: {
+    type: String,
+    default: ''
+  },
+  genre: {
     type: String,
     default: ''
   },

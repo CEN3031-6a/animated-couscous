@@ -15,7 +15,7 @@ exports.addDiscussion = function (req, res) {
   var currentDate = new Date();
   game.discussions.push({
     title: req.body.title,
-    description: req.body.description,	
+    description: req.body.description,
     OP: req.body.OP,
     gameID: game.id,
     updated : currentDate
@@ -57,6 +57,10 @@ exports.listDiscussion = function (req, res) {
     }
     res.json(gamediscussions);
   });
+};
+
+exports.readGame = function(req, res) {
+  res.json(req.model);
 };
 
 

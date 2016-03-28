@@ -8,7 +8,7 @@ angular.module('users').controller('GamesController', ['$scope', '$http', '$filt
     });
     /*
     $scope.find = function() {
-      
+
       $scope.loading = true;
 
       Game.get().then(function(response) {
@@ -20,6 +20,8 @@ angular.module('users').controller('GamesController', ['$scope', '$http', '$filt
       });
     };
     */
+
+    
 
 
     /*
