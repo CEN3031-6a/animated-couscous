@@ -60,11 +60,11 @@ exports.updateGame = function(req, res) {
 
 exports.addGame = function(req, res) {
   var game = new Game(req.body);
-  var message = null;
-  var upload = multer(config.uploads.profileUpload).single('newGamePicture');
-  var gameUploadFileFilter = require(path.resolve('./config/lib/multer')).gameUploadFileFilter;
+  // var message = null;
+  // var upload = multer(config.uploads.profileUpload).single('newGamePicture');
+  // var gameUploadFileFilter = require(path.resolve('./config/lib/multer')).gameUploadFileFilter;
 
-  game.gameImageURL = config.uploads.profileUpload.dest + req.file.filename;
+  //game.gameImageURL = config.uploads.profileUpload.dest + req.file.filename;
 
   game.save(function(err) {
     if (err) {

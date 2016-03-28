@@ -1,18 +1,17 @@
 'use strict';
 
-angular.module('users').controller('AddGameController', ['$scope', '$state', '$window', '$timeout',  '$http', '$location', 'Game', 'Authentication',
+angular.module('users').controller('AddGameController', ['$scope', '$state', '$window', '$timeout', '$http', '$location', 'Game', 'Authentication',
   'FileUploader', function($scope, $state, $window, $timeout, $http, $location, Game, Authentication, FileUploader) {
 
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
-    $scope.imageURL = '';
 
     $scope.addGame = function() {
       var newGame = new Game({
         title: $scope.title,
         platform: $scope.platform,
         genre: $scope.genre,
-        gameImageURL: $scope.imageURL
+        gameImageURL: $scope.gameurl
       });
 
       newGame.$save(function(response) {
@@ -20,12 +19,12 @@ angular.module('users').controller('AddGameController', ['$scope', '$state', '$w
         $scope.title = '';
         $scope.platform = '';
         $scope.genre = '';
-        $scope.imageURL = '';
+        $scope.gameurl = '';
       }, function(errorResponse) {
         $scope.title = '';
         $scope.platform = '';
         $scope.genre = '';
-        $scope.imageURL = '';
+        $scope.gameurl = '';
         $scope.error = errorResponse.data;
       });
 
