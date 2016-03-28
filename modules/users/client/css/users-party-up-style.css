@@ -46,13 +46,13 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 .dpad {
 	margin: auto;
 	background: #FFFEFF;
-    
+
     background: -webkit-linear-gradient(#CCCCCC, #FFFFFF);
-	background: -moz-linear-gradient(#CCCCCC, #FFFFFF);  
+	background: -moz-linear-gradient(#CCCCCC, #FFFFFF);
     background: -ms-linear-gradient(#CCCCCC, #FFFFFF);
     background: -o-linear-gradient(#CCCCCC, #FFFFFF);
     background: linear-gradient(#CCCCCC, #FFFFFF);
-    
+
     height: 136px;
 }
 .dpad-points {
@@ -235,6 +235,10 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 .modal-footerPU {
   	border-top: 1px solid #e5e5e5;
   	background-color: black;
+}
+
+.game-cover {
+	font-size: 250px;
 }
 
 /* Header Search Bar */
