@@ -37,6 +37,7 @@
       </div>
     </div>
 
+    <!-- Slick Slider seems to have conflicts with dynamically loaded data and maintaining appropriate styling
     <div class="row" ng-controller="GamesController" ng-init="find()">
       <div class="box">
         <h5>More Games!</h5>
@@ -45,17 +46,17 @@
           <div ng-repeat="game in games | filter: query">
             <h6>{{game.title}}</h6>
             <a ui-sref="game({gameID: game._id})">
-            <svg height="136" width="120" fill="url(#grad)">
+            <svg height="136" width="120" fill="url(#grad-{{$index}})">
               <polygon points="5.6,93.0, 46.3,135.4 79.6,135.4 121.3,93.0 121.0,21.2 116.6,11.5 107.0,5.7 19.5,6.0 10.3,12.5 6.0,22.7" />
               <defs>
-                <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id="grad-{{$index}}" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop id="grad-start" offset="0%" />
                   <stop id="grad-end"offset="100%" />
                 </linearGradient>
               </defs>-{{$index}}
               <svg height="136" width="120" style="fill:black;">
                 <defs>
-                  <clipPath id="clipPolygon">
+                  <clipPath id="clipPolygon-{{$index}}">
                     <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />
                   </clipPath>
                 </defs>
@@ -65,32 +66,33 @@
                   </pattern>
                 </defs>
                 <g>
-                  <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon)" fill="url(#image-{{$index}})"/>
+                  <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon-{{$index}})" fill="url(#image-{{$index}})"/>
                   <text class="dpad-text"x="62" y="130" text-anchor="middle" ng-bind="game.discussions.length"></text>
                 </g>
               </svg>
             </svg>
+            </a>
           </div>
 
         </slick>
-        </a>
       </div>
     </div>
+    -->
 
     <div class="row" ng-controller="GamesController" ng-init="find()">
       <h5>More More Games!</h5>
       <div class="box">
-        <svg height="136" width="120" fill="url(#grad)" ng-repeat="game in games | filter: query">
+        <svg height="136" width="120" fill="url(#grad-{{$index}})" ng-repeat="game in games | filter: query">
           <polygon points="5.6,93.0, 46.3,135.4 79.6,135.4 121.3,93.0 121.0,21.2 116.6,11.5 107.0,5.7 19.5,6.0 10.3,12.5 6.0,22.7" />
           <defs>
-            <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="grad-{{$index}}" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop id="grad-start" offset="0%" />
               <stop id="grad-end" offset="100%" />
             </linearGradient>
           </defs>
           <svg height="136" width="120" style="fill:black;">
             <defs>
-              <clipPath id="clipPolygon">
+              <clipPath id="clipPolygon-{{$index}}">
                 <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />
               </clipPath>
             </defs>
@@ -100,7 +102,7 @@
               </pattern>
             </defs>
             <g>
-              <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon)" fill="url(#image-{{$index}})"/>
+              <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon-{{$index}})" fill="url(#image-{{$index}})"/>
               <text class="dpad-text"x="62" y="130" text-anchor="middle" ng-bind="game.discussions.length"></text>
             </g>
           </svg>
