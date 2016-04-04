@@ -6,7 +6,16 @@
     </div>
     <br>
 
-    <div class="row">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search" style="color: black;" ng-model="query">
+      <span class="input-group-btn">
+        <button type="submit" class="btn PUButton" id="srch-btn" ng-click="applySearch()">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+      </span>
+    </div>
+
+    <div class="row" ng-hide="authentication.user">
       <div class="party-up-box">
         <h5>Register for Free Today!</h5>
         <h6>It's FREE to create an account!</h6>
@@ -26,68 +35,76 @@
         </div>
       -->
       </div>
-    </div>    
+    </div>
 
-    <div class="row">
+    <div class="row" ng-controller="GamesController" ng-init="find()">
       <div class="box">
-        <h5>Party Up Generic Title</h5>
-        <slick class="slider multiple-items slick-slider draggable" infinite="true" slides-to-show="8" slides-to-scroll="8">
-          <div>
-            <svg height="136" width="120" style="fill:white;">
+        <h5>More Games!</h5>
+        <slick class="slider multiple-items slick-slider draggable" infinite="true" slides-to-show="8" slides-to-scroll="8" init-onload="true" data="games">
+
+          <div ng-repeat="game in games | filter: query">
+            <h6>{{game.title}}</h6>
+            <a ui-sref="game({gameID: game._id})">
+            <svg height="136" width="120" fill="url(#grad)">
               <polygon points="5.6,93.0, 46.3,135.4 79.6,135.4 121.3,93.0 121.0,21.2 116.6,11.5 107.0,5.7 19.5,6.0 10.3,12.5 6.0,22.7" />
+              <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop id="grad-start" offset="0%" />
+                  <stop id="grad-end"offset="100%" />
+                </linearGradient>
+              </defs>-{{$index}}
               <svg height="136" width="120" style="fill:black;">
                 <defs>
                   <clipPath id="clipPolygon">
-                    <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />  
+                    <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />
                   </clipPath>
                 </defs>
                 <defs>
-                  <pattern id="image" patternUnits="userSpaceOnUse" height="200" width="200">
-                    <image xlink:href="modules/core/client/img/black-ops.jpg" x="0" y="25" height="200" width="200" transform="translate(-35.5,-31)" />
+                  <pattern id="image-{{$index}}" patternUnits="userSpaceOnUse" height="150" width="150">
+                    <image xlink:href="" ng-href="{{game.gameImageURL}}" x="0" y="25" height="150" width="150" transform="translate(-12,-31)" />
                   </pattern>
                 </defs>
                 <g>
-                  <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon)" fill="url(#image)"/>
-                  <text class="dpad-text"x="62" y="130" text-anchor="middle">50,000</text>
+                  <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon)" fill="url(#image-{{$index}})"/>
+                  <text class="dpad-text"x="62" y="130" text-anchor="middle" ng-bind="game.discussions.length"></text>
                 </g>
               </svg>
             </svg>
           </div>
-          <div class="dpad dpad-points">
-            <p class="dpad dpad-points">2</p>
-          </div>
-          <div>
-            <p class="dpad dpad-points">3</p>
-          </div>
-          <div>
-            <p class="dpad dpad-points">4</p>
-          </div>
-          <div>
-            <p class="dpad dpad-points">5</p>
-          </div>
-          <div>
-            <p class="dpad dpad-points">6</p>
-          </div>
-          <div>
-            <p class="dpad dpad-points">7</p>
-          </div>
-          <div>
-            <p class="dpad dpad-points">8</p>
-          </div>
-          <div>
-            <p class="dpad dpad-points">9</p>
-          </div>
-          <div>
-            <p class="dpad dpad-points">10</p>
-          </div>
+
         </slick>
+        </a>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-controller="GamesController" ng-init="find()">
+      <h5>More More Games!</h5>
       <div class="box">
-        <h5>More Games!</h5>
-        <p>AND MORE CONTENT, YEAH!</p>
+        <svg height="136" width="120" fill="url(#grad)" ng-repeat="game in games | filter: query">
+          <polygon points="5.6,93.0, 46.3,135.4 79.6,135.4 121.3,93.0 121.0,21.2 116.6,11.5 107.0,5.7 19.5,6.0 10.3,12.5 6.0,22.7" />
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop id="grad-start" offset="0%" />
+              <stop id="grad-end" offset="100%" />
+            </linearGradient>
+          </defs>
+          <svg height="136" width="120" style="fill:black;">
+            <defs>
+              <clipPath id="clipPolygon">
+                <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />
+              </clipPath>
+            </defs>
+            <defs>
+              <pattern id="image-{{$index}}" patternUnits="userSpaceOnUse" height="200" width="200">
+                <image xlink:href="" ng-href="{{game.gameImageURL}}" x="0" y="25" height="200" width="200" transform="translate(-35.5,-31)" />
+              </pattern>
+            </defs>
+            <g>
+              <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon)" fill="url(#image-{{$index}})"/>
+              <text class="dpad-text"x="62" y="130" text-anchor="middle" ng-bind="game.discussions.length"></text>
+            </g>
+          </svg>
+        </svg>
       </div>
     </div>
 

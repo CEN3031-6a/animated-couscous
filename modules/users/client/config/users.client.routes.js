@@ -13,8 +13,8 @@ angular.module('users').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-      .state('settings.my-games', {
-        url: '/my-games',
+      .state('settings.games', {
+        url: '/games',
         templateUrl: 'modules/users/client/views/settings/my-games.client.view.html',
         controller: 'ViewGameLibraryController'
       })
@@ -78,5 +78,17 @@ angular.module('users').config(['$stateProvider',
         url: '/:token',
         templateUrl: 'modules/users/client/views/password/reset-password.client.view.html'
       });
+      // .state('game', {
+      //   url: '/games/:gameID',
+      //   templateUrl: 'modules/users/client/views/game/game-page.client.view.html',
+      //   controller: 'GameController',
+      //   resolve: {
+      //     gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+      //       return Game.get({
+      //         gameID: $stateParams.gameID
+      //       });
+      //     }]
+      //   }
+      // });
   }
 ]);

@@ -40,12 +40,6 @@ var UserSchema = new Schema({
     type: String,
     default: ''
   },
-  location: {
-    type: String,
-    trim: true,
-    default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your location']
-  },
   birthday: {
     type: String,
     trim: true,
@@ -55,7 +49,6 @@ var UserSchema = new Schema({
   xboxlive: {
     type: String,
     //unique: 'Username already exists',
-    //required: 'Please fill in a username',
     trim: true
   },
   psn: {

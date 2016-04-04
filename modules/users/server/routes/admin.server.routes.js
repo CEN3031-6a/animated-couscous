@@ -13,11 +13,20 @@ module.exports = function (app) {
   // Users collection routes
   app.route('/api/users')
     .get(adminPolicy.isAllowed, admin.list);
-	
+
   app.route('/api/games')
     .get(adminPolicy.isAllowed, admin.listGames)
     .post(adminPolicy.isAllowed, admin.addGame);
-	
+
+
+  app.route('/api/games/:gameID')
+    .get(adminPolicy.isAllowed, admin.readGame)
+    .put(adminPolicy.isAllowed, admin.updateGame)
+    .delete(adminPolicy.isAllowed, admin.deleteGame);
+
+  //app.route('/api/games/picture').post(admin.addGamePicture);
+
+  app.param('gameID', admin.gameByID);
 
   // Single user routes
   app.route('/api/users/:userId')
@@ -27,4 +36,6 @@ module.exports = function (app) {
 
   // Finish by binding the user middleware
   app.param('userId', admin.userByID);
+
+
 };

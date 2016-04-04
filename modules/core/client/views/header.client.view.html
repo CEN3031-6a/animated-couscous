@@ -46,6 +46,7 @@
         <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </li>
     </ul>
+    <!-- When user not logged in -->
     <ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
       <li ui-sref-active="active">
         <a ng-controller="AuthenticationController" ng-click="openSignup()" ui-sref="authentication.signup">
@@ -59,6 +60,8 @@
         </a>
       </li>
     </ul>
+
+    <!-- When user has logged in -->
     <ul class="nav navbar-nav navbar-right" ng-show="authentication.user">
       <li class="dropdown" dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" dropdown-toggle role="button">
@@ -67,7 +70,7 @@
         </a>
         <ul class="dropdown-menu" role="menu">
           <li ui-sref-active="active">
-            <a ui-sref="settings.my-games">My Games</a>
+            <a ui-sref="settings.games">My Games</a>
           </li>
           <li ui-sref-active="active">
             <a ui-sref="settings.profile">Edit Profile</a>
@@ -78,9 +81,9 @@
           <li ui-sref-active="active" ng-show="authentication.user.provider === 'local'">
             <a ui-sref="settings.password">Change Password</a>
           </li>
-          <li ui-sref-active="active">
+          <!-- <li ui-sref-active="active">
             <a ui-sref="settings.accounts">Manage Social Accounts</a>
-          </li>
+          </li> -->
           <li class="divider"></li>
           <li>
             <a href="/api/auth/signout" target="_self">Sign out</a>

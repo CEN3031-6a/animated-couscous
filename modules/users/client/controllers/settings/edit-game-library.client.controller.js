@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('users').controller('EditGameLibraryController', ['$scope', '$http', '$filter', 'Game', 'Users', 'Authentication',
-  function ($scope, $http, $filter, Game, Users, Authentication) {
+  function($scope, $http, $filter, Game, Users, Authentication) {
     $scope.user = Authentication.user;
 
-    Game.query(function (data) {
+    Game.query(function(data) {
       $scope.games = data;
       $scope.buildPager();
     });
@@ -28,6 +28,22 @@ angular.module('users').controller('EditGameLibraryController', ['$scope', '$htt
 
     $scope.pageChanged = function () {
       $scope.figureOutItemsToDisplay();
+    };
+
+    $scope.addGameToLibrary = function (game) {
+      $scope.user.games.push(game);
+      console.log(game);
+
+      var user = new Users($scope.user);
+
+      user.$update(function (response) {
+        $scope.$broadcast('show-errors-reset', 'userForm');
+
+        $scope.success = true;
+        Authentication.user = response;
+      }, function (response) {
+        $scope.error = response.data.message;
+      });
     };
   }
 ]);

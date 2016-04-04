@@ -110,14 +110,14 @@ exports.listAllGames = function (req, res){
 
 exports.listUserGames = function (req, res) {
   var user = req.user;
-  user.games.find({}).sort('-title').populate('title', 'platform').exec(function (err, games) {
+
+  User.findOne({ _id: user._id }).populate('games').exec(function (err, user) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
-
-    res.json(games);
+    res.json(user);
   });
 
 };

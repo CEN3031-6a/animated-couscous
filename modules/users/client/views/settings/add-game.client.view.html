@@ -2,7 +2,7 @@
   <div class="page-header">
     <div class="row">
       <div class="col-md-4">
-        <h1>Games <button type="button" ui-sref="settings.my-games" class="btn btn-primary">Done</button></h1>
+        <h1>Games <button type="button" ui-sref="settings.games" class="btn btn-primary">Done</button></h1>
     </div>
       <div class="col-md-4" style="margin-top: 2em">
         <input class="form-control col-md-4" type="text" ng-model="search" placeholder="Search" ng-change="figureOutItemsToDisplay()" />
@@ -11,8 +11,8 @@
   </div>
   <div class="list-group">
     <a ng-repeat="game in pagedItems" class="list-group-item">
-      <p class="list-group-item-text pull-right">
-        <button type="button" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+      <p class="list-group-item-text pull-right small">
+        <button type="button" ng-click="addGameToLibrary(game)" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
       </p>
       <p class="list-group-item-text pull-right small" ng-bind="game.platform"></p>
       <b><p class="list-group-item-text" ng-bind="game.title"></p></b>

@@ -13,21 +13,52 @@ acl = new acl(new acl.memoryBackend());
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
-    roles: ['admin', 'user'],
+    roles: ['admin'],
     allows: [{
       resources: '/api/users',
-      permissions: 'admin'
+      permissions: '*'
     }, {
       resources: '/api/users/:userId',
-      permissions: 'admin'
+      permissions: '*'
     }, {
       resources: '/api/games',
       permissions: '*'
     }, {
-      resources: '/api/games/:gameId',
-      permissions: 'admin'
+      resources: '/api/games/:gameID',
+      permissions: '*'
     }]
-  }]);
+  }, {
+    roles: ['user'],
+    allows: [{
+      resources: '/api/users',
+      permissions: ['get']
+    }, {
+      resources: '/api/users/:userId',
+      permissions: ['get']
+    }, {
+      resources: '/api/games',
+      permissions: '*'
+    }, {
+      resources: '/api/games/:gameID',
+      permissions: '*'
+    }]
+  }, {
+    roles: ['guest'],
+    allows: [{
+      resources: '/api/users',
+      permissions: ['get']
+    }, {
+      resources: '/api/users/:userId',
+      permissions: ['get']
+    }, {
+      resources: '/api/games',
+      permissions: ['get']
+    }, {
+      resources: '/api/games/:gameID',
+      permissions: ['get']
+    }]
+  }
+]);
 };
 
 /**
