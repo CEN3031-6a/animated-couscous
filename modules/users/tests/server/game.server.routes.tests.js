@@ -90,7 +90,7 @@ describe('Game CRUD tests', function () {
             // });
         });
   });
-
+/*
   it('should be able to sign in', function (done) {
     agent.post('/authentication/signin')
         .send(credentials)
@@ -118,7 +118,7 @@ describe('Game CRUD tests', function () {
               // return done();
             // });
         });
-  });
+  });*/
   /*it('should not be able to retrieve a list of users if not admin', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
