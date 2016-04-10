@@ -69,7 +69,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(["$rootScope"
 
   // Store previous state
   function storePreviousState(state, params) {
-    // only store this state if it shouldn't be ignored 
+    // only store this state if it shouldn't be ignored
     if (!state.data || !state.data.ignoreState) {
       $state.previous = {
         state: state,
@@ -233,7 +233,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     // This provides Authentication context.
     $scope.authentication = Authentication;
 
-    
+
     $scope.query = "";
     $scope.userInput = "";
     $scope.applySearch = function() {
@@ -1200,7 +1200,7 @@ angular.module('users').controller('GamesController', ['$scope', '$http', '$filt
     };
     */
 
-    
+
 
 
     /*
