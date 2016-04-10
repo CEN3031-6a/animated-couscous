@@ -61,4 +61,14 @@ describe('Users E2E Tests:', function () {
       element(by.css('button[type="submit"]')).click();
     });
   });
+  describe('View Game Details and Update', function () {
+    it('Should be able to delete a game from the master list', function () {
+      element.all(by.css('a[class="list-group-item ng-scope"]')).get(0).click();
+      element(by.css('a[ui-sref="admin.game-edit({gameID: game._id})"]')).click();
+      element(by.model('game.title')).clear();
+      element(by.model('game.title')).sendKeys("FIFA 15");
+      element(by.css('input[value="Update"]')).click();
+      expect(element(by.css('div [ng-bind="game.title"]')).getText()).toBe('FIFA 15');
+    });
+  });
 });
