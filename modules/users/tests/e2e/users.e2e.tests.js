@@ -71,4 +71,19 @@ describe('Users E2E Tests:', function () {
       expect(element(by.css('div [ng-bind="game.title"]')).getText()).toBe('FIFA 15');
     });
   });
+  describe('Sign Up', function () {
+    it('Should sign up', function () {
+      browser.get('http://localhost:3001/');
+      element(by.css('img[class=header-profile-image]')).click();
+      element(by.css('a[href="/api/auth/signout"]')).click();
+      element(by.css('[ng-click="openSignup()"]')).click();
+      element(by.model('credentials.email')).sendKeys('aaaaaaaaaaaaa@aaaaaa.com');
+      element(by.model('credentials.password')).sendKeys('Partyupgaming1!');
+      element(by.model('credentials.birthday')).sendKeys('11/11/1111');
+      element(by.model('credentials.xboxlive')).sendKeys('beepboop1');
+      element(by.model('credentials.psn')).sendKeys('beepboop2');
+      element(by.model('credentials.steam')).sendKeys('beepboop3');	  
+      element(by.css('button[type=submit]')).click();
+    });
+  });
 });
