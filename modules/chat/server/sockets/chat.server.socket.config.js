@@ -5,8 +5,8 @@ module.exports = function (io, socket) {
 
   //var rooms = ['room1'];
   //make 'room1' the roomID and everything should work, wooooooooo
-  socket.room = 'room1';
-  socket.join('room1');
+  /*socket.room = 'room1';
+  socket.join('room1');*/
 
   // Emit the status event when a new socket client is connected
   socket.emit('chatMessage', {
@@ -25,7 +25,14 @@ module.exports = function (io, socket) {
     message.username = socket.request.user.email;
 
     // Emit the 'chatMessage' event
+    console.log(socket.room);
     io.sockets.in(socket.room).emit('chatMessage', message);
+  });
+
+  socket.on('createRoom', function(room) {
+    console.log("HEYHEYHEY");
+    socket.room = room.roomID;
+    socket.join(room.roomID);
   });
 
   // Emit the status event when a socket client is disconnected

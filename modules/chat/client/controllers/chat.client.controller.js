@@ -20,13 +20,18 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
       $location.path('/');
     }
 
+    
     // Make sure the Socket is connected
     if (!Socket.socket) {
       Socket.connect();
     }
 
 
-    
+    var room = {
+        roomID: 55555
+      };
+    Socket.emit('createRoom', room);
+
 
     // Add an event listener to the 'chatMessage' event
     Socket.on('chatMessage', function (message) {
