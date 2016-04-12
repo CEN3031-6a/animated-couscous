@@ -6,7 +6,11 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     // Create a messages array
     $scope.messages = [];
 
-    $scope.rooms = [];
+    $scope.rooms = [{
+      messages: [],
+      name: ""
+    }];
+
 
     // If user is not signed in then redirect back home
 
@@ -20,6 +24,9 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     if (!Socket.socket) {
       Socket.connect();
     }
+
+
+    
 
     // Add an event listener to the 'chatMessage' event
     Socket.on('chatMessage', function (message) {

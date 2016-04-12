@@ -2,8 +2,14 @@
 
 // Create the chat configuration
 module.exports = function (io, socket) {
+
+  //var rooms = ['room1'];
+  //make 'room1' the roomID and everything should work, wooooooooo
+  socket.room = 'room1';
+  socket.join('room1');
+
   // Emit the status event when a new socket client is connected
-  io.emit('chatMessage', {
+  socket.emit('chatMessage', {
     type: 'status',
     text: 'Is now connected',
     created: Date.now(),
@@ -19,12 +25,12 @@ module.exports = function (io, socket) {
     message.username = socket.request.user.email;
 
     // Emit the 'chatMessage' event
-    io.emit('chatMessage', message);
+    io.sockets.in(socket.room).emit('chatMessage', message);
   });
 
   // Emit the status event when a socket client is disconnected
   socket.on('disconnect', function () {
-    io.emit('chatMessage', {
+    io.sockets.in(socket.room).emit('chatMessage', {
       type: 'status',
       text: 'disconnected',
       created: Date.now(),
