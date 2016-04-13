@@ -3,6 +3,12 @@ body {
 	color: #FFFEFF;
 }
 
+/* Filter (Dropdown and Search) */
+.filter {
+	margin-top: 10px; 
+	margin-bottom: 10px;
+}
+
 /* Slick Additional Styling */
 slick {
 	width: 84%;
@@ -26,33 +32,27 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
-/*
+#grad-start {
+	stop-color:rgb(0,0,0); 
+	-webkit-stop-opacity: 1;
+	-moz-stop-opacity: 1;
+	-ms-stop-opacity: 1;
+	-o-stop-opacity: 1;
+	stop-opacity: 1;
+}
+#grad-end {
+	stop-color:rgb(255,255,255);
+	-webkit-stop-opacity: 1;
+	-moz-stop-opacity: 1;
+	-ms-stop-opacity: 1;
+	-o-stop-opacity: 1;
+	stop-opacity: 1;
+}
+
 .dpad {
-	margin: auto;
-	background: #FFFEFF;
-
-    background: -webkit-linear-gradient(#CCCCCC, #FFFFFF);
-	background: -moz-linear-gradient(#CCCCCC, #FFFFFF);
-    background: -ms-linear-gradient(#CCCCCC, #FFFFFF);
-    background: -o-linear-gradient(#CCCCCC, #FFFFFF);
-    background: linear-gradient(#CCCCCC, #FFFFFF);
-
-    height: 136px;
+	cursor: pointer;
+	display: inline;
 }
-.dpad-points {
-	-webkit-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-moz-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-ms-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-o-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-
-	-webkit-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-moz-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-ms-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-o-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-}
-*/
 .dpad-text {
 	font-weight: bold;
 	font-size: 0.8em;
@@ -141,15 +141,18 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 /* Boxes styling */
 .box {
 	border: 1px solid #161616;
-	border-radius: 5px;
 	background: repeating-linear-gradient(-45deg, #161616, #161616 2px, #2B2B2B 2px, #2B2B2B 4px);
 	margin: 0;
 	margin-bottom: 10px;
 	white-space: nowrap;
 	overflow: auto;
-	overflow-y: hidden;
 	-ms-overflow-y: hidden;
+	overflow-y: hidden;
 	color: #FFFEFF;
+
+	-webkit-border-radius: 0px 0px 5px 5px !important;
+    -moz-border-radius: 0px 0px 5px 5px !important;
+    border-radius: 0px 0px 5px 5px !important;
 }
 .party-up-box {
 	border: 1px solid #161616;
@@ -181,27 +184,25 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 .party-up-box a {
 	margin: auto;
 }
-.box h5 {
+.row h5 {
 	background: #161616;
 	color: #FFFEFF;
 	padding: 8px;
 	padding-left: 20px;
 	font-weight: bold;
 	margin-top: 0;
+	margin-bottom: 0;
+	-webkit-border-top-right-radius:5px;
+    -webkit-border-top-left-radius:5px;
+	-moz-border-top-right-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
 }
 .box td, p {
 	color: #FFFEFF;
 	padding: 10px;
 }
-.box {
-	-moz-border-radius-topright:5px;
-    -moz-border-radius-topleft:5px;
-    -webkit-border-top-right-radius:5px;
-    -webkit-border-top-left-radius:5px;
-    border-top-right-radius:5px;
-    border-top-left-radius:5px;
-}
-
 .buttons {
 	text-align: center;
 	margin-top: 10px;

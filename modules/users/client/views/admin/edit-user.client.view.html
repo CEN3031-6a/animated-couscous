@@ -20,13 +20,10 @@
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label class="control-label" for="roles">Roles</label>
+          <label class="control-label" for="roles">Admin</label>
           <div class="controls">
-            <input class="form-control" type="text" name="roles" ng-model="user.roles" id="roles" ng-list required />
-            <div ng-messages="userForm.roles.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">At least one role is required.</p>
+            <input type="checkbox" name="roles" class="form-control" value="admin" id="roles" ng-model="user.roles" />    
             </div>
-          </div>
         </div>
         <div class="form-group">
           <input type="submit" value="Update" class="btn btn-default">
@@ -38,3 +35,4 @@
     </form>
   </div>
 </section>
+
