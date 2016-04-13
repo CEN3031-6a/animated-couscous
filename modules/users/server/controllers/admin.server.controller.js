@@ -101,10 +101,10 @@ exports.update = function(req, res) {
      var roles = document.getElementById('roles');
   
     if (roles.checked){ */
-		user.roles = 'admin';
+		//user.roles = 'admin';
 	/* }
-	else {
-		user.roles = 'user';
+	else { */ 
+		user.roles = 'user'; /*
 	}
     } */
   	
