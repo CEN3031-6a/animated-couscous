@@ -3,6 +3,17 @@ body {
 	color: #FFFEFF;
 }
 
+/* Navpills Styling */
+ul.nav.nav-pills.nav-stacked > li > a {
+	color: #FFFEFF;
+}
+ul.nav.nav-pills.nav-stacked > li > a:hover {
+	background: #8DC63F;
+}
+ul.nav.nav-pills.nav-stacked > li > a:visited {
+	background: #6F9D2F;
+}
+
 /* Slick Additional Styling */
 slick {
 	width: 84%;
@@ -230,11 +241,11 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 }
 
 .modal-bodyPU {
-  	background-color: black;
+  	background-color: #0D0D0D;
 }
 .modal-footerPU {
   	border-top: 1px solid #e5e5e5;
-  	background-color: black;
+  	background-color: #0D0D0D;
 }
 
 .game-cover {
