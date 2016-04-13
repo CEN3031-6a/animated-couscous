@@ -9,6 +9,13 @@ angular.module('chat').config(['$stateProvider',
         templateUrl: 'modules/chat/client/views/chat.client.view.html',
         data: {
           roles: ['user', 'admin']
+        },
+        resolve: {
+          discussionResolve: ['$stateParams', 'Discussion', function($stateParams, Discussion) {
+            return Discussion.get({
+              discussionID: $stateParams.discussionID
+            });
+          }]
         }
       });
   }
