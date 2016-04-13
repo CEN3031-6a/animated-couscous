@@ -3,6 +3,12 @@ body {
 	color: #FFFEFF;
 }
 
+/* Filter (Dropdown and Search) */
+.filter {
+	margin-top: 5px; 
+	margin-bottom: 5px;
+}
+
 /* Slick Additional Styling */
 slick {
 	width: 84%;

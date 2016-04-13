@@ -6,8 +6,19 @@
     </div>
     <br>
 
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search" style="color: black;" ng-model="query">
+    <div class="dropdown col-md-4 filter" dropdown>
+      <a class="dropdown-toggle header-dropdown-toggle" dropdown-toggle role="button" href="#">
+        <img class="console-logo-size" ng-src="modules/core/client/img/brand/xbox-logo.png" alt="Console"/><b class="caret" style="color: #FFFEFF;"></b></a>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/xbox-logo.png" alt="Xbox" /></a></li>
+        <li><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/playstation-logo.png" alt="PlayStation" /></a></li>
+        <li><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/steam-logo.png" alt="Steam" /></a></li>
+      </ul>
+    </div>
+
+    <div class="input-group col-md-8 filter">
+      <input type="text" class="form-control" placeholder="Search" style="color: black;" ng-model="query.title">
       <span class="input-group-btn">
         <button type="submit" class="btn PUButton" id="srch-btn" ng-click="applySearch()">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
