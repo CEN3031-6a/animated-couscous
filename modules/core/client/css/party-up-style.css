@@ -251,9 +251,8 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 }
 
 .panel-title-PU {
-
   font-size: 16px;
-  color: #e5e5e5;
+  color: #2d2d2d;
 }
 
 .panel-PU {
@@ -272,7 +271,15 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
   margin-right: 5px;
 }
 
-.panel-header-PU > img {
+.panel-header-PU > .panel-username-pic {
+	float: left;
+}
+
+.panel-header-PU > .panel-date-PU {
+	float: right;
+}
+
+/*.panel-header-PU > img {
   float: left;
 }
 
@@ -280,7 +287,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
   float: left;
   top: 18px;
   left: 10px;
-}
+}*/
 
 /* Header Search Bar */
 /*
