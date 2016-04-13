@@ -99,15 +99,15 @@ exports.update = function(req, res) {
   /*object.onload = funcRef;
   object.onload = function(){
      var roles = document.getElementById('roles');
-  
+
     if (roles.checked){ */
 		//user.roles = 'admin';
 	/* }
-	else { */ 
-		user.roles = 'user'; /*
+	else { */
+  user.roles = 'user'; /*
 	}
     } */
-  	
+
   //user.roles = req.body.roles;
 
   user.save(function(err) {
