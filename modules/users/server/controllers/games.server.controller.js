@@ -7,16 +7,17 @@ var path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Game = mongoose.model('Game'),
+  Discussion = mongoose.model('Discussion'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 
-exports.addDiscussion = function (req, res) {
+exports.addDiscussions = function (req, res) {
   var game = req.model;
   var currentDate = new Date();
   game.discussions.push({
     title: req.body.title,
     description: req.body.description,
-    OP: req.body.OP,
+    originalPoster: req.body.originalPoster,
     gameID: game.id,
     updated : currentDate
   });
@@ -28,6 +29,28 @@ exports.addDiscussion = function (req, res) {
       });
     }
     res.json(game);
+  });
+};
+
+exports.addDiscussionToGame = function (req, res, discussionId) {
+  var game = req.model;
+  var discussion = Discussion.findById(discussionId);
+  if (game._id === discussion.game._id) {
+    game.discussions.push(discussion);
+  }
+  game.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+  });
+  game.populate('discussions').exec(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
   });
 };
 
@@ -47,9 +70,9 @@ exports.deleteDiscussion = function (req, res, discussionId) {
   });
 };
 
-exports.listDiscussion = function (req, res) {
+exports.listDiscussions = function (req, res) {
   var game = req.model;
-  game.discussions.find({}).sort('-updated').populate('title', 'description').exec(function (err, gamediscussions) {
+  game.discussions.find({}).sort('-updated').populate('discussions').exec(function (err, gamediscussions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

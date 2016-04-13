@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 var adminPolicy = require('../policies/admin.server.policy'),
-  admin = require('../controllers/admin.server.controller');
+  admin = require('../controllers/admin.server.controller'),
+  game = require('../controllers/games.server.controller');
 
 module.exports = function (app) {
   // User route registration first. Ref: #713
@@ -17,6 +18,7 @@ module.exports = function (app) {
   app.route('/api/games')
     .get(adminPolicy.isAllowed, admin.listGames)
     .post(adminPolicy.isAllowed, admin.addGame);
+    //.put(game.addDiscussionToGame);
 
 
   app.route('/api/games/:gameID')
