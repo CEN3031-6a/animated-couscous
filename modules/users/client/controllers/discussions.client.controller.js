@@ -55,6 +55,30 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       }
     }
 
+    $scope.removeDiscussionFromGame = function (discussion, game) {
+      var currentGame = game;
+      // //var discussion = Discussion.get({discussionId: discussion._id});
+      // console.log(discussion);
+      // console.log('here comes game');
+      console.log(currentGame);
+      if (game._id === discussion.game) {
+        currentGame.discussions.push(discussion);
+      }
+
+      var gameToSave = new Game(currentGame);
+
+      gameToSave.$update(function () {
+        // $state.go('game', {
+        //   gameID: game._id
+        // });
+        $state.go('chat', {
+          //discussionId: discussion._id
+        });
+      }, function(errorResponse) {
+        $scope.error = errorResponse.data;
+      });
+    };
+
     $scope.addDiscussionToGame = function (discussion, game) {
       var currentGame = game;
       // //var discussion = Discussion.get({discussionId: discussion._id});

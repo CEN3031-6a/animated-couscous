@@ -18,12 +18,26 @@
         <h2>{{game.title}}</h2>
         <h4>{{game.platform}}</h4>
         <h4>{{game.genre}}</h4>
-        <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  50</h4>
-        <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  50</h4>
+        <h4>
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 50</h4>
+        <h4>
+          <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 50</h4>
         <a class="btn btn-primary" ui-sref="create-discussion({gameID: game._id})">
-          <i class="glyphicon glyphicon-plus"></i>
+          Create Post
         </a>
       </div>
     </div>
   </div>
+  <div ng-repeat="discussion in discussions | filter: { game: game_.id } |
+  orderBy: 'updated'">
+    <div class="panel-PU">
+      <div class="panel-heading-PU">
+        <span><img src="{{discussion.originalPoster.profileImageURL}}" class="panel-pic"></img>  <strong class="panel-title-PU">{{discussion.originalPoster.email}}</strong></span>
+      </div>
+      <div class="panel-body-PU">
+        <a ui-sref="chat">{{discussion.title}}</a>
+      </div>
+    </div>
+  </div>
+
 </section>
