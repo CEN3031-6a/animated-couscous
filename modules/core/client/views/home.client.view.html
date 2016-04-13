@@ -1,4 +1,4 @@
-<section ng-controller="HomeController">
+<section ng-controller="HomeController" ng-init="applyXboxFilter()">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
@@ -8,12 +8,12 @@
 
     <div class="dropdown col-md-1 filter" dropdown>
       <a class="dropdown-toggle header-dropdown-toggle" dropdown-toggle role="button" href="#">
-        <img class="console-logo-size" ng-src="modules/core/client/img/brand/xbox-logo.png" alt="Console"/><b class="caret" style="color: #FFFEFF;"></b></a>
+        <img class="console-logo-size" ng-src="{{imgSrc}}" alt="Console"/><b class="caret" style="color: #FFFEFF;"></b></a>
       </a>
       <ul class="dropdown-menu" role="menu">
-        <li><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/xbox-logo.png" alt="Xbox" /></a></li>
-        <li><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/playstation-logo.png" alt="PlayStation" /></a></li>
-        <li><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/steam-logo.png" alt="Steam" /></a></li>
+        <li ng-click="applyXboxFilter()"><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/xbox-logo.png" alt="Xbox" /></a></li>
+        <li ng-click="applyPS4Filter()"><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/playstation-logo.png" alt="PlayStation" /></a></li>
+        <li ng-click="applyPCFilter()"><a ui-sref="#"><img class="console-logo-size" ng-src="modules/core/client/img/brand/steam-logo.png" alt="Steam" /></a></li>
       </ul>
     </div>
 
@@ -93,7 +93,7 @@
     <div class="row" ng-controller="GamesController" ng-init="find()">
       <h5>More More Games!</h5>
       <div class="box">
-        <div class="dpad" ng-repeat="game in games | filter: query">
+        <div class="dpad" ng-repeat="game in games | filter: query | filter: query2">
 
           <!-- <div style="width: 120px; word-wrap: break-word;">{{game.title}}</div> -->
           <a ui-sref="game({gameID: game._id})">
