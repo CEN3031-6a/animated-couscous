@@ -8,7 +8,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
 
     $scope.rooms = [{
       messages: [],
-      name: ""
+      name: ''
     }];
 
 
@@ -28,8 +28,8 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
 
 
     var room = {
-        roomID: 55555
-      };
+      roomID: 55555
+    };
     Socket.emit('createRoom', room);
 
 
