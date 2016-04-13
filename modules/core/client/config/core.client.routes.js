@@ -41,9 +41,21 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     .state('game', {
       url: '/games/:gameID',
       templateUrl: 'modules/users/client/views/game/game-page.client.view.html',
-      controller: 'GameController',
+      controller: 'GamePageController',
       resolve: {
         gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+          return Game.get({
+            gameID: $stateParams.gameID
+          });
+        }]
+      }
+    })
+    .state('create-discussion', {
+      url: '/create-discussion',
+      templateUrl: 'modules/users/client/views/game/create-discussion.client.view.html',
+      controller: 'DiscussionController',
+      resolve: {
+        discussionGameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
           return Game.get({
             gameID: $stateParams.gameID
           });

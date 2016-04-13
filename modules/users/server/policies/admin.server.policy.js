@@ -31,16 +31,16 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/users',
-      permissions: ['get']
+      permissions: '*'
     }, {
       resources: '/api/users/:userId',
-      permissions: ['get']
+      permissions: '*'
     }, {
       resources: '/api/games',
-      permissions: '*'
+      permissions: ['get', 'put']
     }, {
       resources: '/api/games/:gameID',
-      permissions: '*'
+      permissions: ['get', 'put']
     }]
   }, {
     roles: ['guest'],

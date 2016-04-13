@@ -24,6 +24,21 @@ var validateLocalStrategyEmail = function (email) {
   return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email));
 };
 
+var ScreenNames = {
+  xboxlive: {
+    type: String,
+    trim: true
+  },
+  psn: {
+    type: String,
+    trim: true
+  },
+  steam: {
+    type: String,
+    trim: true
+  }
+};
+
 /**
  * User Schema
  */
@@ -46,22 +61,9 @@ var UserSchema = new Schema({
     default: '',
     validate: [validateLocalStrategyProperty, 'Please fill in your date of birth']
   },
-  xboxlive: {
-    type: String,
-    //unique: 'Username already exists',
-    trim: true
-  },
-  psn: {
-    type: String,
-    //unique: 'Username already exists',
-    //required: 'Please fill in a username',
-    trim: true
-  },
-  steam: {
-    type: String,
-    //unique: 'Username already exists',
-    //required: 'Please fill in a username',
-    trim: true
+  screenNames: {
+    type: ScreenNames,
+    unique: true
   },
   games: [{ type: Schema.ObjectId, ref: 'Game' }],
   salt: {
