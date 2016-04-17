@@ -3,6 +3,12 @@ body {
 	color: #FFFEFF;
 }
 
+/* Filter (Dropdown and Search) */
+.filter {
+	margin-top: 10px; 
+	margin-bottom: 10px;
+}
+
 /* Slick Additional Styling */
 slick {
 	width: 84%;
@@ -42,33 +48,11 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	-o-stop-opacity: 1;
 	stop-opacity: 1;
 }
-/*
+
 .dpad {
-	margin: auto;
-	background: #FFFEFF;
-
-    background: -webkit-linear-gradient(#CCCCCC, #FFFFFF);
-	background: -moz-linear-gradient(#CCCCCC, #FFFFFF);
-    background: -ms-linear-gradient(#CCCCCC, #FFFFFF);
-    background: -o-linear-gradient(#CCCCCC, #FFFFFF);
-    background: linear-gradient(#CCCCCC, #FFFFFF);
-
-    height: 136px;
+	cursor: pointer;
+	display: inline;
 }
-.dpad-points {
-	-webkit-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-moz-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-ms-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-o-shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	shape-outside: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-
-	-webkit-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-moz-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-ms-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	-o-clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-	clip-path: polygon(5.67px 93.00px,46.33px 135.47px,79.67px 135.47px,121.33px 93.00px,121.00px 21.26px,116.67px 11.53px,107.08px 5.78px,19.50px 6.03px,10.33px 12.53px,6.00px 22.76px);
-}
-*/
 .dpad-text {
 	font-weight: bold;
 	font-size: 0.8em;
@@ -246,6 +230,65 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 .game-header-fixed {
 	position: fixed;
 }
+
+/*.panel-PU {
+	background-color: #88C641;
+	color: #e5e5e5;
+}*/
+
+.panel-body-PU {
+  padding: 15px;
+}
+.panel-heading-PU {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.panel-body-PU {
+	background-color: black;
+	color: #e5e5e5;
+}
+
+.panel-title-PU {
+  font-size: 16px;
+  color: #2d2d2d;
+}
+
+.panel-PU {
+  border-color: #ddd;
+}
+.panel-PU > .panel-heading-PU {
+  color: #333;
+  background-color: #88C641;
+  border-color: #ddd;
+}
+
+.panel-pic {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.panel-header-PU > .panel-username-pic {
+	float: left;
+}
+
+.panel-header-PU > .panel-date-PU {
+	float: right;
+}
+
+/*.panel-header-PU > img {
+  float: left;
+}
+
+.panel-header-PU > .panel-title-PU {
+  float: left;
+  top: 18px;
+  left: 10px;
+}*/
 
 /* Header Search Bar */
 /*

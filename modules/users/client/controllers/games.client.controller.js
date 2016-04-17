@@ -2,26 +2,11 @@
 
 angular.module('users').controller('GamesController', ['$scope', '$http', '$filter', 'Game', 'Users', 'Authentication',
   function($scope, $http, $filter, Game, Users, Authentication) {
-    //$scope.games = [{"_id":"56ec2aab4cc86a81a2bcac89","updated":"2016-03-18T16:19:55.364Z","__v":0,"discussions":[],"created":"2016-03-18T16:19:55.363Z","gameImageURL":"https://upload.wikimedia.org/wikipedia/en/8/81/NHL_16_cover.jpg","platform":"Xbox One","title":"NHL 16"}];
+
     Game.query(function(data) {
       $scope.games = data;
     });
-    /*
-    $scope.find = function() {
 
-      $scope.loading = true;
-
-      Game.get().then(function(response) {
-        $scope.loading = false;
-        $scope.games = response.data;
-      }, function(error) {
-        $scope.loading = false;
-        $scope.error = 'Unable to retrieve games!\n' + error;
-      });
-    };
-    */
-
-    
 
 
     /*

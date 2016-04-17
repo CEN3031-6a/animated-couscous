@@ -1187,9 +1187,7 @@ angular.module('users').controller('GamesController', ['$scope', '$http', '$filt
     });
     /*
     $scope.find = function() {
-
       $scope.loading = true;
-
       Game.get().then(function(response) {
         $scope.loading = false;
         $scope.games = response.data;
@@ -1205,19 +1203,16 @@ angular.module('users').controller('GamesController', ['$scope', '$http', '$filt
 
     /*
     $scope.user = Authentication.user;
-
     Game.query(function (data) {
       $scope.games = data;
       $scope.buildPager();
     });
-
     $scope.buildPager = function () {
       $scope.pagedItems = [];
       $scope.itemsPerPage = 15;
       $scope.currentPage = 1;
       $scope.figureOutItemsToDisplay();
     };
-
     $scope.figureOutItemsToDisplay = function () {
       $scope.filteredItems = $filter('filter')($scope.games, {
         $: $scope.search
@@ -1227,7 +1222,6 @@ angular.module('users').controller('GamesController', ['$scope', '$http', '$filt
       var end = begin + $scope.itemsPerPage;
       $scope.pagedItems = $scope.filteredItems.slice(begin, end);
     };
-
     $scope.pageChanged = function () {
       $scope.figureOutItemsToDisplay();
     };

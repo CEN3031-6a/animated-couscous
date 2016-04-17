@@ -12,11 +12,21 @@ angular.module('users').factory('Game', ['$resource',
 ]);
 
 
-angular.module('users.admin').factory('Game', ['$resource',
+angular.module('users').factory('Game', ['$resource',
   function ($resource) {
     return $resource('api/games/:gameID', {
       gameID: '@_id'
     }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);
+
+angular.module('users').factory('GameDiscussions', ['$resource',
+  function ($resource) {
+    return $resource('api/games/:gameId/discussions', {}, {
       update: {
         method: 'PUT'
       }
