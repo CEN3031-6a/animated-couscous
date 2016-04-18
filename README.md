@@ -1,10 +1,15 @@
-[![Party Up Logo](http://www.partyupgaming.com/header.png)](http://partyupgaming.herokuapp.com/)
+[![Party Up Logo](http://i.imgur.com/blkIk30.png)](http://partyupgaming.herokuapp.com/)
 [![Coverage Status](https://coveralls.io/repos/meanjs/mean/badge.svg?branch=master&service=github)](https://coveralls.io/github/meanjs/mean?branch=master)
 
 
 This app is built on the MEAN stack:
 Party Up is an app that matches up gamers that allows them to easily find people to play with. Party Up allows for real time matching of users looking to play online games. Currently, Xbox One, PS4 and Steam are supported.
 
+
+## Credits
+* Bootstrap (http://getbootstrap.com/)
+* Socket.io (http://socket.io/)
+* Node.js Chat Tutorial (http://psitsmike.com/2011/10/node-js-and-socket-io-multiroom-chat-tutorial/)
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a MEAN.JS application:
 * MongoDB - Go through [MongoDB Official Website](http://mongodb.org/) and proceed to their [Official Manual](http://docs.mongodb.org/manual/), which should help you understand NoSQL and MongoDB better.
