@@ -54,9 +54,9 @@ var GamesSchema = new Schema({
     default: 'modules/users/client/img/profile/default.png'
   },
   users: [{ 
-      type: Schema.ObjectId, 
-      ref: 'User' 
-    }],
+    type: Schema.ObjectId, 
+    ref: 'User' 
+  }],
   updated: {
     type: Date
   },
