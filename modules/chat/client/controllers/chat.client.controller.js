@@ -29,7 +29,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$st
     $scope.dID = $stateParams.discussionID;
 
     var room = { 
-      roomID: $scope.dID
+      roomID: 55555
     };
     Socket.emit('createRoom', room);
 
