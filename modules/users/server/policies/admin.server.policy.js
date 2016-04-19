@@ -58,10 +58,6 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get']
     }]
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> styling
 ]);
 };
 
