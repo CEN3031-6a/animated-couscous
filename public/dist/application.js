@@ -69,7 +69,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(["$rootScope"
 
   // Store previous state
   function storePreviousState(state, params) {
-    // only store this state if it shouldn't be ignored 
+    // only store this state if it shouldn't be ignored
     if (!state.data || !state.data.ignoreState) {
       $state.previous = {
         state: state,
@@ -186,6 +186,18 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       data: {
         ignoreState: true
       }
+    })
+    .state('game', {
+      url: '/games/:gameID',
+      templateUrl: 'modules/users/client/views/game/game-page.client.view.html',
+      controller: 'GameController',
+      resolve: {
+        gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+          return Game.get({
+            gameID: $stateParams.gameID
+          });
+        }]
+      }
     });
   }
 ]);
@@ -220,6 +232,13 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
   function ($scope, Authentication) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
+
+
+    $scope.query = "";
+    $scope.userInput = "";
+    $scope.applySearch = function() {
+      $scope.query = $scope.userInput;
+    };
   }
 ]);
 
@@ -597,6 +616,30 @@ angular.module('users.admin.routes').config(['$stateProvider',
             });
           }]
         }
+      })
+      .state('admin.game', {
+        url: '/games/:gameID',
+        templateUrl: 'modules/users/client/views/admin/view-game.client.view.html',
+        controller: 'GameController',
+        resolve: {
+          gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+            return Game.get({
+              gameID: $stateParams.gameID
+            });
+          }]
+        }
+      })
+      .state('admin.game-edit', {
+        url: '/games/:gameID/edit',
+        templateUrl: 'modules/users/client/views/admin/edit-game.client.view.html',
+        controller: 'GameController',
+        resolve: {
+          gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+            return Game.get({
+              gameID: $stateParams.gameID
+            });
+          }]
+        }
       });
   }
 ]);
@@ -647,8 +690,8 @@ angular.module('users').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-      .state('settings.my-games', {
-        url: '/my-games',
+      .state('settings.games', {
+        url: '/games',
         templateUrl: 'modules/users/client/views/settings/my-games.client.view.html',
         controller: 'ViewGameLibraryController'
       })
@@ -712,37 +755,160 @@ angular.module('users').config(['$stateProvider',
         url: '/:token',
         templateUrl: 'modules/users/client/views/password/reset-password.client.view.html'
       });
+      // .state('game', {
+      //   url: '/games/:gameID',
+      //   templateUrl: 'modules/users/client/views/game/game-page.client.view.html',
+      //   controller: 'GameController',
+      //   resolve: {
+      //     gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+      //       return Game.get({
+      //         gameID: $stateParams.gameID
+      //       });
+      //     }]
+      //   }
+      // });
   }
 ]);
 
 'use strict';
 
-angular.module('users').controller('AddGameController', ['$scope', '$state', '$http', '$location', 'Game', 
-  function ($scope, $state, $http, $location, Game) {
+angular.module('users').controller('AddGameController', ['$scope', '$state', '$window', '$timeout', '$http', '$location', 'Game', 'Authentication',
+  'FileUploader', function($scope, $state, $window, $timeout, $http, $location, Game, Authentication, FileUploader) {
 
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
 
-    $scope.addGame = function () {
+    $scope.addGame = function() {
       var newGame = new Game({
         title: $scope.title,
         platform: $scope.platform,
+        genre: $scope.genre,
         gameImageURL: $scope.gameurl
       });
-	  
+
       newGame.$save(function(response) {
         $location.path('/admin/games');
         $scope.title = '';
         $scope.platform = '';
+        $scope.genre = '';
         $scope.gameurl = '';
       }, function(errorResponse) {
         $scope.title = '';
         $scope.platform = '';
+        $scope.genre = '';
         $scope.gameurl = '';
         $scope.error = errorResponse.data;
       });
-	  
-		
+
+
+    };
+
+    // Create file uploader instance
+    $scope.uploader = new FileUploader({
+      url: 'api/games',
+      alias: 'newGamePicture'
+    });
+
+    // Set file uploader image filter
+    $scope.uploader.filters.push({
+      name: 'imageFilter',
+      fn: function(item, options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      }
+    });
+
+    // Called after the user selected a new picture file
+    $scope.uploader.onAfterAddingFile = function(fileItem) {
+      if ($window.FileReader) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(fileItem._file);
+
+        fileReader.onload = function(fileReaderEvent) {
+          $timeout(function() {
+            $scope.imageURL = fileReaderEvent.target.result;
+          }, 0);
+        };
+      }
+    };
+
+    // Called after the user has successfully uploaded a new picture
+    $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
+      // Show success message
+      $scope.success = true;
+
+      // Populate user object
+      //
+      $scope.user = Authentication.user = response;
+
+      // Clear upload buttons
+      $scope.cancelUpload();
+    };
+
+    // Called after the user has failed to uploaded a new picture
+    $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
+      // Clear upload buttons
+      $scope.cancelUpload();
+
+      // Show error message
+      $scope.error = response.message;
+    };
+
+    // Change user profile picture
+    // $scope.uploadGamePicture = function() {
+    //   // Clear messages
+    //   $scope.success = $scope.error = null;
+    //
+    //   // Start upload
+    //   $scope.uploader.uploadAll();
+    // };
+
+    // Cancel the upload process
+    $scope.cancelUpload = function() {
+      $scope.uploader.clearQueue();
+      $scope.imageURL = $scope.game.gameImageURL;
+    };
+
+  }
+]);
+
+'use strict';
+
+angular.module('users.admin').controller('GameController', ['$scope', '$state', 'Authentication', 'gameResolve',
+  function ($scope, $state, Authentication, gameResolve) {
+    $scope.authentication = Authentication;
+    $scope.game = gameResolve;
+
+    $scope.removeGame = function (game) {
+      if (confirm('Are you sure you want to delete this game?')) {
+        if (game) {
+          game.$remove();
+
+          $scope.games.splice($scope.games.indexOf(game), 1);
+        } else {
+          $scope.game.$remove(function () {
+            $state.go('admin.games');
+          });
+        }
+      }
+    };
+
+    $scope.updateGame = function (isValid) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'gameForm');
+
+        return false;
+      }
+
+      var game = $scope.game;
+
+      game.$update(function () {
+        $state.go('admin.game', {
+          gameID: game._id
+        });
+      }, function (errorResponse) {
+        $scope.error = errorResponse.data.message;
+      });
     };
   }
 ]);
@@ -1021,7 +1187,7 @@ angular.module('users').controller('GamesController', ['$scope', '$http', '$filt
     });
     /*
     $scope.find = function() {
-      
+
       $scope.loading = true;
 
       Game.get().then(function(response) {
@@ -1033,6 +1199,8 @@ angular.module('users').controller('GamesController', ['$scope', '$http', '$filt
       });
     };
     */
+
+
 
 
     /*
@@ -1261,6 +1429,22 @@ angular.module('users').controller('EditGameLibraryController', ['$scope', '$htt
     $scope.pageChanged = function () {
       $scope.figureOutItemsToDisplay();
     };
+
+    $scope.addGameToLibrary = function (game) {
+      $scope.user.games.push(game);
+      console.log(game);
+
+      var user = new Users($scope.user);
+
+      user.$update(function (response) {
+        $scope.$broadcast('show-errors-reset', 'userForm');
+
+        $scope.success = true;
+        Authentication.user = response;
+      }, function (response) {
+        $scope.error = response.data.message;
+      });
+    };
   }
 ]);
 
@@ -1343,14 +1527,17 @@ angular.module('users').controller('SettingsController', ['$scope', 'Authenticat
 
 'use strict';
 
-angular.module('users').controller('ViewGameLibraryController', ['$scope', '$http', '$filter', 'Game', 'Users', 'Authentication',
-  function ($scope, $http, $filter, Game, Users, Authentication) {
+angular.module('users').controller('ViewGameLibraryController', ['$scope', '$http', '$filter', 'UserGames', 'Users', 'Authentication',
+  function ($scope, $http, $filter, UserGames, Users, Authentication) {
     $scope.user = Authentication.user;
 
-    // User.games.query(function (data) {
-    //   $scope.user.games = data;
-    //   $scope.buildPager();
-    // });
+    UserGames.get(function (data) {
+      var currentUser = data;
+      console.log(data);
+      $scope.games = currentUser.games;
+      console.log($scope.games);
+      $scope.buildPager();
+    });
 
     $scope.buildPager = function () {
       $scope.pagedItems = [];
@@ -1360,7 +1547,7 @@ angular.module('users').controller('ViewGameLibraryController', ['$scope', '$htt
     };
 
     $scope.figureOutItemsToDisplay = function () {
-      $scope.filteredItems = $filter('filter')($scope.user.games, {
+      $scope.filteredItems = $filter('filter')($scope.games, {
         $: $scope.search
       });
       $scope.filterLength = $scope.filteredItems.length;
@@ -1490,6 +1677,19 @@ angular.module('users').factory('Game', ['$resource',
   }
 ]);
 
+
+angular.module('users.admin').factory('Game', ['$resource',
+  function ($resource) {
+    return $resource('api/games/:gameID', {
+      gameID: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);
+
 'use strict';
 
 // PasswordValidator service used for testing the password strength
@@ -1516,6 +1716,16 @@ angular.module('users').factory('PasswordValidator', ['$window',
 angular.module('users').factory('Users', ['$resource',
   function ($resource) {
     return $resource('api/users', {}, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);
+
+angular.module('users').factory('UserGames', ['$resource',
+  function ($resource) {
+    return $resource('api/users/games', {}, {
       update: {
         method: 'PUT'
       }
