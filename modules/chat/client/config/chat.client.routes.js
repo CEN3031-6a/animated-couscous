@@ -7,6 +7,7 @@ angular.module('chat').config(['$stateProvider',
       .state('chat', {
         url: '/chat',
         templateUrl: 'modules/chat/client/views/chat.client.view.html',
+        controller: 'ChatController',
         data: {
           roles: ['user', 'admin']
         },

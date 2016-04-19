@@ -28,12 +28,12 @@
       </div>
     </div>
   </div>
-  <div ng-repeat="discussion in discussions | filter: { game: game_.id } |
-  orderBy: 'updated'">
+
+  <div ng-repeat="discussion in game.discussions | orderBy: 'updated'">
     <div class="panel-PU">
       <div class="panel-heading-PU">
         <div class="panel-username-pic">
-          <span><img src="{{discussion.originalPoster.profileImageURL}}" class="panel-pic"></img>  <strong class="panel-title-PU">{{discussion.originalPoster.email}}</strong></span>
+          <span><!-- <img ng-src="{{game.discussions($index).originalPoster.profileImageURL}}" class="panel-pic"></img> -->  <strong class="panel-title-PU">{{game.discussions($index).originalPoster.email}}</strong></span>
         </div>
         <!-- <div class="panel-date-PU">
           <h6>{{discussion.updated}}</h6>
