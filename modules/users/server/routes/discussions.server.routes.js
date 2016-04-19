@@ -15,5 +15,5 @@ module.exports = function (app) {
     .delete(discussions.delete);
 
   // Finish by binding the article middleware
-  app.param('discussionID', discussions.discussionByID);
+  app.param('discussionId', discussions.discussionByID);
 };
