@@ -1,8 +1,8 @@
 'use strict';
 
 // Create the 'chat' controller
-angular.module('chat').controller('ChatController', ['$scope', '$location', '$stateParams', 'Discussion','discussionResolve', 'Authentication', 'Socket',
-  function ($scope, $location, $stateParams, Discussion, discussionResolve, Authentication, Socket) {
+angular.module('chat').controller('ChatController', ['$scope', '$location', 'Authentication', 'Socket',
+  function ($scope, $location, Authentication, Socket) {
     // Create a messages array
     $scope.messages = [];
 
@@ -11,7 +11,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$st
       name: ''
     }];
 
-    console.log(discussionResolve);
+
     // If user is not signed in then redirect back home
 
     $scope.user = Authentication.user;
@@ -26,9 +26,8 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$st
       Socket.connect();
     }
 
-    $scope.dID = $stateParams.discussionID;
-
-    var room = { 
+    console.log($scope.discussionId);
+    var room = {
       roomID: 55555
     };
     Socket.emit('createRoom', room);

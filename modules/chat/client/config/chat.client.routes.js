@@ -14,7 +14,7 @@ angular.module('chat').config(['$stateProvider',
         resolve: {
           discussionResolve: ['$stateParams', 'Discussion', function($stateParams, Discussion) {
             return Discussion.get({
-              discussionID: $stateParams.discussionID
+              discussionId: $stateParams.discussionId
             });
           }]
         }
