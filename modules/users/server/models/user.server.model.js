@@ -65,7 +65,10 @@ var UserSchema = new Schema({
     type: ScreenNames,
     unique: true
   },
-  games: [{ type: Schema.ObjectId, ref: 'Game' }],
+  games: [{ 
+    type: Schema.ObjectId, 
+    ref: 'Game' 
+  }],
   salt: {
     type: String
   },

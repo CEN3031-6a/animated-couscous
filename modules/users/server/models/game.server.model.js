@@ -8,26 +8,26 @@ var mongoose = require('mongoose'),
 
 //Sub document for Discussions
 
-var DiscussionSchema = new Schema({
-  title: {
-    type: String,
-    trim: true,
-    default: '',
-  },
-  description: {
-    type: String,
-    default: ''
-  },
-  OP: {
-    type: String
-  },
-  gameID: {
-    type: Number
-  },
-  updated: {
-    type: Date
-  },
-});
+// var DiscussionSchema = new Schema({
+//   title: {
+//     type: String,
+//     trim: true,
+//     default: '',
+//   },
+//   description: {
+//     type: String,
+//     default: ''
+//   },
+//   OP: {
+//     type: String
+//   },
+//   gameID: {
+//     type: Number
+//   },
+//   updated: {
+//     type: Date
+//   },
+// });
 
 /**
  * Games Schema
@@ -53,7 +53,10 @@ var GamesSchema = new Schema({
     type: String,
     default: 'modules/users/client/img/profile/default.png'
   },
-  users: [{ type: Schema.ObjectId, ref: 'User' }],
+  users: [{ 
+    type: Schema.ObjectId, 
+    ref: 'User' 
+  }],
   updated: {
     type: Date
   },
@@ -61,7 +64,10 @@ var GamesSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  discussions: [DiscussionSchema],
+  discussions: [{ 
+    type: Schema.ObjectId, 
+    ref: 'Discussion' 
+  }]
 });
 
 GamesSchema.pre('save', function (next) {
