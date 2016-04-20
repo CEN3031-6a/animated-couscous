@@ -2,7 +2,7 @@
 
 // Protractor configuration
 var config = {
-  specs: ['modules/*/tests/e2e/*.js']
+  specs: ['modules/users/tests/e2e/users.e2e.tests.js']
 };
 
 if (process.env.TRAVIS) {

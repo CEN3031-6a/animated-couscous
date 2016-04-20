@@ -57,6 +57,9 @@ module.exports = function (app, db) {
     // Create a new HTTP server
     server = http.createServer(app);
   }
+
+  var port = process.env.PORT || 3000;
+
   // Create a new Socket.io server
   var io = socketio.listen(server);
 
