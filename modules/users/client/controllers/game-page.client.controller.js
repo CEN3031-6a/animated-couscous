@@ -6,6 +6,7 @@ angular.module('users').controller('GamePageController', ['$scope', '$http', '$f
     $scope.game = gameResolve;
     Discussion.query(function(data) {
       $scope.discussions = data;
+      console.log($scope.discussions);
     });
 
     $scope.addDiscussionToGame = function (discussion) {

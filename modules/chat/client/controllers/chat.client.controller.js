@@ -26,7 +26,6 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
       Socket.connect();
     }
 
-    console.log($stateParams.discussionId);
     var room = {
       roomID: $stateParams.discussionId
     };
