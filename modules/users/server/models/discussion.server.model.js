@@ -17,20 +17,11 @@ var DiscussionSchema = new Schema({
     type: String,
     default: ''
   },
-  originalPoster: { 
-    type: Schema.ObjectId, 
-    ref: 'User' 
-  },
-  game: { 
-    type: Schema.ObjectId, 
-    ref: 'Game' 
-  },
+  originalPoster: { type: Schema.ObjectId, ref: 'User' },
+  game: { type: Schema.ObjectId, ref: 'Game' },
   comments: [{
     content: String,
-    createdBy: { 
-      type: Schema.ObjectId, 
-      ref: 'User' 
-    }
+    createdBy: { type: Schema.ObjectId, ref: 'User' }
   }],
   updated: {
     type: Date
