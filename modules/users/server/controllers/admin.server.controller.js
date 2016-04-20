@@ -96,7 +96,19 @@ exports.update = function(req, res) {
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
   user.displayName = user.firstName + ' ' + user.lastName;
-  user.roles = req.body.roles;
+  /*object.onload = funcRef;
+  object.onload = function(){
+     var roles = document.getElementById('roles');
+
+    if (roles.checked){ */
+		//user.roles = 'admin';
+	/* }
+	else { */
+  user.roles = 'user'; /*
+	}
+    } */
+
+  //user.roles = req.body.roles;
 
   user.save(function(err) {
     if (err) {
