@@ -5,18 +5,10 @@ angular.module('chat').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
       .state('chat', {
-        url: '/chat/:discussionId',
+        url: '/chat',
         templateUrl: 'modules/chat/client/views/chat.client.view.html',
-        controller: 'ChatController',
         data: {
           roles: ['user', 'admin']
-        },
-        resolve: {
-          discussionResolve: ['$stateParams', 'Discussion', function($stateParams, Discussion) {
-            return Discussion.get({
-              discussionId: $stateParams.discussionId
-            });
-          }]
         }
       });
   }

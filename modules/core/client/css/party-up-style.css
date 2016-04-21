@@ -49,7 +49,6 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	stop-opacity: 1;
 }
 
-/* Dpad Styling */
 .dpad {
 	cursor: pointer;
 	display: inline;
@@ -57,16 +56,6 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 .dpad-text {
 	font-weight: bold;
 	font-size: 0.8em;
-}
-.dpad-game {
-	width: auto; 
-	text-align: center;
-}
-.game-title {
-	width: 10em; 
-	margin: auto; 
-	/*word-break: break-all; 
-	word-wrap: break-word;*/
 }
 
 /* Navbar styling */
@@ -117,12 +106,6 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 /* Search bar styling */
 .srch {
 	margin-top: 14px;
-}
-#srch-btn:hover {
-	color: white;
-	background-color: #8DC63F;
-	font-weight: bold;
-	text-shadow: 0.1px 0.1px 5px #2B2B2B;
 }
 
 /* Scrollbar styling for webkit broswers */
@@ -253,16 +236,9 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	color: #e5e5e5;
 }*/
 
-/* Room styling */
-.room-title {
-	color: #FFFEFF;
+.panel-body-PU {
+  padding: 15px;
 }
-
-div.panel-body-PU > a:hover {
-	color: #A2D062;
-	text-decoration: none;
-}
-
 .panel-heading-PU {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
@@ -271,14 +247,13 @@ div.panel-body-PU > a:hover {
 }
 
 .panel-body-PU {
-	background-color: #202020;
+	background-color: black;
 	color: #e5e5e5;
-	padding: 15px;
 }
 
 .panel-title-PU {
   font-size: 16px;
-  color: #8DC63F;
+  color: #2d2d2d;
 }
 
 .panel-PU {
@@ -286,7 +261,7 @@ div.panel-body-PU > a:hover {
 }
 .panel-PU > .panel-heading-PU {
   color: #333;
-  background-color: #151515;
+  background-color: #88C641;
   border-color: #ddd;
 }
 
