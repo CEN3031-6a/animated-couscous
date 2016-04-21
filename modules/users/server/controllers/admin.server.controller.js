@@ -96,19 +96,20 @@ exports.update = function(req, res) {
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
   user.displayName = user.firstName + ' ' + user.lastName;
-  /*object.onload = funcRef;
+ /*object.onload = funcRef;
+  
   object.onload = function(){
-     var roles = document.getElementById('roles');
-
-    if (roles.checked){ */
-		//user.roles = 'admin';
-	/* }
-	else { */
-  user.roles = 'user'; /*
+     var roles = document.getElementById('roles');*/
+/*
+    if (){ 
+		user.roles = r
+	 }
+	else { 
+		user.roles = 'user'; 
 	}
-    } */
-
-  //user.roles = req.body.roles;
+    //} 
+*/
+  user.roles = req.body.roles;
 
   user.save(function(err) {
     if (err) {
