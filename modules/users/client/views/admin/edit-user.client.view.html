@@ -19,12 +19,17 @@
             <p class="help-block error-text" ng-message="required">Last name is required.</p>
           </div>
         </div>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="roles">Admin</label>
-          <div class="controls">
-            <input type="checkbox" name="roles" class="form-control" value="admin" id="roles" ng-model="user.roles" />    
+       <div class="form-group" show-errors>
+              <label for="roles">Select Role</label>
+              <br>
+              <div class="controls">
+                <select id="roles" ng-model="user.roles" name="Roles" style="color: #2b2b2b;" required>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+                </select>
+              </div>
             </div>
-        </div>
+
         <div class="form-group">
           <input type="submit" value="Update" class="btn btn-default">
         </div>
