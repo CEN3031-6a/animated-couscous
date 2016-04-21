@@ -4,7 +4,7 @@
 angular.module('chat').controller('ChatController', ['$scope', '$resource', '$location', 'Authentication', 'Socket', 'Discussion', '$stateParams',
   function ($scope, $resource, $location, Authentication, Socket, Discussion, $stateParams) {
     // Create a messages array
-    $scope.discussion = Discussion.get({discussionId: $stateParams.discussionId});
+    $scope.discussion = Discussion.get({ discussionId: $stateParams.discussionId });
     $scope.messages = [];
     console.log($scope.discussion);
     console.log($scope.discussion.comments);
@@ -61,3 +61,4 @@ angular.module('chat').controller('ChatController', ['$scope', '$resource', '$lo
       Socket.removeListener('chatMessage');
     });
   }
+]);
