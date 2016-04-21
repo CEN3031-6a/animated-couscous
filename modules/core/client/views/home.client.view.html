@@ -20,7 +20,7 @@
     <div class="input-group col-md filter">
       <input type="text" class="form-control" placeholder="Search" style="color: black;" ng-model="query.title">
       <span class="input-group-btn">
-        <button type="submit" class="btn PUButton" id="srch-btn">
+        <button type="submit" class="btn PUButton" id="srch-btn" ng-click="applySearch()">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </button>
       </span>
@@ -95,40 +95,35 @@
       <div class="box">
         <div class="dpad" ng-repeat="game in games | filter: query | filter: query2">
 
-          <!-- <div class="col-md-4 dpad-game">
-            <div class= "game-title">{{game.title}}</div> -->
-            <a ui-sref="game({gameID: game._id})">
-              <svg height="150" width="120">
-                <svg x="0" y="15" height="136" width="120" fill="url(#grad-{{$index}})">
-                  <polygon points="5.6,93.0, 46.3,135.4 79.6,135.4 121.3,93.0 121.0,21.2 116.6,11.5 107.0,5.7 19.5,6.0 10.3,12.5 6.0,22.7" />
-                  <defs>
-                    <linearGradient id="grad-{{$index}}" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop id="grad-start" offset="0%" />
-                      <stop id="grad-end" offset="100%" />
-                    </linearGradient>
-                    <!-- <text x="62" y="0" text-anchor="middle" ng-bind="game.title" color="white"></text> -->
-                  </defs>
-                  <svg height="136" width="120" style="fill:black;">
-                    <defs>
-                      <clipPath id="clipPolygon-{{$index}}">
-                        <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />
-                      </clipPath>
-                    </defs>
-                    <defs>
-                      <pattern id="image-{{$index}}" patternUnits="userSpaceOnUse" height="200" width="200">
-                        <image xlink:href="" ng-href="{{game.gameImageURL}}" x="0" y="25" height="200" width="200" transform="translate(-35.5,-31)" />
-                      </pattern>
-                    </defs>
-                    <g>
-                      <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon-{{$index}})" fill="url(#image-{{$index}})"/>
-                      <text class="dpad-text" x="62" y="130" text-anchor="middle" ng-bind="game.discussions.length"></text>
-                    </g>
-                  </svg>
-                </svg>
-                <text width="120px" x="62" y="15" text-anchor="middle" fill="white" ng-bind="game.title"></text>
-              </svg>
-            </a>
-          <!-- </div> -->
+          <!-- <div style="width: 120px; word-wrap: break-word;">{{game.title}}</div> -->
+          <a ui-sref="game({gameID: game._id})">
+            <svg height="136" width="120" fill="url(#grad-{{$index}})">
+            
+            <polygon points="5.6,93.0, 46.3,135.4 79.6,135.4 121.3,93.0 121.0,21.2 116.6,11.5 107.0,5.7 19.5,6.0 10.3,12.5 6.0,22.7" />
+            <defs>
+              <linearGradient id="grad-{{$index}}" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop id="grad-start" offset="0%" />
+                <stop id="grad-end" offset="100%" />
+              </linearGradient>
+            </defs>
+            <svg height="136" width="120" style="fill:black;">
+              <defs>
+                <clipPath id="clipPolygon-{{$index}}">
+                  <polygon points="8.67,92.00 31.33,114.47 94.67,114.47 117.33,91.00 117.00,21.26 112.67,14.53 104.33,9.28 22.00,9.03 13.33,13.53 9.00,20.76" />
+                </clipPath>
+              </defs>
+              <defs>
+                <pattern id="image-{{$index}}" patternUnits="userSpaceOnUse" height="200" width="200">
+                  <image xlink:href="" ng-href="{{game.gameImageURL}}" x="0" y="25" height="200" width="200" transform="translate(-35.5,-31)" />
+                </pattern>
+              </defs>
+              <g>
+                <rect x="0" y="0" width="120" height="115" clip-path="url(#clipPolygon-{{$index}})" fill="url(#image-{{$index}})"/>
+                <text class="dpad-text"x="62" y="130" text-anchor="middle" ng-bind="game.discussions.length"></text>
+              </g>
+            </svg>
+          </a>
+        </svg>
         </div>
       </div>
     </div>

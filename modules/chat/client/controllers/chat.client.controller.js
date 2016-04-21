@@ -1,13 +1,11 @@
 'use strict';
 
 // Create the 'chat' controller
-angular.module('chat').controller('ChatController', ['$scope', '$resource', '$location', 'Authentication', 'Socket', 'Discussion', '$stateParams',
-  function ($scope, $resource, $location, Authentication, Socket, Discussion, $stateParams) {
+angular.module('chat').controller('ChatController', ['$scope', '$location', 'Authentication', 'Socket',
+  function ($scope, $location, Authentication, Socket) {
     // Create a messages array
     $scope.discussion = Discussion.get({ discussionId: $stateParams.discussionId });
     $scope.messages = [];
-    console.log($scope.discussion);
-    console.log($scope.discussion.comments);
 
     $scope.rooms = [{
       messages: [],
@@ -23,15 +21,15 @@ angular.module('chat').controller('ChatController', ['$scope', '$resource', '$lo
       $location.path('/');
     }
 
-
+    
     // Make sure the Socket is connected
     if (!Socket.socket) {
       Socket.connect();
     }
 
-    console.log($stateParams.discussionId);
+
     var room = {
-      roomID: $stateParams.discussionId
+      roomID: 55555
     };
     Socket.emit('createRoom', room);
 
@@ -61,4 +59,8 @@ angular.module('chat').controller('ChatController', ['$scope', '$resource', '$lo
       Socket.removeListener('chatMessage');
     });
   }
+<<<<<<< HEAD
 ]);
+=======
+]);
+>>>>>>> master
