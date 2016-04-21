@@ -1,8 +1,8 @@
 'use strict';
 
 // Create the 'chat' controller
-angular.module('chat').controller('ChatController', ['$scope', '$location', 'Authentication', 'Socket',
-  function ($scope, $location, Authentication, Socket) {
+angular.module('chat').controller('ChatController', ['$scope', '$location', 'Authentication', 'Socket', 'Discussion', '$stateParams',
+  function ($scope, $location, Authentication, Socket, Discussion, $stateParams) {
     // Create a messages array
     $scope.discussion = Discussion.get({ discussionId: $stateParams.discussionId });
     $scope.messages = [];
