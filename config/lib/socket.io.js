@@ -61,7 +61,7 @@ module.exports = function (app, db) {
   var port = process.env.PORT || 3000;
 
   // Create a new Socket.io server
-  var io = socketio.listen(server.listen(port));
+  var io = socketio.listen(server);
 
   // Create a MongoDB storage object
   var mongoStore = new MongoStore({

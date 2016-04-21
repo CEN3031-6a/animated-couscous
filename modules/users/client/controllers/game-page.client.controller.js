@@ -4,9 +4,14 @@ angular.module('users').controller('GamePageController', ['$scope', '$http', '$f
   function($scope, $http, $filter, Game, gameResolve, Discussion, Users, Authentication) {
     $scope.discussions = [];
     $scope.game = gameResolve;
+
+    // Game.query(function(data) {
+    //   $scope.games = data;
+    // });
+
     Discussion.query(function(data) {
+      console.log(data);
       $scope.discussions = data;
-      console.log($scope.discussions);
     });
 
     $scope.addDiscussionToGame = function (discussion) {
