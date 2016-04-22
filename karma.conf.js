@@ -27,7 +27,9 @@ module.exports = function (karmaConfig) {
       'modules/*/client/config/*.js': ['coverage'],
       'modules/*/client/controllers/*.js': ['coverage'],
       'modules/*/client/directives/*.js': ['coverage'],
-      'modules/*/client/services/*.js': ['coverage']
+      'modules/*/client/services/*.js': ['coverage'],
+      //'**/*.js': ['coverage']
+
     },
 
     ngHtml2JsPreprocessor: {
@@ -43,7 +45,7 @@ module.exports = function (karmaConfig) {
 
     // Test results reporter to use
     // Possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: karmaReporters,
+    reporters: ['progress', 'coverage'],
 
     // Configure the coverage reporter
     coverageReporter: {

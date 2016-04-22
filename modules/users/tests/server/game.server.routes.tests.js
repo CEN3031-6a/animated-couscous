@@ -31,6 +31,7 @@ describe('Game CRUD tests', function () {
     game1 = {
       title: 'Mocha Test Game',
       platform: 'Xbox One',
+      genre: 'Action',
       salt: 'SomeTextHere',
       gameImageUrl: 'Mocha Cover',
       discussions: []
@@ -44,7 +45,7 @@ describe('Game CRUD tests', function () {
       // done();
     // });
     credentials = {
-      username: 'admin@admin.com',
+      email: 'admin@admin.com',
       password: 'Partyupgaming1!'
     };
 
@@ -65,29 +66,83 @@ describe('Game CRUD tests', function () {
     // Save a user to the test db and create new article
   });
 
-  it('should be able to sign in', function (done) {
-    agent.post('/authentication/signin')
+  it('should be able to get games', function (done) {
+    agent.get('/api/games')
+        .expect(200)
+        .end(function (getgameserr, gotgames) {
+          if (getgameserr) {
+            return done(getgameserr);
+          }
+          else {
+            return done();
+          }
+        });
+  });
+
+  it('should not be able to add a game without admin', function (done) {
+    agent.post('/api/games')
+        .expect(403)
+        .end(function (getgameserr, gotgames) {
+          if (getgameserr) {
+            return done(getgameserr);
+          }
+          else {
+            return done();
+          }
+        });
+  });
+
+  it('should be able to add game', function (done) {
+    agent.post('/api/auth/signin')
         .send(credentials)
         .expect(200)
-        .end(function (signinErr, signinRes) {
-          return done();
-		  // if (signinErr) {
-            // return done(signinErr);
-          // }
-
-          // agent.post('/admin/games/add')
-            // .send(game)
-            // .expect(200)
-            // .end(function (addErr, addRes) {
-              // if (addErr) {
-                // return done(addErr);
-              // }
-
-              // addRes.body.title.should.equal(game1.title);
-              // addRes.body.platform.should.equal(game1.platform);
-              // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
-              // return done();
-            // });
+        .end(function (signinerr, signinres) {
+          if (signinerr) {
+            return done(signinerr);
+          }
+          else {
+            agent.post('/api/games')
+                .send(game)
+                .expect(200)
+                .end(function (addErr, addRes) {
+                  if (addErr) {
+                    return done(addErr);
+                  }
+                  else{
+                  // addRes.body.title.should.equal(game1.title);
+                  // addRes.body.platform.should.equal(game1.platform);
+                  // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
+                  return done();
+				  }
+                });
+          }
+        });
+  });
+  it('should be able to retrieve a list of games', function (done) {
+    agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signinerr, signinres) {
+          if (signinerr) {
+            return done(signinerr);
+          }
+          else {
+            agent.get('/api/games')
+                .send(game)
+                .expect(200)
+                .end(function (addErr, addRes) {
+                  if (addErr) {
+                    return done(addErr);
+                  }
+				  else{
+                  addRes.body.should.be.instanceof(Array);
+                  // addRes.body.title.should.equal(game1.title);
+                  // addRes.body.platform.should.equal(game1.platform);
+                  // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
+                  return done();
+				  }
+                });
+          }
         });
   });
 /*

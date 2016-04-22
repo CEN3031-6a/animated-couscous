@@ -55,7 +55,7 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       }
     }
 
-    $scope.removeDiscussionFromGame = function (discussion, game) {
+    $scope.removeDiscussionFromGame = function (discussion, game) { 
       var currentGame = game;
       // //var discussion = Discussion.get({discussionId: discussion._id});
       // console.log(discussion);
@@ -79,7 +79,7 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       });
     };
 
-    $scope.addDiscussionToGame = function (discussion, game) {
+    $scope.addDiscussionToGame = function (discussion, game) {            //adds discussion to that games discussion array
       var currentGame = game;
       // //var discussion = Discussion.get({discussionId: discussion._id});
       // console.log(discussion);
@@ -103,7 +103,7 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       });
     };
 
-    $scope.addDiscussion = function() {
+    $scope.addDiscussion = function() {                           // adds discussion to db
       var newDiscussion = new Discussion({
         title: $scope.title,
         //content: $scope.content,
