@@ -97,7 +97,7 @@ exports.changeProfilePicture = function (req, res) {
 };
 
 exports.listAllGames = function (req, res){
-  Game.find().sort('-created').exec(function (err, games) {
+  Game.find().sort('-created').exec(function (err, games) {//list all of the games in the database
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -111,7 +111,7 @@ exports.listAllGames = function (req, res){
 exports.listUserGames = function (req, res) {
   var user = req.user;
 
-  User.findOne({ _id: user._id }).populate('games').exec(function (err, user) {
+  User.findOne({ _id: user._id }).populate('games').exec(function (err, user) {//list all of the games in the user's list of games
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -125,7 +125,7 @@ exports.listUserGames = function (req, res) {
 exports.addGameToUserList = function (req, res, gameId) {
   var user = req.model;
   var game = Game.findById(gameId);
-  user.games.push(game);
+  user.games.push(game);//add a game to the user's list of games by adding a reference.
   user.save(function (err) {
     if (err) {
       return res.status(400).send({
@@ -144,7 +144,7 @@ exports.addGameToUserList = function (req, res, gameId) {
 
 exports.deleteGameFromUserList = function (req, res, gameId) {
   var user = req.model;
-  user.games.remove(gameId);
+  user.games.remove(gameId);//remove reference to game from the user's list
   user.save(function (err) {
     if (err) {
       return res.status(400).send({

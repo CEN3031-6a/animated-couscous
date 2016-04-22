@@ -72,7 +72,7 @@ exports.deleteDiscussion = function (req, res, discussionId) {
 
 exports.listDiscussions = function (req, res) {
   var game = req.model;
-  game.discussions.find({}).sort('-updated').populate('discussions').exec(function (err, gamediscussions) {
+  game.discussions.find({}).sort('-updated').populate('discussions').exec(function (err, gamediscussions) {//list all discussions
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

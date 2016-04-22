@@ -16,7 +16,7 @@ var path = require('path'),
 exports.listGames = function(req, res) {
   Game.find().sort('-created').exec(function(err, games) {
     if (err) {
-      return res.status(400).send({
+      return res.status(400).send({//list all of the games
         message: errorHandler.getErrorMessage(err)
       });
     }
@@ -28,7 +28,7 @@ exports.listGames = function(req, res) {
 exports.deleteGame = function(req, res) {
   var games = req.model;
 
-  games.remove(function(err) {
+  games.remove(function(err) {//delete the game from the database
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -59,14 +59,14 @@ exports.updateGame = function(req, res) {
 };
 
 exports.addGame = function(req, res) {
-  var game = new Game(req.body);
+  var game = new Game(req.body);//create a new game with the data to be saved
   // var message = null;
   // var upload = multer(config.uploads.profileUpload).single('newGamePicture');
   // var gameUploadFileFilter = require(path.resolve('./config/lib/multer')).gameUploadFileFilter;
 
   //game.gameImageURL = config.uploads.profileUpload.dest + req.file.filename;
 
-  game.save(function(err) {
+  game.save(function(err) {//save the game to the database
     if (err) {
       res.status(400).send(err);
     } else {
@@ -183,7 +183,7 @@ exports.gameByID = function(req, res, next, id) {
     });
   }
 
-  Game.findById(id).exec(function(err, game) {
+  Game.findById(id).exec(function(err, game) {//load individual game
     if (err) {
       return next(err);
     } else if (!game) {
