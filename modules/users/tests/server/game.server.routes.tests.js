@@ -112,7 +112,7 @@ describe('Game CRUD tests', function () {
                   // addRes.body.platform.should.equal(game1.platform);
                   // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
                     return done();
-				          }
+                  }
                 });
           }
         });
