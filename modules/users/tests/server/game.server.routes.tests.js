@@ -107,8 +107,7 @@ describe('Game CRUD tests', function () {
                 .end(function (addErr, addRes) {
                   if (addErr) {
                     return done(addErr);
-                  }
-                  else{
+                  } else{
                   // addRes.body.title.should.equal(game1.title);
                   // addRes.body.platform.should.equal(game1.platform);
                   // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
@@ -138,7 +137,7 @@ describe('Game CRUD tests', function () {
                   // addRes.body.platform.should.equal(game1.platform);
                   // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
                     return done();
-				          }
+                  }
                 });
           }
         });
