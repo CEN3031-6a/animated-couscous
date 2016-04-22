@@ -112,8 +112,8 @@ describe('Game CRUD tests', function () {
                   // addRes.body.title.should.equal(game1.title);
                   // addRes.body.platform.should.equal(game1.platform);
                   // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
-                  return done();
-				  }
+                    return done();
+				          }
                 });
           }
         });
@@ -125,22 +125,20 @@ describe('Game CRUD tests', function () {
         .end(function (signinerr, signinres) {
           if (signinerr) {
             return done(signinerr);
-          }
-          else {
+          } else {
             agent.get('/api/games')
                 .send(game)
                 .expect(200)
                 .end(function (addErr, addRes) {
                   if (addErr) {
                     return done(addErr);
-                  }
-				  else{
-                  addRes.body.should.be.instanceof(Array);
+                  } else {
+                    addRes.body.should.be.instanceof(Array);
                   // addRes.body.title.should.equal(game1.title);
                   // addRes.body.platform.should.equal(game1.platform);
                   // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
-                  return done();
-				  }
+                    return done();
+				          }
                 });
           }
         });

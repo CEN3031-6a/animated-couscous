@@ -9,11 +9,13 @@ angular.module('users').controller('GamePageController', ['$scope', '$http', '$f
     //   $scope.games = data;
     // });
 
+// gets all discussion objects for the current game
     Discussion.query(function(data) {
       console.log(data);
       $scope.discussions = data;
     });
 
+// adds a discussion to the game object
     $scope.addDiscussionToGame = function (discussion) {
       $scope.game.discussions.push(discussion);
       console.log(discussion);

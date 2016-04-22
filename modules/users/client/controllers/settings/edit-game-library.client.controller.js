@@ -4,6 +4,7 @@ angular.module('users').controller('EditGameLibraryController', ['$scope', '$htt
   function($scope, $http, $filter, Game, Users, Authentication) {
     $scope.user = Authentication.user;
 
+//gets all games to populate list of games to choose from
     Game.query(function(data) {
       $scope.games = data;
       $scope.buildPager();
@@ -30,6 +31,7 @@ angular.module('users').controller('EditGameLibraryController', ['$scope', '$htt
       $scope.figureOutItemsToDisplay();
     };
 
+//adds the selected game to the current users games array
     $scope.addGameToLibrary = function (game) {
       $scope.user.games.push(game);
       console.log(game);

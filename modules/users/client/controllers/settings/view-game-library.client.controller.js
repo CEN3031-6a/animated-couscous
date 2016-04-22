@@ -4,6 +4,7 @@ angular.module('users').controller('ViewGameLibraryController', ['$scope', '$htt
   function ($scope, $http, $filter, UserGames, Users, Authentication) {
     $scope.user = Authentication.user;
 
+// UserGames gets all of the games that belong to the logged in user
     UserGames.get(function (data) {
       var currentUser = data;
       console.log(data);

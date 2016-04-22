@@ -20,14 +20,14 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       console.log($scope.games);
     });
 
-    // Remove existing Post
+    // Remove existing Discussion
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         $scope.discussion.$remove($state.go('discussions.list'));
       }
     }
 
-    // Save Post
+    // Save Discussion
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', '$scope.form.discussionForm');
@@ -55,7 +55,7 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       }
     }
 
-    $scope.removeDiscussionFromGame = function (discussion, game) { 
+    $scope.removeDiscussionFromGame = function (discussion, game) {
       var currentGame = game;
       // //var discussion = Discussion.get({discussionId: discussion._id});
       // console.log(discussion);
@@ -79,7 +79,8 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       });
     };
 
-    $scope.addDiscussionToGame = function (discussion, game) {            //adds discussion to that games discussion array
+//adds discussion to that games discussion array
+    $scope.addDiscussionToGame = function (discussion, game) {
       var currentGame = game;
       // //var discussion = Discussion.get({discussionId: discussion._id});
       // console.log(discussion);
@@ -103,7 +104,8 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       });
     };
 
-    $scope.addDiscussion = function() {                           // adds discussion to db
+// adds discussion to database
+    $scope.addDiscussion = function() {
       var newDiscussion = new Discussion({
         title: $scope.title,
         //content: $scope.content,
