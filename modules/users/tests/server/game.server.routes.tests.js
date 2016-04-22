@@ -112,8 +112,8 @@ describe('Game CRUD tests', function () {
                   // addRes.body.title.should.equal(game1.title);
                   // addRes.body.platform.should.equal(game1.platform);
                   // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
-                  return done();
-				  }
+                    return done();
+                  }
                 });
           }
         });
@@ -134,13 +134,13 @@ describe('Game CRUD tests', function () {
                   if (addErr) {
                     return done(addErr);
                   }
-				  else{
-                  addRes.body.should.be.instanceof(Array);
+                  else {
+                    addRes.body.should.be.instanceof(Array);
                   // addRes.body.title.should.equal(game1.title);
                   // addRes.body.platform.should.equal(game1.platform);
                   // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
-                  return done();
-				  }
+                    return done();
+                  }
                 });
           }
         });
