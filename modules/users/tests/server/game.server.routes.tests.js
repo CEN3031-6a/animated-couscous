@@ -40,10 +40,9 @@ describe('Game CRUD tests', function () {
     game = new Game(game1);
 
     // Save a user to the test db and create new article
-    // game.save(function (err) {
-      // should.not.exist(err);
-      // done();
-    // });
+    game.save(function (err) {
+      should.not.exist(err);
+    });
     credentials = {
       email: 'admin@admin.com',
       password: 'Partyupgaming1!'
@@ -78,7 +77,7 @@ describe('Game CRUD tests', function () {
           }
         });
   });
-
+  
   it('should not be able to add a game without admin', function (done) {
     agent.post('/api/games')
         .expect(403)
@@ -91,8 +90,8 @@ describe('Game CRUD tests', function () {
           }
         });
   });
-
-  it('should be able to add game', function (done) {
+  
+  it('should be able to get single game details game', function (done) {
     agent.post('/api/auth/signin')
         .send(credentials)
         .expect(200)
@@ -101,22 +100,51 @@ describe('Game CRUD tests', function () {
             return done(signinerr);
           }
           else {
-            agent.post('/api/games')
-                .send(game)
+            agent.get('/api/games/' + game._id)
                 .expect(200)
-                .end(function (addErr, addRes) {
-                  if (addErr) {
-                    return done(addErr);
-                  } else{
-                  // addRes.body.title.should.equal(game1.title);
-                  // addRes.body.platform.should.equal(game1.platform);
-                  // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
+                .end(function (getErr, getRes) {
+                  if (getErr) {
+                    return done(getErr);
+                  }
+                  else{
+                    getRes.body.should.be.instanceof(Object);
+                    getRes.body._id.should.be.equal(String(game._id));
                     return done();
                   }
                 });
           }
-        });
+        });	
   });
+  
+  it('should be able to get update game details game', function (done) {
+    agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signinerr, signinres) {
+          if (signinerr) {
+            return done(signinerr);
+          }
+          else {
+            var gameUpdate = {
+              title: 'somestuffhere',
+            };
+            agent.put('/api/games/' + game._id)
+                .send(gameUpdate)
+                .expect(200)
+                .end(function (gameInfoErr, gameInfoRes) {
+                  if (gameInfoErr) {
+                    return done(gameInfoErr);
+                  }
+                  else{
+                    gameInfoRes.body.should.be.instanceof(Object);
+                    gameInfoRes.body.title.should.equal('somestuffhere');
+                    return done();
+                  }
+                });
+          }
+        });	
+  });
+  
   it('should be able to retrieve a list of games', function (done) {
     agent.post('/api/auth/signin')
         .send(credentials)
@@ -124,18 +152,41 @@ describe('Game CRUD tests', function () {
         .end(function (signinerr, signinres) {
           if (signinerr) {
             return done(signinerr);
-          } else {
+          }
+          else {
             agent.get('/api/games')
                 .send(game)
                 .expect(200)
-                .end(function (addErr, addRes) {
-                  if (addErr) {
-                    return done(addErr);
-                  } else {
-                    addRes.body.should.be.instanceof(Array);
-                  // addRes.body.title.should.equal(game1.title);
-                  // addRes.body.platform.should.equal(game1.platform);
-                  // addRes.body.gameImageUrl.should.equal(game1.gameImageUrl);
+                .end(function (listErr, listRes) {
+                  if (listErr) {
+                    return done(listErr);
+                  }
+                  else{
+                    listRes.body.should.be.instanceof(Array);
+                    return done();
+                  }
+                });
+          }
+        });	
+  });
+  it('should be able to delete a single game if admin', function (done) {
+    agent.post('/api/auth/signin')
+        .send(credentials)
+        .expect(200)
+        .end(function (signinerr, signinres) {
+          if (signinerr) {
+            return done(signinerr);
+          }
+          else {
+            agent.delete('/api/games/' + game._id)
+                .expect(200)
+                .end(function (gameDelErr, gameDelRes) {
+                  if (gameDelErr) {
+                    return done(gameDelErr);
+                  }
+                  else{
+                    gameDelRes.body.should.be.instanceof(Object);
+                    gameDelRes.body._id.should.be.equal(String(game._id));
                     return done();
                   }
                 });
