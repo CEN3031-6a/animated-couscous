@@ -27,7 +27,7 @@ var DiscussionSchema = new Schema({
     type: Date
   },
 });
-
+//discussion schema holds all the messages
 DiscussionSchema.pre('save', function (next) {
   var currentDate = new Date();
   this.updated = currentDate;

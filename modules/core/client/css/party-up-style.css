@@ -231,10 +231,10 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	position: fixed;
 }
 
-/*.panel-PU {
+.panel-PU {
 	background-color: #88C641;
 	color: #e5e5e5;
-}*/
+}
 
 .panel-body-PU {
   padding: 15px;
