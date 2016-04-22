@@ -32,7 +32,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
-#grad-start {
+.grad-start {
 	stop-color:rgb(0,0,0); 
 	-webkit-stop-opacity: 1;
 	-moz-stop-opacity: 1;
@@ -40,7 +40,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	-o-stop-opacity: 1;
 	stop-opacity: 1;
 }
-#grad-end {
+.grad-end {
 	stop-color:rgb(255,255,255);
 	-webkit-stop-opacity: 1;
 	-moz-stop-opacity: 1;
@@ -107,6 +107,12 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 .srch {
 	margin-top: 14px;
 }
+.srch-btn:hover {
+	color: white;
+	background-color: #8DC63F;
+	font-weight: bold;
+	text-shadow: 0.1px 0.1px 5px #2B2B2B;
+}
 
 /* Scrollbar styling for webkit broswers */
 ::-webkit-scrollbar {
@@ -150,9 +156,9 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	overflow-y: hidden;
 	color: #FFFEFF;
 
-	-webkit-border-radius: 0px 0px 5px 5px !important;
-    -moz-border-radius: 0px 0px 5px 5px !important;
-    border-radius: 0px 0px 5px 5px !important;
+	-webkit-border-radius: 0 0 5px 5px !important;
+    -moz-border-radius: 0 0 5px 5px !important;
+    border-radius: 0 0 5px 5px !important;
 }
 .party-up-box {
 	border: 1px solid #161616;
@@ -234,6 +240,9 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 .panel-PU {
 	background-color: #88C641;
 	color: #e5e5e5;
+}
+div.panel-body-PU > a {
+	color: #8DC63F;
 }
 
 .panel-body-PU {
