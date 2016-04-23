@@ -61,6 +61,9 @@ This page lists all the games in the games database. It allows an admin to add a
 
 This page allows admins to edit any property of the game.
 
+## Updating Database
+The database can be updated by changing the MongoDB URI in the "config/env/local.js" file or by changing the MONGOLAB_URI property on the Heroku dashboard.
+
 ## Prerequisites
 Make sure you have installed all of the following prerequisites on your development machine:
 * Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager. If you encounter any problems, you can also use this [GitHub Gist](https://gist.github.com/isaacs/579814) to install Node.js.
