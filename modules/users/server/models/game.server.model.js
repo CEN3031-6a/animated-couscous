@@ -72,6 +72,6 @@ GamesSchema.pre('save', function (next) {
 
   next();
 });
-
+//games model holds title, genre, gameImageURL and platform
 
 mongoose.model('Game', GamesSchema);

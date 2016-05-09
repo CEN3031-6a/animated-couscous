@@ -69,7 +69,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(["$rootScope"
 
   // Store previous state
   function storePreviousState(state, params) {
-    // only store this state if it shouldn't be ignored
+    // only store this state if it shouldn't be ignored 
     if (!state.data || !state.data.ignoreState) {
       $state.previous = {
         state: state,
@@ -106,6 +106,11 @@ angular.element(document).ready(function () {
 'use strict';
 
 // Use Applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('chat');
+
+'use strict';
+
+// Use Applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('core');
 ApplicationConfiguration.registerModule('core.admin', ['core']);
 ApplicationConfiguration.registerModule('core.admin.routes', ['ui.router']);
@@ -116,6 +121,108 @@ ApplicationConfiguration.registerModule('core.admin.routes', ['ui.router']);
 ApplicationConfiguration.registerModule('users', ['core']);
 ApplicationConfiguration.registerModule('users.admin', ['core.admin']);
 ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.routes']);
+
+'use strict';
+
+// Configuring the Chat module
+angular.module('chat').run(['Menus',
+  function (Menus) {
+    // Set top bar menu items
+    Menus.addMenuItem('topbar', {
+      title: 'Chat',
+      state: 'chat'
+    });
+  }
+]);
+
+'use strict';
+
+// Configure the 'chat' module routes
+angular.module('chat').config(['$stateProvider',
+  function ($stateProvider) {
+    $stateProvider
+      .state('chat', {
+        url: '/chat/:discussionId',
+        templateUrl: 'modules/chat/client/views/chat.client.view.html',
+        controller: 'ChatController',
+        data: {
+          roles: ['user', 'admin']
+        },
+        resolve: {
+          discussionResolve: ['$stateParams', 'Discussion', function($stateParams, Discussion) {
+            return Discussion.get({
+              discussionId: $stateParams.discussionId
+            });
+          }]
+        }
+      });
+  }
+]);
+
+'use strict';
+
+// Create the 'chat' controller
+angular.module('chat').controller('ChatController', ['$scope', '$resource', '$location', 'Authentication', 'Socket', 'Discussion', '$stateParams',
+  function ($scope, $resource, $location, Authentication, Socket, Discussion, $stateParams) {
+    // Create a messages array
+    $scope.discussion = Discussion.get({ discussionId: $stateParams.discussionId });
+    $scope.messages = [];
+    console.log($scope.discussion);
+    console.log($scope.discussion.comments);
+
+    $scope.rooms = [{
+      messages: [],
+      name: ''
+    }];
+
+
+    // If user is not signed in then redirect back home
+
+    $scope.user = Authentication.user;
+
+    if (!Authentication.user) {
+      $location.path('/');
+    }
+
+
+    // Make sure the Socket is connected
+    if (!Socket.socket) {
+      Socket.connect();
+    }
+
+    console.log($stateParams.discussionId);
+    var room = {
+      roomID: $stateParams.discussionId
+    };
+    Socket.emit('createRoom', room);
+
+
+    // Add an event listener to the 'chatMessage' event
+    Socket.on('chatMessage', function (message) {
+      //$scope.messages.unshift(message);
+      $scope.messages.push(message);
+    });
+
+    // Create a controller method for sending messages
+    $scope.sendMessage = function () {
+      // Create a new message object
+      var message = {
+        text: this.messageText
+      };
+
+      // Emit a 'chatMessage' message event
+      Socket.emit('chatMessage', message);
+
+      // Clear the message text
+      this.messageText = '';
+    };
+
+    // Remove the event listener when the controller instance is destroyed
+    $scope.$on('$destroy', function () {
+      Socket.removeListener('chatMessage');
+    });
+  }
+]);
 
 'use strict';
 
@@ -190,9 +297,21 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     .state('game', {
       url: '/games/:gameID',
       templateUrl: 'modules/users/client/views/game/game-page.client.view.html',
-      controller: 'GameController',
+      controller: 'GamePageController',
       resolve: {
         gameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
+          return Game.get({
+            gameID: $stateParams.gameID
+          });
+        }]
+      }
+    })
+    .state('create-discussion', {
+      url: '/create-discussion',
+      templateUrl: 'modules/users/client/views/game/create-discussion.client.view.html',
+      controller: 'DiscussionController',
+      resolve: {
+        discussionGameResolve: ['$stateParams', 'Game', function ($stateParams, Game) {
           return Game.get({
             gameID: $stateParams.gameID
           });
@@ -233,11 +352,26 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     // This provides Authentication context.
     $scope.authentication = Authentication;
 
-
-    $scope.query = "";
-    $scope.userInput = "";
+    
+    $scope.query = '';
+    $scope.userInput = '';
     $scope.applySearch = function() {
       $scope.query = $scope.userInput;
+    };
+
+    $scope.imgSrc = '';
+    $scope.query2 = '';
+    $scope.applyXboxFilter = function() {
+      $scope.query2 = 'Xbox One';
+      $scope.imgSrc = 'modules/core/client/img/brand/xbox-logo.png';
+    };
+    $scope.applyPS4Filter = function() {
+      $scope.query2 = 'PS4';
+      $scope.imgSrc = 'modules/core/client/img/brand/playstation-logo.png';
+    };
+    $scope.applyPCFilter = function() {
+      $scope.query2 = 'PC';
+      $scope.imgSrc = 'modules/core/client/img/brand/steam-logo.png';
     };
   }
 ]);
@@ -690,7 +824,7 @@ angular.module('users').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-      .state('settings.games', {
+      .state('settings.my-games', {
         url: '/games',
         templateUrl: 'modules/users/client/views/settings/my-games.client.view.html',
         controller: 'ViewGameLibraryController'
@@ -1179,40 +1313,182 @@ angular.module('users').controller('ModalInstanceCtrl', ["$scope", "$modalInstan
 
 'use strict';
 
-angular.module('users').controller('GamesController', ['$scope', '$http', '$filter', 'Game', 'Users', 'Authentication',
-  function($scope, $http, $filter, Game, Users, Authentication) {
-    //$scope.games = [{"_id":"56ec2aab4cc86a81a2bcac89","updated":"2016-03-18T16:19:55.364Z","__v":0,"discussions":[],"created":"2016-03-18T16:19:55.363Z","gameImageURL":"https://upload.wikimedia.org/wikipedia/en/8/81/NHL_16_cover.jpg","platform":"Xbox One","title":"NHL 16"}];
-    Game.query(function(data) {
-      $scope.games = data;
+angular.module('users').controller('DiscussionController', ['$scope', '$http', '$filter', '$state', '$location', '$window', 'Discussion', 'Game', 'discussionGameResolve', 'UserGames', 'Authentication',
+  function($scope, $http, $filter, $state, $location, $window, Discussion, Game, discussionGameResolve, UserGames, Authentication) {
+
+    $scope.game = discussionGameResolve;
+    $scope.discussion = Discussion;
+    $scope.user = Authentication.user;
+    $scope.error = null;
+    $scope.form = {};
+    $scope.remove = remove;
+    $scope.save = save;
+    $scope.games = [];
+    $scope.selectedGame = null;
+
+    UserGames.get(function (data) {
+      var currentUser = data;
+      console.log(data);
+      $scope.games = currentUser.games;
+      console.log($scope.games);
     });
-    /*
-    $scope.find = function() {
-      $scope.loading = true;
-      Game.get().then(function(response) {
-        $scope.loading = false;
-        $scope.games = response.data;
-      }, function(error) {
-        $scope.loading = false;
-        $scope.error = 'Unable to retrieve games!\n' + error;
+
+    // Remove existing Post
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete?')) {
+        $scope.discussion.$remove($state.go('discussions.list'));
+      }
+    }
+
+    // Save Post
+    function save(isValid) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', '$scope.form.discussionForm');
+        return false;
+      }
+
+      // TODO: move create/update logic to service
+      if ($scope.discussion._id) {
+        $scope.discussion.$update(successCallback, errorCallback);
+      } else {
+        $scope.discussion.$save(successCallback, errorCallback);
+      }
+
+      function successCallback(res) {
+        console.log('this is the res');
+        console.log(res);
+        // $state.go('game', {
+        //   gameId: selectedGame._id
+        // });
+        $state.go('game({gameId: res.game})');
+      }
+
+      function errorCallback(res) {
+        $scope.error = res.data.message;
+      }
+    }
+
+    $scope.removeDiscussionFromGame = function (discussion, game) {
+      var currentGame = game;
+      // //var discussion = Discussion.get({discussionId: discussion._id});
+      // console.log(discussion);
+      // console.log('here comes game');
+      console.log(currentGame);
+      if (game._id === discussion.game) {
+        currentGame.discussions.push(discussion);
+      }
+
+      var gameToSave = new Game(currentGame);
+
+      gameToSave.$update(function () {
+        // $state.go('game', {
+        //   gameID: game._id
+        // });
+        $state.go('chat', {
+          //discussionId: discussion._id
+        });
+      }, function(errorResponse) {
+        $scope.error = errorResponse.data;
       });
     };
-    */
+
+    $scope.addDiscussionToGame = function (discussion, game) {
+      var currentGame = game;
+      // //var discussion = Discussion.get({discussionId: discussion._id});
+      // console.log(discussion);
+      // console.log('here comes game');
+      console.log(currentGame);
+      if (game._id === discussion.game) {
+        currentGame.discussions.push(discussion);
+      }
+
+      var gameToSave = new Game(currentGame);
+
+      gameToSave.$update(function () {
+        // $state.go('game', {
+        //   gameID: game._id
+        // });
+        $state.go('chat', {
+          //discussionId: discussion._id
+        });
+      }, function(errorResponse) {
+        $scope.error = errorResponse.data;
+      });
+    };
+
+    $scope.addDiscussion = function() {
+      var newDiscussion = new Discussion({
+        title: $scope.title,
+        //content: $scope.content,
+        game: $scope.selectedGame,
+        comments: [],
+        originalPoster: $scope.user
+      });
+
+      console.log($scope.selectedGame);
+
+      newDiscussion.$save(function(response) {
+        console.log(response);
+        // $location.path('/discussions/');
+        $scope.addDiscussionToGame(response, $scope.selectedGame);
+        $scope.title = '';
+        $scope.content = '';
+      }, function(errorResponse) {
+        $scope.title = '';
+        $scope.content = '';
+        $scope.game = '';
+        $scope.error = errorResponse.data;
+      });
+
+    };
+  }
+]);
+
+'use strict';
+
+angular.module('users').controller('GamePageController', ['$scope', '$http', '$filter', 'Game', 'gameResolve', 'Discussion', 'Users', 'Authentication',
+  function($scope, $http, $filter, Game, gameResolve, Discussion, Users, Authentication) {
+    $scope.discussions = [];
+    $scope.game = gameResolve;
+    Discussion.query(function(data) {
+      $scope.discussions = data;
+      console.log($scope.discussions);
+    });
+
+    $scope.addDiscussionToGame = function (discussion) {
+      $scope.game.discussions.push(discussion);
+      console.log(discussion);
+
+      var game = new Game($scope.game);
+
+      game.$update(function (response) {
+        $scope.$broadcast('show-errors-reset', 'gameForm');
+
+        $scope.success = true;
+        Authentication.user = response;
+      }, function (response) {
+        $scope.error = response.data.message;
+      });
+    };
 
 
 
 
     /*
     $scope.user = Authentication.user;
+
     Game.query(function (data) {
       $scope.games = data;
       $scope.buildPager();
     });
+
     $scope.buildPager = function () {
       $scope.pagedItems = [];
       $scope.itemsPerPage = 15;
       $scope.currentPage = 1;
       $scope.figureOutItemsToDisplay();
     };
+
     $scope.figureOutItemsToDisplay = function () {
       $scope.filteredItems = $filter('filter')($scope.games, {
         $: $scope.search
@@ -1222,6 +1498,50 @@ angular.module('users').controller('GamesController', ['$scope', '$http', '$filt
       var end = begin + $scope.itemsPerPage;
       $scope.pagedItems = $scope.filteredItems.slice(begin, end);
     };
+
+    $scope.pageChanged = function () {
+      $scope.figureOutItemsToDisplay();
+    };
+    */
+  }
+]);
+
+'use strict';
+
+angular.module('users').controller('GamesController', ['$scope', '$http', '$filter', 'Game', 'Users', 'Authentication',
+  function($scope, $http, $filter, Game, Users, Authentication) {
+
+    Game.query(function(data) {
+      $scope.games = data;
+    });
+
+
+
+    /*
+    $scope.user = Authentication.user;
+
+    Game.query(function (data) {
+      $scope.games = data;
+      $scope.buildPager();
+    });
+
+    $scope.buildPager = function () {
+      $scope.pagedItems = [];
+      $scope.itemsPerPage = 15;
+      $scope.currentPage = 1;
+      $scope.figureOutItemsToDisplay();
+    };
+
+    $scope.figureOutItemsToDisplay = function () {
+      $scope.filteredItems = $filter('filter')($scope.games, {
+        $: $scope.search
+      });
+      $scope.filterLength = $scope.filteredItems.length;
+      var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
+      var end = begin + $scope.itemsPerPage;
+      $scope.pagedItems = $scope.filteredItems.slice(begin, end);
+    };
+
     $scope.pageChanged = function () {
       $scope.figureOutItemsToDisplay();
     };
@@ -1660,6 +1980,30 @@ angular.module('users').factory('Authentication', ['$window',
 
 'use strict';
 
+angular.module('users').factory('Discussion', ['$resource',
+  function($resource) {
+    return $resource('api/discussions', null, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);
+
+angular.module('users').factory('Discussion', ['$resource',
+  function ($resource) {
+    return $resource('api/discussions/:discussionId', {
+      discussionId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);
+
+'use strict';
+
 // Games service used for communicating with the games REST endpoint
 angular.module('users').factory('Game', ['$resource',
   function($resource) {
@@ -1672,11 +2016,21 @@ angular.module('users').factory('Game', ['$resource',
 ]);
 
 
-angular.module('users.admin').factory('Game', ['$resource',
+angular.module('users').factory('Game', ['$resource',
   function ($resource) {
     return $resource('api/games/:gameID', {
       gameID: '@_id'
     }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);
+
+angular.module('users').factory('GameDiscussions', ['$resource',
+  function ($resource) {
+    return $resource('api/games/:gameId/discussions', {}, {
       update: {
         method: 'PUT'
       }

@@ -7,14 +7,14 @@ angular.module('users').controller('AddGameController', ['$scope', '$state', '$w
     $scope.error = $location.search().err;
 
     $scope.addGame = function() {
-      var newGame = new Game({
+      var newGame = new Game({//create a new game with the form's information
         title: $scope.title,
         platform: $scope.platform,
         genre: $scope.genre,
         gameImageURL: $scope.gameurl
       });
 
-      newGame.$save(function(response) {
+      newGame.$save(function(response) {//save the new game
         $location.path('/admin/games');
         $scope.title = '';
         $scope.platform = '';

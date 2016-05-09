@@ -71,3 +71,6 @@ mongod
 *.ntvs*
 *.njsproj
 *.sln
+
+# Istanbul Coverage
+coverage/

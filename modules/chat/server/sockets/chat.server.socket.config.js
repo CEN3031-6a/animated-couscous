@@ -30,7 +30,6 @@ module.exports = function (io, socket) {
   });
 
   socket.on('createRoom', function(room) {
-    console.log('HEYHEYHEY');
     socket.room = room.roomID;
     socket.join(room.roomID);
   });

@@ -1,11 +1,15 @@
-[![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
-
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/meanjs/mean?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/meanjs/mean.svg?branch=master)](https://travis-ci.org/meanjs/mean)
-[![Dependencies Status](https://david-dm.org/meanjs/mean.svg)](https://david-dm.org/meanjs/mean)
+[![Party Up Logo](http://i.imgur.com/blkIk30.png)](http://partyupgaming.herokuapp.com/)
 [![Coverage Status](https://coveralls.io/repos/meanjs/mean/badge.svg?branch=master&service=github)](https://coveralls.io/github/meanjs/mean?branch=master)
 
-MEAN.JS is a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
+
+This app is built on the MEAN stack:
+Party Up is an app that matches up gamers that allows them to easily find people to play with. Party Up allows for real time matching of users looking to play online games. Currently, Xbox One, PS4 and Steam are supported.
+
+
+## Credits
+* [Bootstrap](http://getbootstrap.com/)
+* [Socket.io](http://socket.io/)
+* [Node.js Chat Tutorial](http://psitsmike.com/2011/10/node-js-and-socket-io-multiroom-chat-tutorial/)
 
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble a MEAN.JS application:
@@ -14,6 +18,51 @@ Before you begin we recommend you read about the basic building blocks that asse
 * AngularJS - Angular's [Official Website](http://angularjs.org/) is a great starting point. You can also use [Thinkster Popular Guide](http://www.thinkster.io/), and the [Egghead Videos](https://egghead.io/).
 * Node.js - Start by going through [Node.js Official Website](http://nodejs.org/) and this [StackOverflow Thread](http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js), which should get you going with the Node.js platform in no time.
 
+##Functionality and Screenshots
+The landing page:
+![landingpage](http://imgur.com/xteBCVk.png)
+
+From here users can sign in
+![signin](http://imgur.com/ZAwSqC8.png)
+
+And then click their profile picture up in the topright to go to their account page
+![accountpage](http://i.imgur.com/CFu9Xgq.png)
+
+On this screen they can edit any of their account properties or go to their My Games page
+![mygames](http://imgur.com/Bfd8v50.png)
+
+Here a user can put what games they own and are looking to find a group for. After adding a game to their list, a user can join and create chatrooms for that game which can be viewed on the game's page
+![gamepage](http://imgur.com/vltAFOi.png)
+
+This page shows the properties of the game and lists all the current chatrooms for it. Clicking on a blue link beneath the game properties will take you to that chatroom
+![chatroom](http://imgur.com/l1f4Gcw.png)
+
+Here users can chat with each other in real time to partyup and coordinate playing games.
+
+On the admin side of things, an admin will have access to the admin dropdown menu
+![admindrop](http://imgur.com/swh5LOA.png)
+
+These links take them to the manage users and manage games pages.
+
+The manage users page
+![userpage](http://imgur.com/eohK2zC.png)
+
+This page displays all the users and allows an admin to click on anyone to take them to the edit user page
+
+![edituser](http://imgur.com/st0L4Bw.png)
+
+This page allows an admin to edit any property of the user.
+
+The manage games page
+![gamespage](http://imgur.com/fFypxI3.png)
+
+This page lists all the games in the games database. It allows an admin to add a game to the database or edit any game currently there on the edit game page
+![editgame](http://imgur.com/3mv28BI.png)
+
+This page allows admins to edit any property of the game.
+
+## Updating Database
+The database can be updated by changing the MongoDB URI in the "config/env/local.js" file or by changing the MONGOLAB_URI property on the Heroku dashboard.
 
 ## Prerequisites
 Make sure you have installed all of the following prerequisites on your development machine:

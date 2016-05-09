@@ -10,6 +10,7 @@ body {
 }
 
 /* Slick Additional Styling */
+/*
 slick {
 	width: 84%;
 	text-align: center;
@@ -32,9 +33,10 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
+*/
 
 /*
-#grad-start {
+.grad-start {
 	stop-color:rgb(0,0,0); 
 	-webkit-stop-opacity: 1;
 	-moz-stop-opacity: 1;
@@ -42,7 +44,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	-o-stop-opacity: 1;
 	stop-opacity: 1;
 }
-#grad-end {
+.grad-end {
 	stop-color:rgb(255,255,255);
 	-webkit-stop-opacity: 1;
 	-moz-stop-opacity: 1;
@@ -110,6 +112,12 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 .srch {
 	margin-top: 14px;
 }
+.srch-btn:hover {
+	color: white;
+	background-color: #8DC63F;
+	font-weight: bold;
+	text-shadow: 0.1px 0.1px 5px #2B2B2B;
+}
 
 /* Scrollbar styling for webkit broswers */
 ::-webkit-scrollbar {
@@ -152,6 +160,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	-ms-overflow-y: hidden;
 	overflow-y: hidden;
 	color: #FFFEFF;
+	padding: 8px;
 
 	-webkit-border-radius: 0 0 5px 5px !important;
     -moz-border-radius: 0 0 5px 5px !important;
@@ -164,6 +173,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	background-color: #161616;
 	margin-bottom: 10px;
 	color: #FFFEFF;
+	padding: 0 0 8px 0;
 }
 .party-up-box h5 {
 	background: #8DC63F;
@@ -234,10 +244,13 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	position: fixed;
 }
 
-/*.panel-PU {
+.panel-PU {
 	background-color: #88C641;
 	color: #e5e5e5;
-}*/
+}
+div.panel-body-PU > a {
+	color: #8DC63F;
+}
 
 .panel-body-PU {
   padding: 15px;
