@@ -20,16 +20,12 @@ module.exports = {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/angular-file-upload.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
-        'public/lib/slick-carousel/slick/slick.js',
-        'public/lib/angular-slick/dist/slick.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
     css: [
       'modules/*/client/css/*.css', 
       'modules/core/client/css/*.css',
-      'public/lib/slick-carousel/slick/slick.css',
-      'public/lib/slick-carousel/slick/slick-theme.css'   
       //'modules/users/css/*.css'
     ],
     less: [

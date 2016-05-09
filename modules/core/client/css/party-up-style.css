@@ -32,6 +32,8 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
+
+/*
 #grad-start {
 	stop-color:rgb(0,0,0); 
 	-webkit-stop-opacity: 1;
@@ -48,6 +50,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	-o-stop-opacity: 1;
 	stop-opacity: 1;
 }
+*/
 
 .dpad {
 	cursor: pointer;
@@ -150,9 +153,9 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	overflow-y: hidden;
 	color: #FFFEFF;
 
-	-webkit-border-radius: 0px 0px 5px 5px !important;
-    -moz-border-radius: 0px 0px 5px 5px !important;
-    border-radius: 0px 0px 5px 5px !important;
+	-webkit-border-radius: 0 0 5px 5px !important;
+    -moz-border-radius: 0 0 5px 5px !important;
+    border-radius: 0 0 5px 5px !important;
 }
 .party-up-box {
 	border: 1px solid #161616;
