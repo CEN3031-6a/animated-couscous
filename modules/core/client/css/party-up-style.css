@@ -235,6 +235,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
   	background-color: black;
 }
 
+
 .game-cover-smaller {
 	height: 75%;
 	width: 75%;
@@ -244,17 +245,19 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	position: fixed;
 }
 
-.panel-PU {
-	background-color: #88C641;
-	color: #e5e5e5;
-}
-div.panel-body-PU > a {
-	color: #8DC63F;
+/* Room styling */
+.room-title {
+	color: #FFFEFF;
 }
 
-.panel-body-PU {
-  padding: 15px;
+div.panel-body-PU > a {
+	color: #CCCCCC;
 }
+div.panel-body-PU > a:hover {
+	color: #A2D062;
+	text-decoration: none;
+}
+
 .panel-heading-PU {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
@@ -263,13 +266,14 @@ div.panel-body-PU > a {
 }
 
 .panel-body-PU {
-	background-color: black;
+	background-color: #202020;
 	color: #e5e5e5;
+	padding: 15px;
 }
 
 .panel-title-PU {
   font-size: 16px;
-  color: #2d2d2d;
+  color: #8DC63F;
 }
 
 .panel-PU {
@@ -277,7 +281,7 @@ div.panel-body-PU > a {
 }
 .panel-PU > .panel-heading-PU {
   color: #333;
-  background-color: #88C641;
+  background-color: #151515;
   border-color: #ddd;
 }
 
