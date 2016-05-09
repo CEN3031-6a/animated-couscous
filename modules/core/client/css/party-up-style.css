@@ -10,6 +10,7 @@ body {
 }
 
 /* Slick Additional Styling */
+/*
 slick {
 	width: 84%;
 	text-align: center;
@@ -32,6 +33,9 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
+*/
+
+/*
 .grad-start {
 	stop-color:rgb(0,0,0); 
 	-webkit-stop-opacity: 1;
@@ -48,6 +52,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	-o-stop-opacity: 1;
 	stop-opacity: 1;
 }
+*/
 
 .dpad {
 	cursor: pointer;
