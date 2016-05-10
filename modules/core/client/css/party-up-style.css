@@ -84,6 +84,15 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 .btn.PUButton:hover {
     background-color: #A2D062;
 }
+.btn.PUButton-sm {
+	color: white;
+	background-color: #8DC63F;
+	margin: 0 0 0 10px;
+	padding: 0 2px 0 3px;
+}
+.btn.PUButton-sm:hover {
+    background-color: #A2D062;
+}
 
 /* Party Up Header */
 .party-up-header {

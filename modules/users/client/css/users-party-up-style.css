@@ -44,7 +44,7 @@ slick .slider .multiple-items .slick-slider .draggable .ng-isolate-scope .slick-
 	padding: 2;
 }
 .list-group-item.ng-scope:hover {
-	background: #8DC63F;
+	background: #444444;
 }
 .list-group-item-text, .list-group-item-heading {
 	background: none;

@@ -9,6 +9,10 @@ angular.module('users').controller('GamePageController', ['$scope', '$http', '$f
     //   $scope.games = data;
     // });
 
+    Users.query(function(data) {
+        $scope.user = data;
+    });
+
 // gets all discussion objects for the current game
     Discussion.query(function(data) {
       console.log(data);
@@ -32,7 +36,21 @@ angular.module('users').controller('GamePageController', ['$scope', '$http', '$f
       });
     };
 
+    $scope.addGameToLibrary = function (game) {
+      $scope.user.games.push(game);
+      console.log(game);
 
+      var user = new Users($scope.user);
+
+      user.$update(function (response) {
+        $scope.$broadcast('show-errors-reset', 'userForm');
+
+        $scope.success = true;
+        Authentication.user = response;
+      }, function (response) {
+        $scope.error = response.data.message;
+      });
+    };
 
 
     /*

@@ -4,10 +4,16 @@
       <div class="col-md-6">
         <h1 ng-bind="game.title"></h1>
       </div>
+      <div ng-show="!user.games.indexOf(game._id)+1" class="col-md-6" style="margin-top: 23px;">
+        <button ng-click="addGameToLibrary(game)" class="btn PUButton">Add to Library</button>
+      </div>
+      <div ng-show="user.games.indexOf(game._id)+1" class="col-md-6" style="margin-top: 23px;">
+        <button class="btn PUButton" style="float: right;" ui-sref="create-discussion({gameID: game._id})">Create Post</button>
+      </div>
     </div>
   </div>
 
-  <div class="page-header">
+  <!-- <div class="page-header">
     <div class="row">
       <div class="col-sm-4">
         <div class="form-group text-center">
@@ -21,13 +27,13 @@
         <h4>
           <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 50</h4>
         <h4>
-          <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 50</h4>
-        <a class="btn btn-primary" ui-sref="create-discussion({gameID: game._id})">
-          Create Post
-        </a>
+          <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 50</h4>
+        <a class="btn PUButton" ui-sref="create-discussion({gameID: game._id})">Create Post</a>
       </div>
     </div>
-  </div>
+  </div> -->
+
+  <h4 ng-show="!game.discussions.length">No recent posts, create one and let people know you're looking to play!</h4>
   <div ng-repeat="discussion in discussions | filter: { game: game._id } |
   orderBy: 'updated'">
     <div class="panel-PU">
