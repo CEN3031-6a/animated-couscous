@@ -51,7 +51,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       }
     })
     .state('create-discussion', {
-      url: '/create-discussion',
+      url: '/create-discussion/:gameID',
       templateUrl: 'modules/users/client/views/game/create-discussion.client.view.html',
       controller: 'DiscussionController',
       resolve: {

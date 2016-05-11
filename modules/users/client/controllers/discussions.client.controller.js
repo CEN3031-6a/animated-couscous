@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('DiscussionController', ['$scope', '$http', '$filter', '$state', '$location', '$window', 'Discussion', 'Game', 'discussionGameResolve', 'UserGames', 'Authentication',
-  function($scope, $http, $filter, $state, $location, $window, Discussion, Game, discussionGameResolve, UserGames, Authentication) {
+angular.module('users').controller('DiscussionController', ['$scope', '$http', '$filter', '$state', '$location', '$window', 'Discussion', 'Game', 'discussionGameResolve', 'UserGames', 'Authentication', '$stateParams',
+  function ($scope, $http, $filter, $state, $location, $window, Discussion, Game, discussionGameResolve, UserGames, Authentication, $stateParams) {
 
     $scope.game = discussionGameResolve;
     $scope.discussion = Discussion;
@@ -11,7 +11,6 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
     $scope.remove = remove;
     $scope.save = save;
     $scope.games = [];
-    $scope.selectedGame = null;
 
     UserGames.get(function (data) {
       var currentUser = data;
@@ -56,7 +55,7 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
     }
 
     $scope.removeDiscussionFromGame = function (discussion, game) {
-      var currentGame = game;
+      var currentGame = $scope.game;
       // //var discussion = Discussion.get({discussionId: discussion._id});
       // console.log(discussion);
       // console.log('here comes game');
@@ -79,16 +78,15 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       });
     };
 
-//adds discussion to that games discussion array
+    //adds discussion to that games discussion array
     $scope.addDiscussionToGame = function (discussion, game) {
-      var currentGame = game;
+      console.log($scope.game);
+      var currentGame = $scope.game;
       // //var discussion = Discussion.get({discussionId: discussion._id});
       // console.log(discussion);
       // console.log('here comes game');
       console.log(currentGame);
-      if (game._id === discussion.game) {
-        currentGame.discussions.push(discussion);
-      }
+      currentGame.discussions.push(discussion);
 
       var gameToSave = new Game(currentGame);
 
@@ -104,22 +102,21 @@ angular.module('users').controller('DiscussionController', ['$scope', '$http', '
       });
     };
 
-// adds discussion to database
+    // adds discussion to database
     $scope.addDiscussion = function() {
+      console.log($scope.game);
       var newDiscussion = new Discussion({
         title: $scope.title,
         //content: $scope.content,
-        game: $scope.selectedGame,
+        game: $scope.game,
         comments: [],
         originalPoster: $scope.user
       });
 
-      console.log($scope.selectedGame);
-
       newDiscussion.$save(function(response) {
         console.log(response);
         // $location.path('/discussions/');
-        $scope.addDiscussionToGame(response, $scope.selectedGame);
+        $scope.addDiscussionToGame(response, $scope.game);
         $scope.title = '';
         $scope.content = '';
       }, function(errorResponse) {

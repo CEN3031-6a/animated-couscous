@@ -5,6 +5,7 @@
   <div class="col-md-12">
     <form name="form.discussionForm" class="form-horizontal" ng-submit="addDiscussion()" novalidate>
       <fieldset>
+        
         <div class="form-group" show-errors>
           <label class="control-label" for="title">Title</label>
           <input name="title" type="text" ng-model="title" id="title" class="form-control" placeholder="Title" required>
@@ -20,18 +21,22 @@
           <label class="control-label" for="game">Game</label>
           <input name="game" data-ng-model="post.game" id="content" class="form-control" cols="30" rows="10" placeholder="Passed Game"></input>
         </div> -->
-        <div class="form-group">
+
+        <!-- <div class="form-group">
           <label class="control-label" for="game">Game</label>
           <select ng-model="selectedGame" ng-options="item.title for item in games">
             <option value="">Select Game</option>
           </select>
-        </div>
+        </div> -->
+
         <div class="form-group">
-          <button type="submit" class="btn btn-default">Create</button>
+          <button type="submit" class="btn PUButton">Create</button>
         </div>
+
         <div ng-show="error" class="text-danger">
           <strong ng-bind="error"></strong>
         </div>
+
       </fieldset>
     </form>
   </div>

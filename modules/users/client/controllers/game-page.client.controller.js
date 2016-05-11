@@ -4,14 +4,12 @@ angular.module('users').controller('GamePageController', ['$scope', '$http', '$f
   function($scope, $http, $filter, Game, gameResolve, Discussion, Users, Authentication) {
     $scope.discussions = [];
     $scope.game = gameResolve;
-
+    $scope.authentication = Authentication;
     // Game.query(function(data) {
     //   $scope.games = data;
     // });
 
-    Users.query(function(data) {
-        $scope.user = data;
-    });
+    $scope.user = Authentication.user;
 
 // gets all discussion objects for the current game
     Discussion.query(function(data) {
